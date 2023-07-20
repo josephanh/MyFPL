@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
-
-    <ImageView
-        android:layout_width="158dp"
-        android:layout_height="54dp"
-        android:src="@drawable/img_logo_fpt"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="30dp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_bg_login"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/app_name"/>
+    tools:context=".MainActivity">
 
 </LinearLayout>

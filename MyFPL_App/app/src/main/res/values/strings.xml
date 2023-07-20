@@ -2,4 +2,6 @@
     <string name="app_name" translatable="false">MyFPL</string>
     <string name="login_with_google">Login with Google</string>
     <string name="choosing_a_campus">Choosing a Campus</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
