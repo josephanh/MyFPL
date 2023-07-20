@@ -8,17 +8,29 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <ImageView
-        android:layout_width="158dp"
-        android:layout_height="54dp"
-        android:src="@drawable/img_logo_fpt"
-        android:contentDescription="@string/app_name"
-        android:layout_marginTop="30dp"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_bg_login"
-        android:scaleType="fitXY"
-        android:contentDescription="@string/app_name"/>
+   <FrameLayout
+       android:id="@+id/layout_fragment"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"/>
+
+   <com.ismaeldivita.chipnavigation.ChipNavigationBar
+       android:id="@+id/menu"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       app:cnb_menuResource="@menu/menu_bottom_navigation"
+       app:cnb_orientationMode="horizontal"
+       app:cnb_addBottomInset="false"
+       app:cnb_addLeftInset="false"
+       app:cnb_addRightInset="false"
+       app:cnb_addTopInset="false"
+       app:cnb_unselectedColor="@color/purple"
+       app:cnb_badgeColor="@color/second"
+       app:cnb_radius="20dp"
+       app:cnb_iconSize="24dp"
+       app:cnb_animationDuration="200"
+       android:background="@drawable/white_15dp"
+       android:elevation="10sp"
+       app:cnb_textAppearance="@style/BottomNavigationView"/>
 
 </LinearLayout>
