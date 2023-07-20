@@ -83,6 +83,7 @@
                             app:sl_shadowRadius="5dp">
 
                             <LinearLayout
+                                android:id="@+id/choiceCampus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/white_5dp"
@@ -122,6 +123,7 @@
                         app:sl_shadowRadius="5dp">
 
                         <LinearLayout
+                            android:id="@+id/loginGoogle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/white_5dp"

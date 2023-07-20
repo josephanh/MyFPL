@@ -15,6 +15,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
+
 import java.lang.reflect.Parameter;
 
 import render.animations.Bounce;
@@ -24,7 +26,7 @@ import render.animations.Render;
 public class LoginActivity extends AppCompatActivity {
 
     LinearLayout login_linear;
-    ImageView logoFPT;
+    ImageView logoFPT; LinearLayout choice_campus, login_google;
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -48,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         // anh xa
         login_linear = findViewById(R.id.login_linear);
         logoFPT = findViewById(R.id.logoFPT);
-
+        choice_campus = findViewById(R.id.choiceCampus);
+        login_google = findViewById(R.id.loginGoogle);
 
 //      animation
         Render render = new Render(getApplicationContext());
@@ -59,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         Render render1 = new Render(getApplicationContext());
         render1.setAnimation(Bounce.In(logoFPT).setDuration(5));
         render1.start();
+
+        new ClickShrinkEffect(choice_campus, 0.98f, 50);
+        new ClickShrinkEffect(login_google, 0.98f, 50);
     }
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
