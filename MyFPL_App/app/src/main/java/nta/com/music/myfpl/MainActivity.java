@@ -1,9 +1,12 @@
 package nta.com.music.myfpl;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,7 +14,8 @@ import android.view.WindowManager;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-import nta.com.music.myfpl.fragment.UserFragment;
+import nta.com.music.myfpl.fragments.HomeFragment;
+import nta.com.music.myfpl.fragments.UserFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,12 +25,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.layout_fragment, new UserFragment())
+                .replace(R.id.layout_fragment, new HomeFragment())
                 .commit();
 
         ChipNavigationBar menu = findViewById(R.id.menu);
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
+
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
         if (on) {

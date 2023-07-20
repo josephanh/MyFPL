@@ -70,7 +70,7 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/img_bg_user" />
+                android:src="@drawable/ic_bg_user" />
 
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="end"
-                    android:src="@drawable/img_bg_arrowright" />
+                    android:src="@drawable/ic_arrowright" />
             </LinearLayout>
 
 
@@ -94,7 +94,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/img_bg_line" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,7 +106,7 @@
             <com.makeramen.roundedimageview.RoundedImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/img_bg_logout" />
+                android:src="@drawable/ic_bg_logout" />
 
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/img_bg_line" />
         <TextView
             android:layout_width="match_parent"
@@ -134,23 +134,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Notification" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.github.iielse.switchbutton.SwitchView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:primaryColor="@color/second"
-                    android:layout_gravity="end"
-                    app:barColor="@color/white"  />
-            </LinearLayout>
+                android:text="Notification"
+                android:layout_weight="1"/>
+            <com.github.iielse.switchbutton.SwitchView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                app:primaryColor="@color/second"
+                android:layout_gravity="end"
+                app:barColor="@color/white"  />
 
 
 
@@ -158,7 +155,6 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="17dp"
             android:src="@drawable/img_bg_line" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,7 +172,7 @@
                 android:orientation="vertical">
                 <com.github.iielse.switchbutton.SwitchView
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     app:primaryColor="@color/second"
                     android:layout_gravity="end"
                     app:barColor="@color/white"  />
@@ -188,7 +184,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="17dp"
+
             android:src="@drawable/img_bg_line" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -217,7 +213,7 @@
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/img_bg_line" />
     </LinearLayout>
 

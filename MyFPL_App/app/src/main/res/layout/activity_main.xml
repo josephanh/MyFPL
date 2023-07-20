@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@color/white">
 
    <FrameLayout
        android:id="@+id/layout_fragment"
@@ -28,9 +29,11 @@
        app:cnb_badgeColor="@color/second"
        app:cnb_radius="20dp"
        app:cnb_iconSize="24dp"
+       style="@style/BottomNavigationView"
        app:cnb_animationDuration="200"
-       android:background="@drawable/white_15dp"
+       android:background="@drawable/bg_bottom_navigation"
        android:elevation="10sp"
+       android:translationZ="30sp"
        app:cnb_textAppearance="@style/BottomNavigationView"/>
 
 </LinearLayout>

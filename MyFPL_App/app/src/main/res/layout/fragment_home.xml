@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_main"
+        android:scaleType="fitXY"
+        android:layout_marginTop="-30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+            android:paddingLeft="20sp"
+            android:paddingRight="20dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Xin chào Joseph Nguyen"
+                android:fontFamily="@font/mulish_bold"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/btn_setting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_setting"/>
+        </LinearLayout>
+
+        <com.dd.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_anchor="@id/title_welcome"
+            app:layout_anchorGravity="bottom|center"
+            app:sl_cornerRadius="5dp"
+            app:sl_dx="2dp"
+            app:sl_dy="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:sl_shadowColor="@color/box_Shadow"
+            app:sl_shadowRadius="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/white_15dp">
+
+            </LinearLayout>
+        </com.dd.ShadowLayout>
+
+
+
+        
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scrollIndicators="bottom"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorAnimationDuration="1000"
+            app:tabIndicatorColor="@color/second"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="4dp"
+            android:elevation="0dp"
+            app:tabSelectedTextColor="@color/primary"
+            android:translationZ="0dp"
+            app:tabBackground="@color/white"
+            android:background="@drawable/white_5dp"
+            app:tabIndicator="@drawable/custom_indicator"
+            />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

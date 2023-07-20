@@ -1,4 +1,4 @@
-package nta.com.music.myfpl.fragment;
+package nta.com.music.myfpl.fragments;
 
 import android.os.Bundle;
 
