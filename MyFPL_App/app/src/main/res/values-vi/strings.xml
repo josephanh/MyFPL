@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_with_google">Đăng nhập với Google</string>
+    <string name="choosing_a_campus">Lựa chọn cơ sở</string>
+</resources>

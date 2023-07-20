@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MyFPL</string>
+    <string name="app_name" translatable="false">MyFPL</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="choosing_a_campus">Choosing a Campus</string>
 </resources>

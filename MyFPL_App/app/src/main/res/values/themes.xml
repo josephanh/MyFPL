@@ -1,10 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyFPL" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.MyFPL" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:navigationBarColor">@color/black</item>
 
     </style>
+    <declare-styleable name="ShadowLayout">
+        <attr name="sl_cornerRadius" format="dimension"/>
+        <attr name="sl_shadowRadius" format="dimension"/>
+        <attr name="sl_shadowColor" format="color"/>
+        <attr name="sl_dx" format="dimension"/>
+        <attr name="sl_dy" format="dimension"/>
+    </declare-styleable>
 
     <style name="Theme.MyFPL" parent="Base.Theme.MyFPL" />
 </resources>

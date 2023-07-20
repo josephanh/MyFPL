@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/logoFPT"
+        android:layout_width="158dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/img_logo_fpt" />
+
+    <LinearLayout
+        android:id="@+id/login_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/img_bg_login"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/white_15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/img_bg_login_dialog"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_welcome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/mulish_bold"
+                        android:gravity="center"
+                        android:text="Welcome to MyFPL"
+                        android:textColor="@color/purple"
+                        android:textSize="24sp" />
+
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <View
+                            android:id="@+id/parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></View>
+
+                        <com.dd.ShadowLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            app:layout_anchor="@id/parent"
+                            app:layout_anchorGravity="bottom"
+                            app:sl_cornerRadius="5dp"
+                            app:sl_dx="2dp"
+                            app:sl_dy="2dp"
+                            app:sl_shadowColor="@color/box_Shadow"
+                            app:sl_shadowRadius="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/white_5dp"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="9dp"
+                                android:paddingRight="10dp"
+                                android:paddingBottom="9dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/mulish"
+                                    android:paddingLeft="15dp"
+                                    android:gravity="center|left"
+                                    android:paddingRight="30dp"
+                                    android:text="@string/choosing_a_campus"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </com.dd.ShadowLayout>
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                    <com.dd.ShadowLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="40dp"
+                        app:layout_anchor="@id/title_welcome"
+                        app:layout_anchorGravity="bottom|center"
+                        app:sl_cornerRadius="5dp"
+                        app:sl_dx="2dp"
+                        app:sl_dy="2dp"
+                        app:sl_shadowColor="@color/box_Shadow"
+
+                        app:sl_shadowRadius="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_5dp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="9dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="9dp">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/img_logo_google" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/mulish"
+                                android:gravity="center"
+                                android:paddingRight="30dp"
+                                android:text="@string/login_with_google"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </com.dd.ShadowLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            android:src="@drawable/img_bee_gold" />
+    </LinearLayout>
+
+
+</LinearLayout>

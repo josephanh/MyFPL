@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<!--    system color-->
+    <color name="primary">#F48319</color>
+    <color name="second">#FFA729</color>
+
+    <color name="purple">#273572</color>
+
+    <color name="grey_black">#273572</color>
+    <color name="grey_primary">#8A8686</color>
+    <color name="grey_light">#C2C2C2</color>
+    <color name="grey_lighter">#EBEBEB</color>
+
+    <color name="box_Shadow">#1A000000</color>
+
 </resources>
