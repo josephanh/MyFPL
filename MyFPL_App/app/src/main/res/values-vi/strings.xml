@@ -2,4 +2,8 @@
 <resources>
     <string name="login_with_google">Đăng nhập với Google</string>
     <string name="choosing_a_campus">Lựa chọn cơ sở</string>
+    <string name="user">Hồ sơ</string>
+    <string name="notification">Thông báo</string>
+    <string name="calendar">Lịch</string>
+    <string name="home">Trang chủ</string>
 </resources>
