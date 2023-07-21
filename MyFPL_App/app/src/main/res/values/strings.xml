@@ -8,4 +8,8 @@
     <string name="notification">Notification</string>
     <string name="calendar">Calendar</string>
     <string name="home">Home</string>
+    <string name="extensions">Extensions</string>
+    <string name="event">Event</string>
+    <string name="wallet">Wallet</string>
+    <string name="form">Form</string>
 </resources>

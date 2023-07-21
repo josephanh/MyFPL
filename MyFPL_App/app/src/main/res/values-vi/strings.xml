@@ -6,4 +6,8 @@
     <string name="notification">Thông báo</string>
     <string name="calendar">Lịch</string>
     <string name="home">Trang chủ</string>
+    <string name="extensions">Tiện ích</string>
+    <string name="event">Sự kiện</string>
+    <string name="wallet">Wallet</string>
+    <string name="form">Form</string>
 </resources>
