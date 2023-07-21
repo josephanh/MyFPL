@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_main"
         android:scaleType="fitXY"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="-50dp"
         android:importantForAccessibility="no" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -164,8 +164,9 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:scrollIndicators="bottom"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorAnimationMode="elastic"
