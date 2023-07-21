@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import nta.com.music.myfpl.fragments.HomeFragment;
+import nta.com.music.myfpl.fragments.ScheduleFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.layout_fragment, new HomeFragment())
+                .replace(R.id.layout_fragment, new ScheduleFragment())
                 .commit();
 
         ChipNavigationBar menu = findViewById(R.id.menu);
