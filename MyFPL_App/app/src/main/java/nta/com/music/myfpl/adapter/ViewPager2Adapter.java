@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import nta.com.music.myfpl.fragments.Home.InfomationFragment;
+import nta.com.music.myfpl.fragments.Home.InformationFragment;
 
 public class ViewPager2Adapter extends FragmentStateAdapter {
     public ViewPager2Adapter(@NonNull FragmentActivity fragmentActivity) {
@@ -17,16 +17,16 @@ public class ViewPager2Adapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0: {
-                return new InfomationFragment();
+                return new InformationFragment();
             }
             case 1: {
-                return new InfomationFragment();
+                return new InformationFragment();
             }
             case 2: {
-                return new InfomationFragment();
+                return new InformationFragment();
             }
         }
-        return new InfomationFragment();
+        return new InformationFragment();
     }
 
     @Override

@@ -2,6 +2,8 @@ package nta.com.music.myfpl;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,23 +13,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
+import nta.com.music.myfpl.fragments.Home.InformationFragment;
 import nta.com.music.myfpl.fragments.HomeFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
+import nta.com.music.myfpl.model.Informations;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        frameLayout = findViewById(R.id.layout_fragment);
+//        InformationFragment firstFragment = new InformationFragment();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.add(R.id.layout_fragment, firstFragment);
+//        fragmentTransaction.commit();
 
-//        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-//        getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
@@ -51,4 +62,6 @@ public class MainActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
+
+
 }

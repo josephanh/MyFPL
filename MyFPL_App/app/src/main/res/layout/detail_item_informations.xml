@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:background="@drawable/custom_tv_nameinformations"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:fontFamily="@font/mulish_medium"
+            android:paddingBottom="3dp"
+            android:textSize="14sp"
+            android:text="Phòng đào tạo"/>
+        <TextView
+            android:id="@+id/tv_notification"
+            android:layout_width="match_parent"
+            android:textColor="@color/purple"
+            android:fontFamily="@font/mulish_bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="Thông báo đăng ký thực hiện dự án tốt nghiệp học kỳ Fall 2023"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center|left">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_bg_clock"/>
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mulish_medium"
+                android:textSize="14sp"
+                android:textColor="@color/grey_primary"
+                android:text="9:00pm"/>
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="17dp"
+                android:src="@drawable/ic_bg_author"/>
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/mulish_medium"
+                android:textSize="14sp"
+                android:textColor="@color/grey_primary"
+                android:text="Nguyễn Đức Tuân"/>
+        </LinearLayout>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/img_bg_line"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
