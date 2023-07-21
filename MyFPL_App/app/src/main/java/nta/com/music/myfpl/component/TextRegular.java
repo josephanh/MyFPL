@@ -28,8 +28,8 @@ public class TextRegular extends androidx.appcompat.widget.AppCompatTextView {
 
     @SuppressLint("ResourceAsColor")
     private void init() {
-        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.mulish_bold);
+        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.mulish);
         setTypeface(customFont);
-        setTextSize(14);
+        setTextSize(16);
     }
 }
