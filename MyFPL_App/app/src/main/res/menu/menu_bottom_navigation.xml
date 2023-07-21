@@ -12,14 +12,14 @@
         app:cnb_textColor="@color/white"
         />
     <item android:icon="@drawable/ic_calendar"
-        android:id="@+id/bt_search"
+        android:id="@+id/bt_schedule"
         android:title="@string/calendar"
         android:color="@color/second"
         app:cnb_iconColor="@color/white"
         app:cnb_backgroundColor="@color/second"
         app:cnb_textColor="@color/white"/>
     <item android:icon="@drawable/ic_bell"
-        android:id="@+id/bt_list"
+        android:id="@+id/bt_notification"
         android:title="@string/notification"
         android:color="@color/second"
         app:cnb_iconColor="@color/white"

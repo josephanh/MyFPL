@@ -12,4 +12,6 @@
     <string name="event">Event</string>
     <string name="wallet">Wallet</string>
     <string name="form">Form</string>
+
+    <string name="shareImage" translatable="false">ImageShareFragment</string>
 </resources>

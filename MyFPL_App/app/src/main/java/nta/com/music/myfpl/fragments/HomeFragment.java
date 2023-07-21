@@ -81,73 +81,7 @@ public class HomeFragment extends Fragment {
             }
         }).attach();
 
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                CustomFont(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                CustomFont(position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                CustomFont(position);
-            }
-        });
-
         return view;
-    }
-
-    private void CustomFont(int position){
-        // init your font
-        Typeface tf = ResourcesCompat.getFont(requireContext(), R.font.mulish_bold);
-        ViewGroup vg = (ViewGroup) tabs.getChildAt(0);
-        int tabsCount = vg.getChildCount();
-        for (int j = 0; j < tabsCount; j++) {
-            Log.d("TAG>>>", "CustomFont: "+j);
-            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
-            int tabChildsCount = vgTab.getChildCount();
-            for (int i = 0; i < tabChildsCount; i++) {
-                View tabViewChild = vgTab.getChildAt(i);
-                // Get TextView Element
-                if (tabViewChild instanceof TextView) {
-                    // change font
-                    ((TextView) tabViewChild).setTypeface(tf);
-                    // change size
-                    ((TextView) tabViewChild).setTextSize(20);
-                    // change color
-                    if(j == position) {
-                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.primary));
-                    } else {
-                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.grey_light));
-                    }
-                    // change padding
-                    tabViewChild.setPadding(0, 0, 0, 0);
-                    //..... etc...
-                }
-            }
-        }
-
     }
 
 

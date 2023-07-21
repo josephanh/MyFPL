@@ -47,7 +47,7 @@ public class ScheduleClassTabFragment extends Fragment {
         viewPager_schedule = view.findViewById(R.id.viewpager_schedule);
         ViewPagerScheduleWeek pagerSchedule = new ViewPagerScheduleWeek(requireActivity());
         viewPager_schedule.setAdapter(pagerSchedule);
-        viewPager_schedule.setPageTransformer(new VerticalFlipTransformation());
+//        viewPager_schedule.setPageTransformer(new VerticalFlipTransformation());
 
 
 

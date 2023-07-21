@@ -46,13 +46,14 @@ dependencies {
 
 //  https://github.com/ismaeldivita/chip-navigation-bar
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
-
+//    https://github.com/j-yun/Vertical-TabLayout
     implementation 'com.github.j-yun:Vertical-TabLayout:1.0.2'
+    //switch : https://github.com/iielse/switchbutton
+    implementation 'com.github.iielse:switchbutton:1.0.4'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    //switch : https://github.com/iielse/switchbutton
-    implementation 'com.github.iielse:switchbutton:1.0.4'
+
 }

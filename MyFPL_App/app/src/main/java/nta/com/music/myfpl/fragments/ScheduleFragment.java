@@ -32,7 +32,7 @@ public class ScheduleFragment extends Fragment {
 
     ViewPager2 viewPager;
     public static VerticalTabLayout tabsWeek;
-    public int currentItem = 0;
+    public static int currentItem = 0;
     TabLayout tabSchedule;
     TextView day;
 
@@ -121,10 +121,15 @@ public class ScheduleFragment extends Fragment {
                 currentItem = viewPager.getCurrentItem();
                 if(currentItem == 0) {
                     viewPager_schedule.setCurrentItem(position);
-
+                    if(viewPager_schedule_exam != null) {
+                        viewPager_schedule_exam.setCurrentItem(position, false);
+                    } else {
+                        currentItem = position;
+                    }
 
                 } else {
                     viewPager_schedule_exam.setCurrentItem(position);
+                    viewPager_schedule.setCurrentItem(position, false);
                 }
                 setBackgroundItemNavigation(position);
 

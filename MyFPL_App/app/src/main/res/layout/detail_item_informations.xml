@@ -19,7 +19,8 @@
             android:fontFamily="@font/mulish_medium"
             android:paddingBottom="3dp"
             android:textSize="14sp"
-            android:text="Phòng đào tạo"/>
+            android:text="Phòng đào tạo"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/tv_notification"
             android:layout_width="match_parent"

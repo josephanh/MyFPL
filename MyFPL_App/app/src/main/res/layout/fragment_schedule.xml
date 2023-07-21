@@ -134,10 +134,12 @@
                     android:paddingTop="50dp"
                     android:paddingBottom="20dp"
                     android:soundEffectsEnabled="false"
-                    app:indicator_color="@android:color/transparent"
-                    app:indicator_gravity="fill"
+                    app:indicator_color="@color/primary"
+                    app:indicator_gravity="right"
                     app:tab_height="50dp"
-                    app:tab_mode="scrollable"/>
+                    app:tab_mode="scrollable"
+                    app:indicator_corners="5dp"
+                    app:indicator_width="10dp"/>
 
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -150,7 +152,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:layerType="hardware" />
+                android:layerType="hardware"
+                android:soundEffectsEnabled="false"/>
 
         </LinearLayout>
 

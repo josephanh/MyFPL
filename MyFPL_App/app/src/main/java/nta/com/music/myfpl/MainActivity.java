@@ -2,40 +2,34 @@ package nta.com.music.myfpl;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-import nta.com.music.myfpl.fragments.Home.InformationFragment;
 import nta.com.music.myfpl.fragments.HomeFragment;
 import nta.com.music.myfpl.fragments.ScheduleFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
-import nta.com.music.myfpl.model.Informations;
 
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
+    ChipNavigationBar bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        frameLayout = findViewById(R.id.layout_fragment);
-//        InformationFragment firstFragment = new InformationFragment();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.add(R.id.layout_fragment, firstFragment);
-//        fragmentTransaction.commit();
 
         setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -43,12 +37,45 @@ public class MainActivity extends AppCompatActivity {
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.layout_fragment, new ScheduleFragment())
-                .commit();
 
-        ChipNavigationBar menu = findViewById(R.id.menu);
-        menu.setItemSelected(R.id.bt_home, true);
+
+        bottomNavigation = findViewById(R.id.menu);
+        bottomNavigation.setItemSelected(R.id.bt_home, true);
+        setMenuNavigation();
+
+        bottomNavigation.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public void onItemSelected(int i) {
+//                setMenuNavigation();
+            }
+        });
+    }
+
+
+    public void setMenuNavigation(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                Fragment fragment = new HomeFragment();
+
+                if(bottomNavigation.getSelectedItemId() == R.id.bt_home) {
+                    fragment = new HomeFragment();
+                }
+                if(bottomNavigation.getSelectedItemId() == R.id.bt_schedule) {
+                    fragment = new ScheduleFragment();
+                }
+                if(bottomNavigation.getSelectedItemId() == R.id.bt_user) {
+                    fragment = new UserFragment();
+                }
+                getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.pop_enter,R.animator.fade_out)
+                        .replace(R.id.layout_fragment, fragment)
+                        .commit();
+
+            }
+        }).start();
     }
 
 

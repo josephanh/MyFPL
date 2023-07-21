@@ -7,17 +7,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerScheduleWeek;
+import nta.com.music.myfpl.fragments.ScheduleFragment;
 import nta.com.music.myfpl.utils.VerticalFlipTransformation;
 
 public class ScheduleExamTabFragment extends Fragment {
     public static ViewPager2 viewPager_schedule_exam;
-    int currentItem = 0;
     public ScheduleExamTabFragment() {
         // Required empty public constructor
     }
@@ -46,15 +47,15 @@ public class ScheduleExamTabFragment extends Fragment {
         viewPager_schedule_exam = view.findViewById(R.id.viewpager_schedule);
         ViewPagerScheduleWeek pagerSchedule = new ViewPagerScheduleWeek(requireActivity());
         viewPager_schedule_exam.setAdapter(pagerSchedule);
-        viewPager_schedule_exam.setPageTransformer(new VerticalFlipTransformation());
+//        viewPager_schedule_exam.setPageTransformer(new VerticalFlipTransformation());
 
+        viewPager_schedule_exam.setCurrentItem(ScheduleFragment.currentItem, false);
 
 
         viewPager_schedule_exam.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                currentItem = position;
                 tabsWeek.setTabSelected(position);
             }
         });
@@ -63,8 +64,12 @@ public class ScheduleExamTabFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        tabsWeek.setTabSelected(currentItem);
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

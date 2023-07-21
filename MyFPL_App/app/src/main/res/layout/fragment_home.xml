@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/image_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/bg_main"
         android:scaleType="fitXY"
         android:layout_marginTop="-50dp"
-        android:importantForAccessibility="no" />
+        android:importantForAccessibility="no"
+        android:transitionName="@string/shareImage"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -159,12 +161,9 @@
         </com.dd.ShadowLayout>
 
 
-
-        
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:scrollIndicators="bottom"
@@ -180,6 +179,8 @@
             app:tabBackground="@color/white"
             android:background="@drawable/white_5dp"
             app:tabIndicator="@drawable/custom_indicator"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:tabTextColor="@color/grey_light"
             />
 
         <androidx.viewpager2.widget.ViewPager2
