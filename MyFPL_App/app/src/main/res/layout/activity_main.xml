@@ -34,6 +34,7 @@
        android:background="@drawable/bg_bottom_navigation"
        android:elevation="10sp"
        android:translationZ="30sp"
-       app:cnb_textAppearance="@style/BottomNavigationView"/>
+       app:cnb_textAppearance="@style/BottomNavigationView"
+       android:scrollbarFadeDuration="10"/>
 
 </LinearLayout>

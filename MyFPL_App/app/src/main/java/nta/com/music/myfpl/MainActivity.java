@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +17,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -32,46 +35,63 @@ import nta.com.music.myfpl.fragments.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG_HOME = "TAG_HOME";
+    private final String TAG_SCHEDULE = "TAG_SCHEDULE";
+    private final String TAG_NOTIFICATION = "TAG_NOTIFICATION";
+    private final String TAG_USER = "TAG_USER";
     ThreadPoolExecutor executor;
-    private Handler handler = new Handler(Looper.getMainLooper()){
+    private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             Fragment fragment = new HomeFragment();
+            String tag = null;
             int idSelected = msg.arg1;
             if(idSelected == R.id.bt_home) {
                 fragment = new HomeFragment();
+                tag = TAG_HOME;
             }
             if(idSelected == R.id.bt_schedule) {
                 fragment = new ScheduleFragment();
+                tag = TAG_SCHEDULE;
             }
             if(idSelected == R.id.bt_user) {
                 fragment = new UserFragment();
+                tag = TAG_USER;
             }
-            getSupportFragmentManager().beginTransaction()
-                    .setCustomAnimations(R.anim.pop_enter,R.animator.fade_out)
-                    .replace(R.id.layout_fragment, fragment)
-                    .commit();
+            showFragment(tag);
         }
     };
 
 
-    ChipNavigationBar bottomNavigation;
+    private ChipNavigationBar bottomNavigation;
+    private FragmentManager fragmentManager;
+    private FrameLayout layout_fragment;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigation = findViewById(R.id.menu);
+        layout_fragment = findViewById(R.id.layout_fragment);
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        fragmentManager = getSupportFragmentManager();
+
+        addFragmentIfNeeded(TAG_HOME, new HomeFragment());
+        addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleFragment());
+        addFragmentIfNeeded(TAG_USER, new UserFragment());
+
+
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
 
-
-        bottomNavigation = findViewById(R.id.menu);
         bottomNavigation.setItemSelected(R.id.bt_home, true);
         setMenuNavigation();
 
@@ -94,6 +114,27 @@ public class MainActivity extends AppCompatActivity {
                 handler.sendMessage(message);
             }
         });
+    }
+
+    private void addFragmentIfNeeded(String tag, Fragment fragment) {
+        Fragment existingFragment = fragmentManager.findFragmentByTag(tag);
+        if (existingFragment == null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.add(R.id.layout_fragment, fragment, tag);
+            transaction.addToBackStack(null);
+            transaction.commit();
+            layout_fragment.setVisibility(View.GONE);
+        }
+    }
+    private void showFragment(String tag) {
+        layout_fragment.setVisibility(View.VISIBLE);
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        if (fragment != null) {
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
+            transaction.replace(R.id.layout_fragment, fragment);
+            transaction.commit();
+        }
     }
 
 
