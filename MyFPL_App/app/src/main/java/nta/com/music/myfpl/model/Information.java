@@ -1,14 +1,14 @@
 package nta.com.music.myfpl.model;
 
-public class Informations {
+public class Information {
     private int id_Informations;
     private String name,author,notification;
     private long time;
 
-    public Informations() {
+    public Information() {
     }
 
-    public Informations(int id_Informations, String name, String author, String notification, long time) {
+    public Information(int id_Informations, String name, String author, String notification, long time) {
         this.id_Informations = id_Informations;
         this.name = name;
         this.author = author;
@@ -24,7 +24,7 @@ public class Informations {
         this.id_Informations = id_Informations;
     }
 
-    public Informations(String name, String author, long time, String notification) {
+    public Information(String name, String author, long time, String notification) {
         this.name = name;
         this.author = author;
         this.time = time;

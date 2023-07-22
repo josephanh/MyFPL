@@ -29,6 +29,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.fragments.HomeFragment;
+import nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.ScheduleFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        addFragmentIfNeeded(TAG_HOME, new HomeFragment());
+        addFragmentIfNeeded(TAG_HOME, new ScheduleMonthFragment());
 
 
 
