@@ -85,7 +85,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_passport"
+                            android:src="@drawable/ic_event"
                             android:scaleType="center"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_wallets"
+                            android:src="@drawable/ic_wallet"
                             android:scaleType="center"/>
                         <TextView
                             android:layout_width="wrap_content"
