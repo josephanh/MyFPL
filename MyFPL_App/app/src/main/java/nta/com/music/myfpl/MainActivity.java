@@ -44,19 +44,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            Fragment fragment = new HomeFragment();
+//            Fragment fragment = new HomeFragment();
             String tag = null;
             int idSelected = msg.arg1;
             if(idSelected == R.id.bt_home) {
-                fragment = new HomeFragment();
+//                fragment = new HomeFragment();
+                addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleFragment());
+                addFragmentIfNeeded(TAG_USER, new UserFragment());
                 tag = TAG_HOME;
             }
             if(idSelected == R.id.bt_schedule) {
-                fragment = new ScheduleFragment();
+//                fragment = new ScheduleFragment();
                 tag = TAG_SCHEDULE;
             }
             if(idSelected == R.id.bt_user) {
-                fragment = new UserFragment();
+//                fragment = new UserFragment();
                 tag = TAG_USER;
             }
             showFragment(tag);
@@ -77,16 +79,15 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.menu);
         layout_fragment = findViewById(R.id.layout_fragment);
 
-        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+//        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         fragmentManager = getSupportFragmentManager();
 
         addFragmentIfNeeded(TAG_HOME, new HomeFragment());
-        addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleFragment());
-        addFragmentIfNeeded(TAG_USER, new UserFragment());
+
 
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);

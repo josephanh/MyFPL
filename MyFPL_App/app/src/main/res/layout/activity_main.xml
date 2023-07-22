@@ -31,6 +31,8 @@
        app:cnb_iconSize="24dp"
        style="@style/BottomNavigationView"
        app:cnb_animationDuration="200"
+       android:animateLayoutChanges="true"
+       android:animationCache="true"
        android:background="@drawable/bg_bottom_navigation"
        android:elevation="10sp"
        android:translationZ="30sp"
