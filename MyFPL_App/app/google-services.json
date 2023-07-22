@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1061374747065",
+    "firebase_url": "https://login-782f8-default-rtdb.firebaseio.com",
+    "project_id": "login-782f8",
+    "storage_bucket": "login-782f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061374747065:android:bda50ff87e1feb64b85668",
+        "android_client_info": {
+          "package_name": "nta.com.music.myfpl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061374747065-8smd1bl8snmekhsm693kij206h6mi04n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nta.com.music.myfpl",
+            "certificate_hash": "b10eac64c4bcb8caf398b01620fd33dbdc078b70"
+          }
+        },
+        {
+          "client_id": "1061374747065-2dh2qlhbq7lnosquqd5atcgcsnma7oka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_gKCfz9b78JmdWmehXxV9eC2Af6gI95w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061374747065-2dh2qlhbq7lnosquqd5atcgcsnma7oka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
