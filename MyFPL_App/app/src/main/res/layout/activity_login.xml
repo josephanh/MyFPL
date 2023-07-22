@@ -93,6 +93,7 @@
                                 android:paddingRight="10dp"
                                 android:paddingBottom="9dp">
                                 <TextView
+                                    android:id="@+id/txt_chosenCampus"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
                                     android:layout_weight="1"
