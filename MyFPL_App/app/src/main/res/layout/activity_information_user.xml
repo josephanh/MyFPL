@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".InformationUserActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_centerVertical="true"
+    app:layout_scrollEffect="none">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_semibold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:lineHeight="24dp"
+            android:text="Thông báo kế hoạch bảo vệ dự án tốt nghiệp học kì Summer 2023"
+            android:padding="20dp" />
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:fontFamily="@font/mulish"
+            android:textSize="16sp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>
