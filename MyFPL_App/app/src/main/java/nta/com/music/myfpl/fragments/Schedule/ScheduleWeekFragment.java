@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.adapter.InformationsAdapter;
-import nta.com.music.myfpl.model.Informations;
-import render.animations.Bounce;
-import render.animations.Render;
+import nta.com.music.myfpl.adapter.InformationAdapter;
+import nta.com.music.myfpl.model.Information;
 
 public class ScheduleWeekFragment extends Fragment {
 
@@ -58,15 +56,15 @@ public class ScheduleWeekFragment extends Fragment {
 
         RecyclerView recyclerSchedule = view.findViewById(R.id.listSchedule);
 
-        List<Informations> list = new ArrayList<Informations>();
-        list.add(new Informations(1,"Phòng đào tạo","Nguyễn Đức Tuân",
+        List<Information> list = new ArrayList<Information>();
+        list.add(new Information(1,"Phòng đào tạo","Nguyễn Đức Tuân",
                 "Thông báo đăng ký thực hiện dự án tốt nghiệp học kỳ Fall 2023",7));
-        list.add(new Informations(2,"Phòng đào tạo","Nguyễn Đức Tuân",
+        list.add(new Information(2,"Phòng đào tạo","Nguyễn Đức Tuân",
                 "Phòng khảo thí thông báo DSSV kiểm tra Tiếng Anh đầu vào khóa 19.3.1_Ngày thi 22/07/2023",7));
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         recyclerSchedule.setLayoutManager(linearLayoutManager);
-        recyclerSchedule.setAdapter(new InformationsAdapter(getContext(),list));
+        recyclerSchedule.setAdapter(new InformationAdapter(getContext(),list));
 
         return view;
     }

@@ -11,28 +11,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.model.Informations;
-import nta.com.music.myfpl.viewholder.InformationsViewHolder;
+import nta.com.music.myfpl.model.Information;
+import nta.com.music.myfpl.viewholder.InformationViewHolder;
 
-public class InformationsAdapter extends RecyclerView.Adapter<InformationsViewHolder> {
+public class InformationAdapter extends RecyclerView.Adapter<InformationViewHolder> {
     Context context;
-    Informations informations;
-    List<Informations> list;
+    List<Information> list;
 
-    public InformationsAdapter(Context context, List<Informations> list) {
+    public InformationAdapter(Context context, List<Information> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public InformationsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InformationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.detail_item_informations, parent,false);
-        return new InformationsViewHolder(view);
+        return new InformationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InformationsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull InformationViewHolder holder, int position) {
         holder.tv_name.setText(list.get(position).getName());
         holder.tv_time.setText(list.get(position).getTime()+":00 AM");
         holder.tv_author.setText(list.get(position).getAuthor());
