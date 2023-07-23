@@ -2,36 +2,35 @@ package nta.com.music.myfpl;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.WindowCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.fragments.HomeFragment;
-import nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.ScheduleFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
+import nta.com.music.myfpl.model.Information;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG_NOTIFICATION = "TAG_NOTIFICATION";
     private final String TAG_USER = "TAG_USER";
     ThreadPoolExecutor executor;
+
     private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -70,8 +70,11 @@ public class MainActivity extends AppCompatActivity {
     private ChipNavigationBar bottomNavigation;
     private FragmentManager fragmentManager;
     private FrameLayout layout_fragment;
+    private NavigationView navigation_choice_schedule;
+    private DrawerLayout drawerLayout;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation = findViewById(R.id.menu);
         layout_fragment = findViewById(R.id.layout_fragment);
+        navigation_choice_schedule = findViewById(R.id.navigation_choice_schedule);
+        drawerLayout = findViewById(R.id.drawer_layout);
+//        chặn không cho vuốt
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 //        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
@@ -87,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        addFragmentIfNeeded(TAG_HOME, new ScheduleMonthFragment());
+        addFragmentIfNeeded(TAG_HOME, new HomeFragment());
 
 
 
@@ -139,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public  void goToDetailInformation(Information information){
+        Intent intent = new Intent(MainActivity.this, InformationActivity.class);
+        intent.putExtra("information", information);
+        startActivity(intent);
+    }
+
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
 
@@ -152,5 +165,13 @@ public class MainActivity extends AppCompatActivity {
         win.setAttributes(winParams);
     }
 
+    public void showNavigationChoiceSchedule(){
+        drawerLayout.openDrawer(GravityCompat.END);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setMenuNavigation();
+    }
 }

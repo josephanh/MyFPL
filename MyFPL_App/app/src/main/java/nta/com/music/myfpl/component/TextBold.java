@@ -28,11 +28,11 @@ public class TextBold extends androidx.appcompat.widget.AppCompatTextView {
 
     @SuppressLint("ResourceAsColor")
     private void init() {
-        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.mulish_bold);
+        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.lexend);
         setTypeface(customFont);
 
-        int color = ContextCompat.getColor(getContext(), R.color.black);
-        setTextColor(color);
+//        int color = ContextCompat.getColor(getContext(), R.color.black);
+//        setTextColor(color);
         setTextSize(16);
     }
 }

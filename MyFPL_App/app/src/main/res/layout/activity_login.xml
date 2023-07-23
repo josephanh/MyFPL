@@ -52,7 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:fontFamily="@font/mulish_bold"
+                        android:fontFamily="@font/lexend_extrabold"
                         android:gravity="center"
                         android:text="Welcome to MyFPL"
                         android:textColor="@color/purple"
@@ -97,7 +97,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/mulish"
+                                    android:fontFamily="@font/lexend"
                                     android:paddingLeft="15dp"
                                     android:gravity="center|left"
                                     android:paddingRight="30dp"
@@ -138,11 +138,12 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:src="@drawable/img_logo_google" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/mulish"
+                                android:fontFamily="@font/lexend"
                                 android:gravity="center"
                                 android:paddingRight="30dp"
                                 android:text="@string/login_with_google"

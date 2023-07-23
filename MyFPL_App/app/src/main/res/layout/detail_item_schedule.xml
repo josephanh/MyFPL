@@ -20,7 +20,7 @@
                 android:id="@+id/tv_school"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mulish_extrabold"
+                android:fontFamily="@font/lexend_extrabold"
                 android:textSize="22sp"
                 android:textColor="@color/black"
 
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:fontFamily="@font/mulish_medium"
+                android:fontFamily="@font/lexend"
                 android:textSize="14sp"
                 android:text="7:30"/>
             <TextView
@@ -39,11 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:fontFamily="@font/mulish_medium"
+                android:fontFamily="@font/lexend"
                 android:textColor="@color/grey_light"
                 android:text="9:30"/>
         </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
+        <ImageView
+            android:id="@+id/img_lines"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@drawable/ic_vertical_line"
@@ -51,7 +52,7 @@
         <com.dd.ShadowLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="8.3"
             app:sl_cornerRadius="5dp"
             app:sl_dx="2dp"
@@ -71,7 +72,7 @@
                     android:textColor="@color/purple"
                     android:text="Android Networking"
                     android:textSize="16sp"
-                    android:fontFamily="@font/mulish_bold"
+                    android:fontFamily="@font/lexend_medium"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -87,7 +88,7 @@
                     <TextView
                         android:id="@+id/tv_room"
                         android:text="T308"
-                        android:fontFamily="@font/mulish_medium"
+                        android:fontFamily="@font/lexend_light"
                         android:textColor="@color/grey_black"
                         android:textSize="14sp"
                         android:layout_width="match_parent"
@@ -107,7 +108,7 @@
                         android:id="@+id/tv_teacher"
                         android:text="Thầy Chấn"
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/mulish_medium"
+                        android:fontFamily="@font/lexend_light"
                         android:textColor="@color/grey_black"
                         android:textSize="14sp"
                         android:layout_height="wrap_content"/>

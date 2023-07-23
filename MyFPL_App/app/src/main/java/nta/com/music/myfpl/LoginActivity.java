@@ -20,7 +20,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -30,8 +32,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import android.widget.Toast;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
@@ -44,6 +49,7 @@ import nta.com.music.myfpl.adapter.ChooseCampusItemAdapter;
 import nta.com.music.myfpl.model.Campus;
 import render.animations.Bounce;
 import render.animations.Render;
+import render.animations.Zoom;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -160,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     //test
+    @SuppressLint({"MissingInflatedId", "LocalSuppress"})
     private void showCustomDialogWithMultipleChoice() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -168,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
         View customView = inflater.inflate(R.layout.custom_dialog_layout, null);
 
         // Find views in the custom layout
+         LinearLayout layout_dialog = customView.findViewById(R.id.layout_dialog);
 
         ListView listView = customView.findViewById(R.id.dialog_listview);
 
@@ -191,12 +199,18 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+        Render render = new Render(LoginActivity.this);
+        render.setAnimation(Bounce.In(layout_dialog).setDuration(500));
+        render.start();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 showToast(campusList.get(i).getCampusName());
                 txt_chosenCampus.setText(campusList.get(i).getCampusName());
+                Render render = new Render(LoginActivity.this);
+                render.setAnimation(Zoom.Out(layout_dialog).setDuration(500));
+                render.start();
                 dialog.dismiss();
             }
         });

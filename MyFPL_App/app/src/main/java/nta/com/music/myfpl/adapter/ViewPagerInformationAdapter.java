@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import nta.com.music.myfpl.fragments.Home.InformationFragment;
 
-public class ViewPager2Adapter extends FragmentStateAdapter {
-    public ViewPager2Adapter(@NonNull FragmentActivity fragmentActivity) {
+public class ViewPagerInformationAdapter extends FragmentStateAdapter {
+    public ViewPagerInformationAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 

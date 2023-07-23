@@ -39,10 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/mulish_bold"
+        android:fontFamily="@font/lexend_semibold"
         android:gravity="center"
         android:text="FPT student"
-        android:textColor="@color/black"
+        android:textColor="@color/purple"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -57,9 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/mulish_bold"
-            android:text="Account"
-            android:textColor="@color/black"
+            android:fontFamily="@font/lexend_semibold"
+            android:text="@string/account"
+            android:textColor="@color/purple"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -76,8 +76,8 @@
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
-                android:text="User profile" />
+                android:layout_marginStart="14dp"
+                android:text="@string/user_profile" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,8 +112,8 @@
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
-                android:text="Logout" />
+                android:layout_marginStart="14dp"
+                android:text="@string/logout" />
 
 
 
@@ -127,9 +127,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/mulish_bold"
-            android:text="Setting application"
-            android:textColor="@color/black"
+            android:fontFamily="@font/lexend_semibold"
+            android:text="@string/setting_application"
+            android:textColor="@color/purple"
             android:textSize="18sp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,7 +141,7 @@
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Notification"
+                android:text="@string/notification"
                 android:layout_weight="1"/>
             <com.github.iielse.switchbutton.SwitchView
                 android:layout_width="40dp"
@@ -166,7 +166,7 @@
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location" />
+                android:text="@string/location" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
             <nta.com.music.myfpl.component.TextRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Language" />
+                android:text="@string/language" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="English" />
+                    android:text="@string/english" />
             </LinearLayout>
 
 

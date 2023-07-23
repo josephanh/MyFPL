@@ -8,6 +8,16 @@
     <string name="home">Trang chủ</string>
     <string name="extensions">Tiện ích</string>
     <string name="event">Sự kiện</string>
-    <string name="wallet">Wallet</string>
-    <string name="form">Form</string>
+    <string name="wallet">Học phí</string>
+    <string name="form">Khảo sát</string>
+    <string name="account">Tài khoản</string>
+    <string name="setting_application">Cài đặt hệ thống</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="user_profile">Hồ sơ</string>
+    <string name="location">Vị trí</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="english">Tiếng Anh</string>
+    <string name="study">Học tập</string>
+    <string name="active">Hoạt động</string>
+    <string name="tuition">Học phí</string>
 </resources>

@@ -3,10 +3,10 @@
     <string name="login_with_google">Login with Google</string>
     <string name="choosing_a_campus">Choosing a Campus</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="user">User</string>
     <string name="notification">Notification</string>
-    <string name="calendar">Calendar</string>
+    <string name="calendar">Schedule</string>
     <string name="home">Home</string>
     <string name="extensions">Extensions</string>
     <string name="event">Event</string>
@@ -14,4 +14,16 @@
     <string name="form">Form</string>
 
     <string name="shareImage" translatable="false">ImageShareFragment</string>
+    <string name="account">Account</string>
+    <string name="setting_application">Setting application</string>
+    <string name="logout">Logout</string>
+    <string name="user_profile">User profile</string>
+    <string name="location">Location</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="study">Study</string>
+    <string name="active">Active</string>
+    <string name="tuition">Tuition</string>
+
+
 </resources>

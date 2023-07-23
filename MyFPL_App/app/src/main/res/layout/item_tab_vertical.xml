@@ -10,7 +10,7 @@
             android:orientation="vertical"
             android:background="@drawable/item_day_vertical"
             android:layout_margin="5dp"
-            android:fontFamily="@font/mulish_bold"
+            android:fontFamily="@font/lexend_bold"
             android:textSize="14sp"
             android:gravity="center"
             android:textColor="@color/black"/>

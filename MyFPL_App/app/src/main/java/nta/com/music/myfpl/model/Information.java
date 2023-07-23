@@ -1,6 +1,8 @@
 package nta.com.music.myfpl.model;
 
-public class Information {
+import java.io.Serializable;
+
+public class Information implements Serializable {
     private int id_Informations;
     private String name,author,notification;
     private long time;

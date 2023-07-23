@@ -4,6 +4,7 @@ import static nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment.vi
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment.viewPager_schedule_exam;
 
 import android.annotation.SuppressLint;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,12 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerSchedule;
 import q.rorbin.verticaltablayout.TabAdapter;
@@ -35,6 +38,7 @@ public class ScheduleFragment extends Fragment {
     public static int currentItem = 0;
     TabLayout tabSchedule;
     TextView day;
+    ImageView btn_filter, btn_refest;
 
 //    private int currentIndex = 0;
 
@@ -63,6 +67,10 @@ public class ScheduleFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewpager);
         tabsWeek = view.findViewById(R.id.tab_layout);
         tabSchedule = view.findViewById(R.id.tab_schedule);
+        btn_filter = view.findViewById(R.id.btn_filter);
+        btn_refest = view.findViewById(R.id.btn_refest);
+
+        new ClickShrinkEffect(btn_refest, 0.7f, 100L);
 
         ViewPagerSchedule adapter = new ViewPagerSchedule(requireActivity());
         viewPager.setAdapter(adapter);
@@ -161,7 +169,19 @@ public class ScheduleFragment extends Fragment {
             }
         }).attach();
 
+        btn_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)requireContext()).showNavigationChoiceSchedule();
+            }
+        });
 
+        btn_refest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return view;
     }

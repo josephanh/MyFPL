@@ -17,7 +17,10 @@ import java.util.List;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.InformationAdapter;
+import nta.com.music.myfpl.adapter.ScheduleAdapter;
+import nta.com.music.myfpl.interfaces.OnClickSchedule;
 import nta.com.music.myfpl.model.Information;
+import nta.com.music.myfpl.model.Schedule;
 
 public class ScheduleWeekFragment extends Fragment {
 
@@ -55,16 +58,19 @@ public class ScheduleWeekFragment extends Fragment {
 
 
         RecyclerView recyclerSchedule = view.findViewById(R.id.listSchedule);
-
-        List<Information> list = new ArrayList<Information>();
-        list.add(new Information(1,"Phòng đào tạo","Nguyễn Đức Tuân",
-                "Thông báo đăng ký thực hiện dự án tốt nghiệp học kỳ Fall 2023",7));
-        list.add(new Information(2,"Phòng đào tạo","Nguyễn Đức Tuân",
-                "Phòng khảo thí thông báo DSSV kiểm tra Tiếng Anh đầu vào khóa 19.3.1_Ngày thi 22/07/2023",7));
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        List<Schedule> list = new ArrayList<Schedule>();
+        list.add(new Schedule(2,"Khởi sự doanh nghiệp","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",1));
+        list.add(new Schedule(1,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);
-        recyclerSchedule.setAdapter(new InformationAdapter(getContext(),list));
+
+        ScheduleAdapter adapter = new ScheduleAdapter(getContext(), list, 0, new OnClickSchedule() {
+            @Override
+            public void onClick(Schedule schedule) {
+
+            }
+        });
+        recyclerSchedule.setAdapter(adapter);
 
         return view;
     }

@@ -4,39 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:background="@color/white">
+    android:orientation="vertical">
 
-   <FrameLayout
-       android:id="@+id/layout_fragment"
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1" />
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
 
-   <com.ismaeldivita.chipnavigation.ChipNavigationBar
-       android:id="@+id/menu"
-       android:layout_width="match_parent"
-       android:layout_height="?attr/actionBarSize"
-       app:cnb_menuResource="@menu/menu_bottom_navigation"
-       app:cnb_orientationMode="horizontal"
-       app:cnb_addBottomInset="false"
-       app:cnb_addLeftInset="false"
-       app:cnb_addRightInset="false"
-       app:cnb_addTopInset="false"
-       app:cnb_unselectedColor="@color/purple"
-       app:cnb_badgeColor="@color/second"
-       app:cnb_radius="20dp"
-       app:cnb_iconSize="24dp"
-       style="@style/BottomNavigationView"
-       app:cnb_animationDuration="200"
-       android:animateLayoutChanges="true"
-       android:animationCache="true"
-       android:background="@drawable/bg_bottom_navigation"
-       android:elevation="10sp"
-       android:translationZ="30sp"
-       app:cnb_textAppearance="@style/BottomNavigationView"
-       android:scrollbarFadeDuration="10"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+            <FrameLayout
+                android:id="@+id/layout_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.ismaeldivita.chipnavigation.ChipNavigationBar
+                android:id="@+id/menu"
+                style="@style/BottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:animateLayoutChanges="true"
+                android:animationCache="true"
+                android:background="@drawable/bg_bottom_navigation"
+                android:elevation="10sp"
+                android:scrollbarFadeDuration="10"
+                android:translationZ="30sp"
+                app:cnb_addBottomInset="false"
+                app:cnb_addLeftInset="false"
+                app:cnb_addRightInset="false"
+                app:cnb_addTopInset="false"
+                app:cnb_animationDuration="200"
+                app:cnb_badgeColor="@color/second"
+                app:cnb_iconSize="24dp"
+                app:cnb_menuResource="@menu/menu_bottom_navigation"
+                app:cnb_orientationMode="horizontal"
+                app:cnb_radius="20dp"
+                app:cnb_textAppearance="@style/BottomNavigationView"
+                app:cnb_unselectedColor="@color/purple" />
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_choice_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end">
+            <include layout="@layout/fragment_user"/>
+        </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>
