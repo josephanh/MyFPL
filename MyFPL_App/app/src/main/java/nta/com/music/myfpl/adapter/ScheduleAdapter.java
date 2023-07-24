@@ -1,15 +1,31 @@
 package nta.com.music.myfpl.adapter;
 
+import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
@@ -21,14 +37,21 @@ import nta.com.music.myfpl.viewholder.ScheduleViewHolder;
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     Context context;
     List<Schedule> list;
+    ArrayList<Integer> datePositions = new ArrayList<>();
 
     OnClickSchedule onClickSchedule;
     int status;
 //    0 là lịch tuần: 1 là lịch tháng
 
+    long timeStamp = 0;
+
+    private Date date;
+    HashMap<String, Integer> datePosition = new HashMap<>();
+
     public ScheduleAdapter(Context context, List<Schedule> list) {
         this.context = context;
         this.list = list;
+
     }
 
     public ScheduleAdapter(Context context, List<Schedule> list, int status,  OnClickSchedule onClickSchedule) {
@@ -36,6 +59,16 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         this.list = list;
         this.onClickSchedule = onClickSchedule;
         this.status = status;
+
+        for (int i = 0; i < list.size(); i++) {
+            String dateSchedule = list.get(i).getDate();
+
+            if (datePosition.get(dateSchedule) == null) {
+
+                datePosition.put(dateSchedule, i);
+            }
+        }
+
     }
 
     @NonNull
@@ -52,6 +85,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         holder.tv_teacher.setText(list.get(position).getTeacher());
         holder.tv_subject.setText(list.get(position).getSubject());
         holder.tv_school.setText("0"+list.get(position).getShift_school());
+        String date = list.get(position).getDate();
+        if(datePosition.get(date) != null && datePosition.get(date) == position) {
+            holder.layout_date.setVisibility(View.VISIBLE);
+            holder.dateTime.setText(date);
+        } else {
+            holder.layout_date.setVisibility(View.GONE);
+        }
 
         switch (list.get(position).getShift_school()){
             case 1: {
@@ -86,8 +126,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
             }
         }
 
-        if(status == 0) {
+        if(status == CALENDAR_WEEK) {
             holder.img_lines.setVisibility(View.GONE);
+            holder.layout_date.setVisibility(View.GONE);
         } else {
             holder.img_lines.setVisibility(View.VISIBLE);
         }
@@ -100,5 +141,30 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         } else {
             return list.size();
         }
+    }
+    @SuppressLint("SimpleDateFormat")
+    public long setCurrentTimeStamp(String dateString){
+        int year = Integer.parseInt(dateString.split("-")[0]);
+        int month = Integer.parseInt(dateString.split("-")[1]);
+        int day = Integer.parseInt(dateString.split("-")[2]);
+        String formatPattern = "yyyy-M-d";
+        long timestamp;
+        try {
+            // Tạo đối tượng SimpleDateFormat với định dạng cho chuỗi ngày tháng
+            SimpleDateFormat sdf = new SimpleDateFormat(formatPattern);
+
+            // Chuyển chuỗi ngày tháng thành đối tượng Date
+            Date date = sdf.parse(dateString);
+
+            // Lấy giá trị timestamp từ đối tượng Date (số mili-giây kể từ mốc thời gian Unix)
+            if (date != null) timestamp = date.getTime();
+            else timestamp = 0;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            timestamp = 0;
+        }
+
+        return timestamp;
     }
 }

@@ -1,21 +1,19 @@
 package nta.com.music.myfpl.fragments.Schedule;
 
-import static nta.com.music.myfpl.fragments.ScheduleFragment.tabsWeek;
+import static nta.com.music.myfpl.fragments.ScheduleWeekFragment.tabsWeek;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerScheduleWeek;
-import nta.com.music.myfpl.fragments.ScheduleFragment;
-import nta.com.music.myfpl.utils.VerticalFlipTransformation;
+import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 
 public class ScheduleExamTabFragment extends Fragment {
     public static ViewPager2 viewPager_schedule_exam;
@@ -23,10 +21,10 @@ public class ScheduleExamTabFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ScheduleExamTabFragment newInstance(int position) {
+    public static ScheduleExamTabFragment newInstance() {
         ScheduleExamTabFragment fragment = new ScheduleExamTabFragment();
         Bundle args = new Bundle();
-        args.putInt("position", position);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,7 +33,6 @@ public class ScheduleExamTabFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
         }
     }
 
@@ -49,14 +46,16 @@ public class ScheduleExamTabFragment extends Fragment {
         viewPager_schedule_exam.setAdapter(pagerSchedule);
 //        viewPager_schedule_exam.setPageTransformer(new VerticalFlipTransformation());
 
-        viewPager_schedule_exam.setCurrentItem(ScheduleFragment.currentItem, false);
+        viewPager_schedule_exam.setCurrentItem(ScheduleWeekFragment.currentItem, false);
 
 
         viewPager_schedule_exam.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+
                 tabsWeek.setTabSelected(position);
+
             }
         });
 

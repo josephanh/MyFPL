@@ -3,18 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.Schedule.ScheduleFragment"
-    android:background="@color/white"
     android:orientation="vertical"
-    android:id="@+id/layout_id">
+    tools:context=".fragments.Schedule.ScheduleTabMonthFragment">
 
    <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/listSchedule"
+       android:id="@+id/recycleView_Schedule"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:fastScrollEnabled="false"
-       android:paddingTop="10dp"
-       android:nestedScrollingEnabled="false"/>
+       android:layout_height="wrap_content"/>
 
 </LinearLayout>

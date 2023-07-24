@@ -13,8 +13,8 @@ import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.model.Campus;
 
 public class ChooseCampusItemAdapter extends BaseAdapter {
-    private Context context;
-    private List<Campus> campusList;
+    private final Context context;
+    private final List<Campus> campusList;
 
     public ChooseCampusItemAdapter(Context context, List<Campus> campusList){
         this.context = context;
@@ -41,9 +41,9 @@ public class ChooseCampusItemAdapter extends BaseAdapter {
         ViewHolder holder;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            view = inflater.inflate(R.layout.custom_item_dialog, null);
+            view = inflater.inflate(R.layout.custom_item_dialog, viewGroup);
             holder = new ViewHolder();
-            holder.txt_campusName = (TextView) view.findViewById(R.id.txt_campusName);
+            holder.txt_campusName = view.findViewById(R.id.txt_campusName);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();

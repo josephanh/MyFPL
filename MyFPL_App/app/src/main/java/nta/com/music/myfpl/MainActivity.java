@@ -27,8 +27,8 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import nta.com.music.myfpl.fragments.HomeFragment;
-import nta.com.music.myfpl.fragments.ScheduleFragment;
+import nta.com.music.myfpl.fragments.ScheduleMonthFragment;
+import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 import nta.com.music.myfpl.model.Information;
 
@@ -50,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
             int idSelected = msg.arg1;
             if(idSelected == R.id.bt_home) {
 //                fragment = new HomeFragment();
-                addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleFragment());
+                addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleWeekFragment());
                 addFragmentIfNeeded(TAG_USER, new UserFragment());
                 tag = TAG_HOME;
             }
             if(idSelected == R.id.bt_schedule) {
-//                fragment = new ScheduleFragment();
+//                fragment = new ScheduleWeekFragment();
                 tag = TAG_SCHEDULE;
             }
             if(idSelected == R.id.bt_user) {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        addFragmentIfNeeded(TAG_HOME, new HomeFragment());
+        addFragmentIfNeeded(TAG_HOME, new ScheduleMonthFragment());
 
 
 

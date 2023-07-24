@@ -6,23 +6,41 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment;
-import nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment;
+import nta.com.music.myfpl.fragments.Schedule.ScheduleFragment;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment;
+import nta.com.music.myfpl.fragments.Schedule.ScheduleTabMonthFragment;
 
 public class ViewPagerSchedule extends FragmentStateAdapter {
 
-    public ViewPagerSchedule(@NonNull FragmentActivity fragmentActivity) {
+    public static int CALENDAR_WEEK = 0;
+    public static int CALENDAR_MONTH = 1;
+
+    int status;
+
+    public ViewPagerSchedule(@NonNull FragmentActivity fragmentActivity, int status) {
         super(fragmentActivity);
+        this.status = status;
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        switch (position) {
-            case 0: return ScheduleClassTabFragment.newInstance(position);
-            case 1: return new ScheduleExamTabFragment();
+        switch (status){
+            case 0: {
+                switch (position) {
+                    case 0: return ScheduleClassTabFragment.newInstance();
+                    case 1: return ScheduleExamTabFragment.newInstance();
+                }
+            }
+            case 1: {
+                switch (position) {
+                    case 0: return ScheduleTabMonthFragment.newInstance();
+                    case 1: return ScheduleTabMonthFragment.newInstance();
+                }
+            }
         }
-        return new ScheduleWeekFragment();
+
+        return new ScheduleFragment();
     }
 
     @Override

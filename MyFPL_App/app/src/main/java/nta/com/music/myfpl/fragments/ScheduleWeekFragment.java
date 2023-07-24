@@ -1,16 +1,19 @@
 package nta.com.music.myfpl.fragments;
 
+import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment.viewPager_schedule;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment.viewPager_schedule_exam;
 
 import android.annotation.SuppressLint;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,9 @@ import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
@@ -31,23 +37,28 @@ import nta.com.music.myfpl.adapter.ViewPagerSchedule;
 import q.rorbin.verticaltablayout.TabAdapter;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
 
-public class ScheduleFragment extends Fragment {
+public class ScheduleWeekFragment extends Fragment {
 
     ViewPager2 viewPager;
+    View tabViewChild;
     public static VerticalTabLayout tabsWeek;
     public static int currentItem = 0;
     TabLayout tabSchedule;
     TextView day;
     ImageView btn_filter, btn_refest;
 
-//    private int currentIndex = 0;
+    ThreadPoolExecutor executor;
 
-    public ScheduleFragment() {
-        // Required empty public constructor
+
+    //    private int currentIndex = 0;
+    Handler handler = new Handler(Looper.getMainLooper());
+
+    public ScheduleWeekFragment() {
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
     }
 
-    public static ScheduleFragment newInstance(String param1, String param2) {
-        ScheduleFragment fragment = new ScheduleFragment();
+    public static ScheduleWeekFragment newInstance(String param1, String param2) {
+        ScheduleWeekFragment fragment = new ScheduleWeekFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -63,7 +74,34 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule_week, container, false);
+
+        Utils(view);
+
+        setTabsWeek();
+        setBackgroundItemNavigation(0);
+        setItemTabsWeekSelected();
+        setTabSchedule();
+
+
+        btn_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) requireContext()).showNavigationChoiceSchedule();
+            }
+        });
+
+        btn_refest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        return view;
+    }
+
+    private void Utils(View view) {
         viewPager = view.findViewById(R.id.viewpager);
         tabsWeek = view.findViewById(R.id.tab_layout);
         tabSchedule = view.findViewById(R.id.tab_schedule);
@@ -72,10 +110,47 @@ public class ScheduleFragment extends Fragment {
 
         new ClickShrinkEffect(btn_refest, 0.7f, 100L);
 
-        ViewPagerSchedule adapter = new ViewPagerSchedule(requireActivity());
+        ViewPagerSchedule adapter = new ViewPagerSchedule(requireActivity(), CALENDAR_WEEK);
         viewPager.setAdapter(adapter);
+    }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void setBackgroundItemNavigation(int position) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup vg = (ViewGroup) tabsWeek.getChildAt(0);
+                int tabsCount = vg.getChildCount();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int j = 0; j < tabsCount; j++) {
+                            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+                            int tabChildsCount = vgTab.getChildCount();
+                            for (int i = 0; i < tabChildsCount; i++) {
+                                tabViewChild = vgTab.getChildAt(i);
+                                // Get TextView Element
+                                if (tabViewChild instanceof TextView) {
+                                    // change color
+                                    if (j == position) {
+                                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.white));
+                                        ((TextView) tabViewChild).setBackground(getResources().getDrawable(R.drawable.item_day_vertical_slt));
+                                    } else {
+                                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.black));
+                                        ((TextView) tabViewChild).setBackground(getResources().getDrawable(R.drawable.item_day_vertical));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
 
+            }
+        }).start();
+
+    }
+
+    private void setTabsWeek() {
         tabsWeek.setTabAdapter(new TabAdapter() {
             @Override
             public int getCount() {
@@ -108,11 +183,11 @@ public class ScheduleFragment extends Fragment {
                         day.setText("Fr");
                         break;
                     }
-                    case 5:  {
+                    case 5: {
                         day.setText("Sa");
                         break;
                     }
-                    case 6:  {
+                    case 6: {
                         day.setText("Su");
                         break;
                     }
@@ -121,15 +196,17 @@ public class ScheduleFragment extends Fragment {
                 return itemView;
             }
         });
-        setBackgroundItemNavigation(0);
+    }
+
+    private void setItemTabsWeekSelected() {
         tabsWeek.setOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @SuppressLint({"ResourceAsColor", "UseCompatLoadingForDrawables"})
             @Override
             public void onTabSelected(View tab, int position) {
                 currentItem = viewPager.getCurrentItem();
-                if(currentItem == 0) {
+                if (currentItem == 0) {
                     viewPager_schedule.setCurrentItem(position);
-                    if(viewPager_schedule_exam != null) {
+                    if (viewPager_schedule_exam != null) {
                         viewPager_schedule_exam.setCurrentItem(position, false);
                     } else {
                         currentItem = position;
@@ -148,13 +225,9 @@ public class ScheduleFragment extends Fragment {
 
             }
         });
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-            }
-        });
+    }
 
+    private void setTabSchedule() {
         new TabLayoutMediator(tabSchedule, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
@@ -169,44 +242,5 @@ public class ScheduleFragment extends Fragment {
             }
         }).attach();
 
-        btn_filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((MainActivity)requireContext()).showNavigationChoiceSchedule();
-            }
-        });
-
-        btn_refest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        return view;
-    }
-
-    private void setBackgroundItemNavigation(int position){
-        ViewGroup vg = (ViewGroup) tabsWeek.getChildAt(0);
-        int tabsCount = vg.getChildCount();
-        for (int j = 0; j < tabsCount; j++) {
-            Log.d("TAG>>>", "CustomFont: "+j);
-            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
-            int tabChildsCount = vgTab.getChildCount();
-            for (int i = 0; i < tabChildsCount; i++) {
-                View tabViewChild = vgTab.getChildAt(i);
-                // Get TextView Element
-                if (tabViewChild instanceof TextView) {
-                    // change color
-                    if(j == position) {
-                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.white));
-                        ((TextView) tabViewChild).setBackground(getResources().getDrawable(R.drawable.item_day_vertical_slt));
-                    } else {
-                        ((TextView) tabViewChild).setTextColor(getResources().getColor(R.color.black));
-                        ((TextView) tabViewChild).setBackground(getResources().getDrawable(R.drawable.item_day_vertical));
-                    }
-                }
-            }
-        }
     }
 }

@@ -1,14 +1,14 @@
 package nta.com.music.myfpl.model;
 
+import java.util.Date;
+
 public class Schedule {
     private int id_Schedule;
     private String subject,room,teacher,address,subject_code,subject_class;
     private int shift_school;
+    private String date;
 
 
-
-    public Schedule() {
-    }
 
     public Schedule(int id_Schedule, String subject, String room, String teacher, String address, String subject_code, String subject_class, int shift_school) {
         this.id_Schedule = id_Schedule;
@@ -19,6 +19,26 @@ public class Schedule {
         this.subject_code = subject_code;
         this.subject_class = subject_class;
         this.shift_school = shift_school;
+    }
+
+    public Schedule(int id_Schedule, String subject, String room, String teacher, String address, String subject_code, String subject_class, int shift_school, String date) {
+        this.id_Schedule = id_Schedule;
+        this.subject = subject;
+        this.room = room;
+        this.teacher = teacher;
+        this.address = address;
+        this.subject_code = subject_code;
+        this.subject_class = subject_class;
+        this.shift_school = shift_school;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId_Schedule() {

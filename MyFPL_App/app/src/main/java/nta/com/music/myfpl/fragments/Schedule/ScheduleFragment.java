@@ -1,5 +1,7 @@
 package nta.com.music.myfpl.fragments.Schedule;
 
+import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
@@ -16,22 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.adapter.InformationAdapter;
 import nta.com.music.myfpl.adapter.ScheduleAdapter;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
-import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.model.Schedule;
 
-public class ScheduleWeekFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     LinearLayout layout_id;
-    public ScheduleWeekFragment() {
+
+    public ScheduleFragment() {
         // Required empty public constructor
     }
 
 
-    public static ScheduleWeekFragment newInstance() {
-        ScheduleWeekFragment fragment = new ScheduleWeekFragment();
+    public static ScheduleFragment newInstance() {
+        ScheduleFragment fragment = new ScheduleFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -51,7 +52,7 @@ public class ScheduleWeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_schedule_week, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         layout_id = view.findViewById(R.id.layout_id);
 
@@ -64,7 +65,7 @@ public class ScheduleWeekFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);
 
-        ScheduleAdapter adapter = new ScheduleAdapter(getContext(), list, 0, new OnClickSchedule() {
+        ScheduleAdapter adapter = new ScheduleAdapter(getContext(), list, CALENDAR_WEEK, new OnClickSchedule() {
             @Override
             public void onClick(Schedule schedule) {
 
