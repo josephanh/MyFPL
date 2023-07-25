@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.Schedule.ScheduleTabMonthFragment">
+    tools:context=".fragments.Schedule.ScheduleClassTabMonthFragment">
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycleView_Schedule"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"/>
 
 </LinearLayout>

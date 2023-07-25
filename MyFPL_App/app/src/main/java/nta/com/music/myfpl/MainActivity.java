@@ -1,5 +1,6 @@
 package nta.com.music.myfpl;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -173,5 +174,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setMenuNavigation();
+    }
+
+    private void setTimeSchedule(){
+
     }
 }

@@ -37,7 +37,6 @@ import nta.com.music.myfpl.viewholder.ScheduleViewHolder;
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     Context context;
     List<Schedule> list;
-    ArrayList<Integer> datePositions = new ArrayList<>();
 
     OnClickSchedule onClickSchedule;
     int status;
@@ -86,12 +85,16 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         holder.tv_subject.setText(list.get(position).getSubject());
         holder.tv_school.setText("0"+list.get(position).getShift_school());
         String date = list.get(position).getDate();
+        if(position == 0){
+            holder.firstLine.setBackgroundResource(R.drawable.white_5dp);
+        }
         if(datePosition.get(date) != null && datePosition.get(date) == position) {
             holder.layout_date.setVisibility(View.VISIBLE);
             holder.dateTime.setText(date);
         } else {
             holder.layout_date.setVisibility(View.GONE);
         }
+
 
         switch (list.get(position).getShift_school()){
             case 1: {

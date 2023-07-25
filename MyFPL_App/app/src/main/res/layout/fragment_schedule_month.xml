@@ -70,6 +70,7 @@
                 android:paddingRight="20dp"
                 android:paddingBottom="20dp">
                 <TextView
+                    android:id="@+id/tv_month"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_bold"
@@ -81,6 +82,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/calendar_horizontal"
                     android:layout_width="match_parent"
+                    android:foregroundGravity="center"
                     android:layout_height="60dp"/>
             </LinearLayout>
         </com.dd.ShadowLayout>

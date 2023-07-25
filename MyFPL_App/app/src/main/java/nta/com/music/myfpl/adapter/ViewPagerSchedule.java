@@ -6,9 +6,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment;
+import nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabMonthFragment;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleFragment;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment;
-import nta.com.music.myfpl.fragments.Schedule.ScheduleTabMonthFragment;
+import nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabMonthFragment;
 
 public class ViewPagerSchedule extends FragmentStateAdapter {
 
@@ -34,8 +35,8 @@ public class ViewPagerSchedule extends FragmentStateAdapter {
             }
             case 1: {
                 switch (position) {
-                    case 0: return ScheduleTabMonthFragment.newInstance();
-                    case 1: return ScheduleTabMonthFragment.newInstance();
+                    case 0: return ScheduleClassTabMonthFragment.newInstance();
+                    case 1: return ScheduleExamTabMonthFragment.newInstance();
                 }
             }
         }
