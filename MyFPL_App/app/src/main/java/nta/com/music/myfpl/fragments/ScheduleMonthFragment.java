@@ -92,16 +92,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         setCalendar();
         setCalendarHorizontal();
 
-        Calendar calendar = Calendar.getInstance();
-        String[] timeNow = calendar.getTime().toString().split(" ");
-        int indexOf = listCalendar.indexOf(timeNow[0] + " " + timeNow[1] + " "+timeNow[2]+ " "+ timeNow[5]);
-        if(indexOf > 0) selectedItem = indexOf;
 
-        if(indexOf < 4) {
-            layoutManager.scrollToPositionWithOffset(indexOf, 0);
-        } else if(indexOf > 4) {
-            layoutManager.scrollToPositionWithOffset(indexOf-2, 0);
-        }
 
         classTab = new ScheduleClassTabMonthFragment();
         examTab = new ScheduleExamTabMonthFragment();
@@ -311,5 +302,20 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
     public void onScroll(String date) {
         classTab.onScroll(date);
         examTab.onScroll(date);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Calendar calendar = Calendar.getInstance();
+        String[] timeNow = calendar.getTime().toString().split(" ");
+        int indexOf = listCalendar.indexOf(timeNow[0] + " " + timeNow[1] + " "+timeNow[2]+ " "+ timeNow[5]);
+        if(indexOf > 0) selectedItem = indexOf;
+
+        if(indexOf < 4) {
+            layoutManager.scrollToPositionWithOffset(indexOf, 0);
+        } else if(indexOf > 4) {
+            layoutManager.scrollToPositionWithOffset(indexOf-2, 0);
+        }
     }
 }
