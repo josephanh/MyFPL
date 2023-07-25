@@ -41,7 +41,7 @@ public class ChooseCampusItemAdapter extends BaseAdapter {
         ViewHolder holder;
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            view = inflater.inflate(R.layout.custom_item_dialog, viewGroup);
+            view = inflater.inflate(R.layout.custom_item_dialog, null);
             holder = new ViewHolder();
             holder.txt_campusName = view.findViewById(R.id.txt_campusName);
             view.setTag(holder);

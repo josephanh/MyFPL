@@ -182,10 +182,11 @@ public class LoginActivity extends AppCompatActivity {
         // Set the title and items for the ListView
 
         List<Campus> campusList = new ArrayList<>();
-        campusList.add(new Campus(1, "Ho chi Minh"));
-        campusList.add(new Campus(2, "Ha Noi"));
-        campusList.add(new Campus(3, "Da Nang"));
-        campusList.add(new Campus(4, "bla bla"));
+        campusList.add(new Campus(1, "Hồ Chí Minh"));
+        campusList.add(new Campus(2, "Hà Nội"));
+        campusList.add(new Campus(3, "Đà Nẵng"));
+        campusList.add(new Campus(4, "Cần Thơ"));
+        campusList.add(new Campus(4, "Tây Nguyên"));
 
         ChooseCampusItemAdapter adapter = new ChooseCampusItemAdapter(this,
                 campusList);

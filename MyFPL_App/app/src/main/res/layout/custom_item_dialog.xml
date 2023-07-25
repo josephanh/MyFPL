@@ -10,5 +10,6 @@
         android:textSize="20sp"
         android:text="Tên cơ sở"
         android:padding="16dp"
+        android:fontFamily="@font/lexend"
         android:gravity="center"/>
 </LinearLayout>
