@@ -186,6 +186,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                     calendar.add(Calendar.MONTH, 0);
                     calendar.set(Calendar.DAY_OF_MONTH, 1);
                     int currentMonth = calendar.get(Calendar.MONTH);
+                    listCalendar.clear();
                     while (calendar.get(Calendar.MONTH) == currentMonth) {
                         Date date = calendar.getTime();
                         String[] arr = date.toString().split(" ");
@@ -200,6 +201,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                     calendar.add(Calendar.MONTH, -1);
                     int previousMonth = calendar.get(Calendar.MONTH);
                     calendar.set(Calendar.DAY_OF_MONTH, 1);
+                    listCalendar.clear();
                     while (calendar.get(Calendar.MONTH) == previousMonth) {
                         Date date = calendar.getTime();
                         String[] arr = date.toString().split(" ");
@@ -214,6 +216,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                     calendar.add(Calendar.MONTH, 1);
                     int nextMonth = calendar.get(Calendar.MONTH);
                     calendar.set(Calendar.DAY_OF_MONTH, 1);
+                    listCalendar.clear();
                     while (calendar.get(Calendar.MONTH) == nextMonth) {
                         Date date = calendar.getTime();
                         String[] arr = date.toString().split(" ");
@@ -239,7 +242,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         }
 
         calendar.add(Calendar.DAY_OF_MONTH, diff);
-
+        listCalendar.clear();
         for (int i = 0; i < 7; i++) {
             Date date = calendar.getTime();
             String[] arr = date.toString().split(" ");

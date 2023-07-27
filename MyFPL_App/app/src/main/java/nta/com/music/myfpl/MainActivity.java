@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -28,6 +29,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import nta.com.music.myfpl.fragments.HomeFragment;
 import nta.com.music.myfpl.fragments.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout layout_fragment;
     private NavigationView navigation_choice_schedule;
     private DrawerLayout drawerLayout;
+    private ImageButton btn_cancel;
 
 
     @SuppressLint("MissingInflatedId")
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
 //        chặn không cho vuốt
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        btn_cancel = findViewById(R.id.btn_cancel);
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 //        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-        addFragmentIfNeeded(TAG_HOME, new ScheduleMonthFragment());
+        addFragmentIfNeeded(TAG_HOME, new HomeFragment());
 
 
 
@@ -111,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(int i) {
                 setMenuNavigation();
             }
+        });
+
+        btn_cancel.setOnClickListener(view -> {
+            drawerLayout.closeDrawer(GravityCompat.END);
         });
     }
 
@@ -167,8 +175,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNavigationChoiceSchedule(){
-        drawerLayout.openDrawer(GravityCompat.END);
+//        drawerLayout.openDrawer(GravityCompat.END);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.setCustomAnimations(R.animator.fade_in,R.animator.fade_out);
+        transaction.replace(R.id.layout_fragment, new ScheduleMonthFragment());
+        transaction.commit();
     }
+
 
     @Override
     protected void onResume() {

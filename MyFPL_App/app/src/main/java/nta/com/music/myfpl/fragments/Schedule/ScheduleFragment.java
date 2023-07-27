@@ -60,8 +60,10 @@ public class ScheduleFragment extends Fragment {
 
         RecyclerView recyclerSchedule = view.findViewById(R.id.listSchedule);
         List<Schedule> list = new ArrayList<Schedule>();
-        list.add(new Schedule(2,"Khởi sự doanh nghiệp","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",1));
-        list.add(new Schedule(1,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
+        list.add(new Schedule(1,"Khởi sự doanh nghiệp","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",1));
+        list.add(new Schedule(2,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
+        list.add(new Schedule(3,"Lập trình React Native","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);
 
@@ -74,6 +76,17 @@ public class ScheduleFragment extends Fragment {
         recyclerSchedule.setAdapter(adapter);
 
         return view;
+    }
+
+    public static class Hello extends Fragment{
+        public static Hello newInstance() {
+
+            Bundle args = new Bundle();
+
+            Hello fragment = new Hello();
+            fragment.setArguments(args);
+            return fragment;
+        }
     }
 
 }
