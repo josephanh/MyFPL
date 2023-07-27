@@ -50,7 +50,6 @@ public class InformationFragment extends Fragment {
                 ((MainActivity)requireContext()).goToDetailInformation(information);
             }
         }));
-
         return view;
 
 

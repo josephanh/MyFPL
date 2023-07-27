@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.dd.ShadowLayout
+                android:id="@+id/Personal_Path"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:sl_cornerRadius="5dp"
+                app:sl_dx="0dp"
+                app:sl_dy="2dp"
+                app:sl_shadowColor="@color/box_Shadow"
+                app:sl_shadowRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_5dp"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                   >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_semibold"
+                        android:text="Personal information"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Student code"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="PS24619"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Gender"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="Male"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Date of birth"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="03/03/2003"
+                        android:layout_marginBottom="50dp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+            </com.dd.ShadowLayout>
+
+            <com.dd.ShadowLayout
+                android:id="@+id/Learning_Path"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:sl_cornerRadius="5dp"
+                app:sl_dx="0dp"
+                app:sl_dy="2dp"
+                app:sl_shadowColor="@color/box_Shadow"
+                app:sl_shadowRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white_5dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_semibold"
+                        android:text="Learning"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Account code"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="anhntps24619"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Course"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="15.4"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Major"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="Lập trình máy tính(Mobile)"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/lexend_light"
+                        android:text="Day admission"
+                        android:textColor="@color/grey_light"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/custom_tv_inforuser"
+                        android:padding="10dp"
+                        android:text="05/10/2020"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="50dp"/>
+                </LinearLayout>
+            </com.dd.ShadowLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
