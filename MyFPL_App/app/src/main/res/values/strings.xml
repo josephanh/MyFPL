@@ -25,6 +25,15 @@
     <string name="active">Active</string>
     <string name="tuition">Tuition</string>
     <string name="filter">Filter</string>
+    <string name="personal_information">Personal information</string>
+    <string name="student_code">Student code</string>
+    <string name="gender">Gender</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="learning_information">Learning Information</string>
+    <string name="account_code">Account code</string>
+    <string name="course">Course</string>
+    <string name="major">Major</string>
+    <string name="day_admission">Day admission</string>
 
 
 </resources>

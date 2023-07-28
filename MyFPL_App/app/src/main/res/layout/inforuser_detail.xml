@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scrollIndicators="none"-->
+<!--        android:id="@+id/scrollview"-->
+<!--        tools:ignore="UselessParent">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend_semibold"
-                        android:text="Personal information"
+                        android:text="@string/personal_information"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -49,7 +53,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Student code"
+                        android:text="@string/student_code"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -67,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Gender"
+                        android:text="@string/gender"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -85,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Date of birth"
+                        android:text="@string/date_of_birth"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -119,13 +123,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/white_5dp"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lexend_semibold"
-                        android:text="Learning"
+                        android:text="@string/learning_information"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -134,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Account code"
+                        android:text="@string/account_code"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -152,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Course"
+                        android:text="@string/course"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -170,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Major"
+                        android:text="@string/major"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -188,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/lexend_light"
-                        android:text="Day admission"
+                        android:text="@string/day_admission"
                         android:textColor="@color/grey_light"
                         android:textSize="16sp" />
 
@@ -204,5 +208,5 @@
                 </LinearLayout>
             </com.dd.ShadowLayout>
         </LinearLayout>
-    </ScrollView>
+<!--    </ScrollView>-->
 </LinearLayout>

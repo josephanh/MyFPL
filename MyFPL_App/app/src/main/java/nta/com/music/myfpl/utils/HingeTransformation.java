@@ -8,17 +8,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class HingeTransformation implements ViewPager2.PageTransformer{
     @Override
-    public void transformPage(@NonNull View page, float position) {
-        if (position < -1) {
-            page.setAlpha(0f);
-        } else if (position <= 1) {
-            page.setAlpha(1f);
-            page.setPivotX(page.getWidth() / 2f);
-            page.setPivotY(page.getHeight());
-            page.setRotation(15 * position);
-        } else {
-            page.setAlpha(0f);
-        }
+    public void transformPage(View page, float position) {
+
+        page.setTranslationX(-position*page.getWidth());
+
+        page.setAlpha(1-Math.abs(position));
+
+
     }
 
 }

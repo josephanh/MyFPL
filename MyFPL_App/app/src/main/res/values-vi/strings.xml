@@ -21,4 +21,13 @@
     <string name="active">Hoạt động</string>
     <string name="tuition">Học phí</string>
     <string name="filter">Tùy chỉnh</string>
+    <string name="personal_information">Thông tin sinh viên</string>
+    <string name="student_code">Mã số sinh viên</string>
+    <string name="gender">Giới tính</string>
+    <string name="date_of_birth">Ngày sinh</string>
+    <string name="learning_information">Thông tin học tập</string>
+    <string name="account_code">Mã tài khoản</string>
+    <string name="course">Khóa</string>
+    <string name="major">Ngành học</string>
+    <string name="day_admission">Ngày nhập học</string>
 </resources>
