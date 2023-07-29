@@ -51,30 +51,28 @@ public class MainActivity extends AppCompatActivity {
     Button btn_apply;
     ThreadPoolExecutor executor;
 
-    private final Handler handler = new Handler(Looper.getMainLooper()){
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
         @SuppressLint("NonConstantResourceId")
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             int position = msg.arg1;
-            if(position == R.id.bt_home) {
+            if (position == R.id.bt_home) {
                 viewpager2Home.setCurrentItem(0);
-//            Fragment fragment = new HomeFragment();
-            String tag = null;
-            int idSelected = msg.arg1;
-            if(position == R.id.bt_schedule) {
+            }
+            if (position == R.id.bt_schedule) {
                 viewpager2Home.setCurrentItem(1);
 
             }
-            if(position == R.id.bt_user) {
+            if (position == R.id.bt_user) {
                 viewpager2Home.setCurrentItem(3);
 
             }
-            if(idSelected == R.id.bt_notification) {
+            if (position == R.id.bt_notification) {
                 viewpager2Home.setCurrentItem(2);
             }
-            showFragment(tag);
         }
+
     };
 
 
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btn_cancel;
     LockedViewPager2 viewpager2Home;
 
-    Spinner spinner_choice_type, spinner_choice_subject,spinner_choice_time ;
+    Spinner spinner_choice_type, spinner_choice_subject, spinner_choice_time;
 
 
     @SuppressLint("MissingInflatedId")
@@ -140,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void setMenuNavigation(){
+    public void setMenuNavigation() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -151,14 +149,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public  void goToDetailInformation(Information information){
+    public void goToDetailInformation(Information information) {
         Intent intent = new Intent(MainActivity.this, InformationActivity.class);
         intent.putExtra("information", information);
         startActivity(intent);
     }
 
+    public void goToExtension(int i){
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        switch (i){
+            case 0:{
+                intent = new Intent(MainActivity.this, EventActivity.class);
+                break;
+            }
+            case 1:{
 
-    public static void setWindowFlag(Activity activity, final int bits, boolean on) {
+                break;
+            }
+        }
+        startActivity(intent);
+    }
+
+
+    public void setWindowFlag(Activity activity, final int bits, boolean on) {
 
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
@@ -169,12 +182,14 @@ public class MainActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
-    public void hideNavigationChoiceSchedule(){
+
+    public void hideNavigationChoiceSchedule() {
         drawerLayout.closeDrawer(GravityCompat.END);
     }
-    public void showNavigationChoiceSchedule(){
+
+    public void showNavigationChoiceSchedule() {
         drawerLayout.openDrawer(GravityCompat.END);
-        adapterDropDownType = new DropDownAdapter(MainActivity.this,R.layout.item_spinner_selected, getListTypes(1));
+        adapterDropDownType = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(1));
         spinner_choice_type.setAdapter(adapterDropDownType);
         spinner_choice_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -187,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        adapterDropDownSubject = new DropDownAdapter(MainActivity.this,R.layout.item_spinner_selected, getListTypes(2));
+        adapterDropDownSubject = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(2));
         spinner_choice_subject.setAdapter(adapterDropDownSubject);
         spinner_choice_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -199,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        adapterDropDownTime = new DropDownAdapter(MainActivity.this,R.layout.item_spinner_selected, getListTypes(3));
+        adapterDropDownTime = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(3));
         spinner_choice_time.setAdapter(adapterDropDownTime);
         spinner_choice_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -220,13 +235,13 @@ public class MainActivity extends AppCompatActivity {
         setMenuNavigation();
     }
 
-    private void setTimeSchedule(){
+    private void setTimeSchedule() {
 
     }
 
-    private List<String> getListTypes(int type){
+    private List<String> getListTypes(int type) {
         List<String> list = new ArrayList<>();
-        switch (type){
+        switch (type) {
             case 1: {
                 list.add(getString(R.string.calendar_month));
                 list.add(getString(R.string.calendar_week));
@@ -249,4 +264,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return list;
     }
+
 }

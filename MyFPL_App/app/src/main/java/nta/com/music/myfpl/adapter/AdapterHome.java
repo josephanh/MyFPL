@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import nta.com.music.myfpl.fragments.HomeFragment;
+import nta.com.music.myfpl.fragments.NotificationFragment;
 import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 
@@ -40,7 +41,7 @@ public class AdapterHome extends FragmentPagerAdapter{
                 break;
             }
             case 2: {
-                fragment = new HomeFragment();
+                fragment = new NotificationFragment();
                 break;
             }
             case 3: {

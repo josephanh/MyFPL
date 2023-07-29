@@ -1,5 +1,6 @@
 package nta.com.music.myfpl.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,19 +10,23 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerInformationAdapter;
 
 public class HomeFragment extends Fragment {
 
     ViewPager2 viewPager2;
+    LinearLayout btn_event, btn_wallet, btn_service, btn_form;
     TabLayout tabs;
     public HomeFragment() {
         // Required empty public constructor
@@ -46,6 +51,7 @@ public class HomeFragment extends Fragment {
     List<String> titleTab = new ArrayList<>();
     List<Fragment> fragments = new ArrayList<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +60,19 @@ public class HomeFragment extends Fragment {
         ViewPagerInformationAdapter adapter = new ViewPagerInformationAdapter(requireActivity());
         viewPager2 = view.findViewById(R.id.viewpager2);
         tabs = view.findViewById(R.id.tab_layout);
+        btn_event = view.findViewById(R.id.btn_event);
+        btn_wallet = view.findViewById(R.id.btn_wallet);
+        btn_service = view.findViewById(R.id.btn_service);
+        btn_form = view.findViewById(R.id.btn_form);
+
+        new ClickShrinkEffect(btn_event, 0.95f, 50L);
+        new ClickShrinkEffect(btn_wallet, 0.95f, 50L);
+        new ClickShrinkEffect(btn_service, 0.95f, 50L);
+        new ClickShrinkEffect(btn_form, 0.95f, 50L);
+
+        btn_event.setOnClickListener(view1 -> {
+            ((MainActivity)requireContext()).goToExtension(0);
+        });
 
         viewPager2.setAdapter(adapter);
 
