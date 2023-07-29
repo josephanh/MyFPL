@@ -28,6 +28,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import nta.com.music.myfpl.fragments.NotificationFragment;
 import nta.com.music.myfpl.fragments.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 //                fragment = new HomeFragment();
                 addFragmentIfNeeded(TAG_SCHEDULE, new ScheduleWeekFragment());
                 addFragmentIfNeeded(TAG_USER, new UserFragment());
+                addFragmentIfNeeded(TAG_NOTIFICATION, new NotificationFragment());
                 tag = TAG_HOME;
             }
             if(idSelected == R.id.bt_schedule) {
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
             if(idSelected == R.id.bt_user) {
 //                fragment = new UserFragment();
                 tag = TAG_USER;
+            }
+            if(idSelected == R.id.bt_notification) {
+//                fragment = new UserFragment();
+                tag = TAG_NOTIFICATION;
             }
             showFragment(tag);
         }
