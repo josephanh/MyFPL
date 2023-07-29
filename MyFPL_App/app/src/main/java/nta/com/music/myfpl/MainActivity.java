@@ -34,6 +34,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.component.LockedViewPager2;
+import nta.com.music.myfpl.fragments.NotificationFragment;
+import nta.com.music.myfpl.fragments.ScheduleMonthFragment;
+import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
+import nta.com.music.myfpl.fragments.UserFragment;
 import nta.com.music.myfpl.model.Information;
 
 
@@ -55,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
             int position = msg.arg1;
             if(position == R.id.bt_home) {
                 viewpager2Home.setCurrentItem(0);
-            }
+//            Fragment fragment = new HomeFragment();
+            String tag = null;
+            int idSelected = msg.arg1;
             if(position == R.id.bt_schedule) {
                 viewpager2Home.setCurrentItem(1);
 
@@ -64,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 viewpager2Home.setCurrentItem(3);
 
             }
+            if(idSelected == R.id.bt_notification) {
+                viewpager2Home.setCurrentItem(2);
+            }
+            showFragment(tag);
         }
     };
 
