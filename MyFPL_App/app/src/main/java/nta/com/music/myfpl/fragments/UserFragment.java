@@ -14,6 +14,15 @@ import nta.com.music.myfpl.R;
 public class UserFragment extends Fragment {
 
     ImageSwitcher imageSwitcher1;
+
+    public static UserFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        UserFragment fragment = new UserFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     public UserFragment() {
         // Required empty public constructor
     }

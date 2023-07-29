@@ -34,6 +34,12 @@
     <string name="course">Course</string>
     <string name="major">Major</string>
     <string name="day_admission">Day admission</string>
+    <string name="calendar_types">Calendar types</string>
+    <string name="subject">Subject</string>
+    <string name="time">Time</string>
+    <string name="calendar_week">Calendar Week</string>
+    <string name="calendar_month">Calendar Month</string>
+    <string name="apply">Apply</string>
 
 
 </resources>

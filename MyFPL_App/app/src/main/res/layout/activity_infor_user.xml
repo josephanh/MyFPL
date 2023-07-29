@@ -70,8 +70,7 @@
                             app:sl_dx="0dp"
                             app:sl_dy="2dp"
                             app:sl_shadowColor="@color/box_Shadow"
-                            app:sl_shadowRadius="5dp"
-                            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+                            app:sl_shadowRadius="5dp">
 
                             <LinearLayout
                                 android:id="@+id/layout_second"
