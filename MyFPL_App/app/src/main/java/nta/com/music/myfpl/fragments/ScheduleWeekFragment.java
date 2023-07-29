@@ -57,7 +57,7 @@ public class ScheduleWeekFragment extends Fragment {
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
     }
 
-    public static ScheduleWeekFragment newInstance(String param1, String param2) {
+    public static ScheduleWeekFragment newInstance() {
         ScheduleWeekFragment fragment = new ScheduleWeekFragment();
         Bundle args = new Bundle();
 

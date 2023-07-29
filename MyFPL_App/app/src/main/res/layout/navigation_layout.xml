@@ -1,30 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/filter"
             android:layout_weight="1"
-            android:fontFamily="@font/lexend_bold"/>
+            android:fontFamily="@font/lexend_bold"
+            android:text="@string/filter" />
+
         <ImageButton
             android:id="@+id/btn_cancel"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_cancel"
-            android:scaleType="centerCrop"
+            android:background="@android:color/transparent"
             android:padding="5dp"
-            android:background="@android:color/transparent"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_cancel" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/calendar_types"
+            android:src="@drawable/ic_calendar_2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend_medium"
+            android:paddingStart="10dp"
+            android:text="@string/calendar_types"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <com.dd.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:sl_cornerRadius="5dp"
+        app:sl_dx="0dp"
+        app:sl_dy="1dp"
+        app:sl_shadowColor="@color/box_Shadow"
+        app:sl_shadowRadius="5dp">
+
+        <Spinner
+
+            android:id="@+id/spinner_choice_type"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/white_5dp"
+            android:contextClickable="true" />
+    </com.dd.ShadowLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+            android:contentDescription="@string/calendar_types"
+            android:src="@drawable/ic_layer" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend_medium"
+            android:paddingStart="10dp"
+            android:text="@string/subject"
+            android:textColor="@color/black"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+    <com.dd.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:sl_cornerRadius="5dp"
+        app:sl_dx="0dp"
+        app:sl_dy="1dp"
+        app:sl_shadowColor="@color/box_Shadow"
+        app:sl_shadowRadius="5dp">
+
+        <Spinner
+
+            android:id="@+id/spinner_choice_subject"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/white_5dp"
+            android:contextClickable="true" />
+    </com.dd.ShadowLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+
+            android:contentDescription="@string/calendar_types"
+            android:src="@drawable/ic_bg_clock"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend_medium"
+            android:paddingStart="10dp"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+
+    <com.dd.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:sl_cornerRadius="5dp"
+        app:sl_dx="0dp"
+        app:sl_dy="1dp"
+        app:sl_shadowColor="@color/box_Shadow"
+        app:sl_shadowRadius="5dp">
+
+        <Spinner
+
+            android:id="@+id/spinner_choice_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/white_5dp"
+            android:contextClickable="true" />
+    </com.dd.ShadowLayout>
+
+    <Button
+        android:id="@+id/btn_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/white"
+        app:background="@drawable/custom_indicator"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/lexend_bold"
+        android:drawableTint="@color/primary"
+        android:layout_gravity="center"
+        android:text="@string/apply"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"/>
 
 </LinearLayout>

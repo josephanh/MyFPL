@@ -19,11 +19,12 @@
             android:orientation="vertical"
             tools:context=".MainActivity">
 
-            <FrameLayout
-                android:id="@+id/layout_fragment"
+
+            <nta.com.music.myfpl.component.LockedViewPager2
+                android:id="@+id/viewpager2Home"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"/>
 
             <com.ismaeldivita.chipnavigation.ChipNavigationBar
                 android:id="@+id/menu"
