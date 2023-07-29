@@ -78,10 +78,24 @@ public class ScheduleWeekFragment extends Fragment {
 
         Utils(view);
 
-        setTabsWeek();
-        setBackgroundItemNavigation(0);
-        setItemTabsWeekSelected();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        tabsWeek = view.findViewById(R.id.tab_layout);
+                        setTabsWeek();
+                        setBackgroundItemNavigation(0);
+
+                    }
+                });
+            }
+        }).start();
+
+
         setTabSchedule();
+        setItemTabsWeekSelected();
 
 
         btn_filter.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +165,7 @@ public class ScheduleWeekFragment extends Fragment {
     }
 
     private void setTabsWeek() {
+
         tabsWeek.setTabAdapter(new TabAdapter() {
             @Override
             public int getCount() {
@@ -196,6 +211,7 @@ public class ScheduleWeekFragment extends Fragment {
                 return itemView;
             }
         });
+
     }
 
     private void setItemTabsWeekSelected() {

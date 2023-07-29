@@ -103,12 +103,13 @@ public class InforUserFragment extends Fragment {
         layout_third.setVisibility(v);
         Render render = new Render(requireContext());
         if(v == View.VISIBLE) {
-            render.setAnimation(Fade.InDown(img_avatar).setDuration(200L));
+            render.setAnimation(Fade.InDown(img_avatar).setDuration(100L));
+            img_avatar.setVisibility(v);
         } else {
-            render.setAnimation(Fade.OutDown(img_avatar).setDuration(200L));
+            render.setAnimation(Fade.OutDown(img_avatar).setDuration(100L));
+            img_avatar.setVisibility(v);
         }
         render.start();
-        img_avatar.setVisibility(v);
         layout_first.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
     }
