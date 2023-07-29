@@ -104,15 +104,29 @@ public class MainActivity extends AppCompatActivity {
         spinner_choice_time = findViewById(R.id.spinner_choice_time);
         btn_apply = findViewById(R.id.btn_apply);
 
+//        new Custom_dialog_noconnection(MainActivity.this).Show();
+
+
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 //        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
 //        getWindow().setStatusBarColor(Color.TRANSPARENT);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         fragmentManager = getSupportFragmentManager();
-        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
-        viewpager2Home.setAdapter(adapterHome);
-        viewpager2Home.setSwipeEnabled(false);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
+                        viewpager2Home.setAdapter(adapterHome);
+                        viewpager2Home.setSwipeEnabled(false);
+                    }
+                });
+            }
+        }).start();
 
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
