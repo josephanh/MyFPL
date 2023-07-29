@@ -1,14 +1,21 @@
 package nta.com.music.myfpl;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Message;
+import android.widget.FrameLayout;
+
+import com.google.android.material.navigation.NavigationView;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.adapter.EventAdapter;
 import nta.com.music.myfpl.adapter.EventTrendingApdapter;
@@ -16,6 +23,7 @@ import nta.com.music.myfpl.model.Event;
 import nta.com.music.myfpl.model.EventTrending;
 
 public class EventActivity extends AppCompatActivity {
+    ThreadPoolExecutor executor;
 
     private RecyclerView rcvEvent , rcvEventTrending;
     private EventAdapter eventAdapter;
@@ -34,8 +42,6 @@ public class EventActivity extends AppCompatActivity {
         rcvEvent.setLayoutManager(linearLayoutManager);
         eventAdapter.setData(getListUser());
         rcvEvent.setAdapter(eventAdapter);
-
-
 
         rcvEventTrending = findViewById(R.id.recyclerView_event_trending);
         eventTrendingApdapter = new EventTrendingApdapter(this);

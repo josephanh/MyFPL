@@ -46,9 +46,11 @@
         />
    </LinearLayout>
     <ScrollView
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:fillViewport="true"
+        android:layout_marginTop="25dp"
+        android:layout_weight="1"
+        android:layout_height="0dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -156,12 +158,34 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_event_trending"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 />
-
         </LinearLayout>
     </ScrollView>
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/menu"
+        style="@style/BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        android:background="@drawable/bg_bottom_navigation"
+        android:elevation="10sp"
+        android:scrollbarFadeDuration="10"
+        android:translationZ="30sp"
+        app:cnb_addBottomInset="false"
+        app:cnb_addLeftInset="false"
+        app:cnb_addRightInset="false"
+        app:cnb_addTopInset="false"
+        app:cnb_animationDuration="200"
+        app:cnb_badgeColor="@color/second"
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/menu_bottom_navigation"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="20dp"
+        app:cnb_textAppearance="@style/BottomNavigationView"
+        app:cnb_unselectedColor="@color/purple" />
+
 
 
 

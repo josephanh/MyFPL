@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         addFragmentIfNeeded(TAG_HOME, new HomeFragment());
-      
 
 
 
