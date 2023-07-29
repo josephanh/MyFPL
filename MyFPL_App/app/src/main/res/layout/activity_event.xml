@@ -25,161 +25,144 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <SearchView
-        android:layout_width="match_parent"
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+       android:padding="10dp"
+       android:background="@drawable/white_40dp"
+       >
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/search"
+           />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:background="@drawable/white_40dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Want to search ?"
         />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="15dp"
+   </LinearLayout>
+    <ScrollView
         android:layout_marginTop="25dp"
-        android:background="@drawable/layout_event"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:background="@drawable/layout_event"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#273572"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Sắp tới"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#C2C2C2"
+                    android:textSize="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Xem thêm"
+                    />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_weight="1"
+                android:textSize="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#273572"
                 android:fontFamily="@font/lexend_bold"
-                android:text="Sắp tới"
+                android:text="Đang diễn ra"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#C2C2C2"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Xem thêm"
-                />
-        </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#273572"
-            android:fontFamily="@font/lexend_bold"
-            android:text="Đang diễn ra"
-            />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_event_action" />
-
-        <TextView
-            android:id="@+id/my_button"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:textColor="#273572"
-            android:text="Explore Now"
-            android:layout_marginLeft="30dp"
-            android:gravity="center"
-            android:fontFamily="@font/lexend_semibold"
-            android:background="@drawable/blue_5dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal|bottom|start"
-            />
-    </FrameLayout>
-
-        <TextView
-            android:id="@+id/my_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="#273572"
-            android:fontFamily="@font/lexend_bold"
-            android:text="Nổi bật"
-            />
-        <ScrollView
-            android:id="@+id/my_scroll_view"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/white_15dp"
+                android:layout_height="wrap_content">
 
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/lexend_light"
-                    android:textColor="#313131"
-                    android:text="Lễ hội tắm nước"
-                    />
-                <LinearLayout
+                <ViewFlipper
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:autoStart="true"
+                    android:inAnimation="@android:anim/slide_out_right"
+                    android:outAnimation="@android:anim/slide_in_left"
                     >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/image_action_event"
-                    />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <ImageButton
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="#273572"
-                            android:fontFamily="@font/lexend_bold"
-                            android:text="Thời gian tổ chức"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="10dp"
-                            android:text="Đây là lễ hội quý báu nhất hehe!!"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
+                        android:background="@drawable/bg_event_action"
+                        />
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_event_action" />
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_event_action" />
+                </ViewFlipper>
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/my_button"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#273572"
+                    android:text="Explore Now"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/lexend_semibold"
+                    android:background="@drawable/blue_5dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal|bottom|start"
+                    />
 
-        </ScrollView>
-    </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/my_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#273572"
+                android:fontFamily="@font/lexend_bold"
+                android:text="Nổi bật"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_event_trending"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 
 </LinearLayout>
