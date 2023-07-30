@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -94,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
         btn_cancel = findViewById(R.id.btn_cancel);
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
-//        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-//        getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         fragmentManager = getSupportFragmentManager();
 

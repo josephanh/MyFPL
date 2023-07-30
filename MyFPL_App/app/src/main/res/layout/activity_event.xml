@@ -1,164 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_event"
     android:orientation="vertical"
     tools:context=".EventActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layoutDirection="ltr">
+        android:layout_height="match_parent"
+        android:contentDescription="@string/calendar"
+        android:scaleType="center"
+        android:src="@drawable/bg_event" />
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_back_left" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_marginHorizontal="20dp"
-       android:padding="10dp"
-       android:background="@drawable/white_40dp"
-       >
-       <ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_margin="10dp"
-           android:src="@drawable/search"
-           />
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:padding="10dp"
-        android:background="@null"
-        android:hint="Want to search ?"
-        />
-   </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_marginTop="25dp"
-        android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layoutDirection="ltr"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back_left" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/white_40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/search" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Want to search ?"
+                android:padding="10dp"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/layout_event"
-            android:orientation="vertical">
+            android:layout_marginHorizontal="15dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="?attr/actionBarSize">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lexend_bold"
+                        android:text="Sắp tới"
+                        android:textColor="#273572"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Xem thêm"
+                        android:textColor="#C2C2C2"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#273572"
-                    android:fontFamily="@font/lexend_bold"
-                    android:text="Sắp tới"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#C2C2C2"
-                    android:textSize="15dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Xem thêm"
-                    />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_event"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="#273572"
-                android:fontFamily="@font/lexend_bold"
-                android:text="Đang diễn ra"
-                android:layout_marginBottom="10dp"
-                />
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Đang diễn ra"
+                    android:textColor="#273572"
+                    android:textSize="16dp" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager_Slide"
                     android:layout_width="match_parent"
-                    android:layout_height="185dp"
-                    />
+                    android:layout_height="185dp" />
 
                 <TextView
-                    android:id="@+id/my_button"
-                    android:layout_width="130dp"
+                    android:id="@+id/my_text_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Nổi bật"
                     android:textColor="#273572"
-                    android:text="Explore Now"
-                    android:layout_marginLeft="30dp"
-                    android:gravity="center"
-                    android:fontFamily="@font/lexend_semibold"
-                    android:background="@drawable/blue_5dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_gravity="center_horizontal|bottom|start"
-                    />
+                    android:textSize="16dp" />
 
-            </FrameLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_event_trending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/my_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:textColor="#273572"
-                android:fontFamily="@font/lexend_bold"
-                android:text="Nổi bật"
-                />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_event_trending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/menu"
         style="@style/BottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginHorizontal="10dp"
         android:animateLayoutChanges="true"
         android:animationCache="true"
         android:background="@drawable/bg_bottom_navigation"
         android:elevation="10sp"
         android:scrollbarFadeDuration="10"
-        android:layout_marginHorizontal="10dp"
         android:translationZ="30sp"
         app:cnb_addBottomInset="false"
         app:cnb_addLeftInset="false"
@@ -171,9 +166,10 @@
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="20dp"
         app:cnb_textAppearance="@style/BottomNavigationView"
-        app:cnb_unselectedColor="@color/purple" />
+        app:cnb_unselectedColor="@color/purple"
+        app:layout_anchorGravity="bottom"
+        app:layout_anchor="@id/background"/>
 
 
 
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -10,10 +10,12 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
@@ -46,6 +48,10 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         rcvEvent = findViewById(R.id.recyclerView_event);
         eventAdapter = new EventAdapter(this);
@@ -98,7 +104,7 @@ public class EventActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sildeHandler.removeCallbacks(sliderRunnable);
-                sildeHandler.postDelayed(sliderRunnable, 2000);
+                sildeHandler.postDelayed(sliderRunnable, 3000);
 
             }
         });
