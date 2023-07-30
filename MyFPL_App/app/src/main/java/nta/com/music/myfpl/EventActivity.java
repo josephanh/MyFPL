@@ -1,13 +1,19 @@
 package nta.com.music.myfpl;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
@@ -19,6 +25,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.adapter.EventAdapter;
 import nta.com.music.myfpl.adapter.EventTrendingApdapter;
+import nta.com.music.myfpl.adapter.SlideImage_Adapter;
 import nta.com.music.myfpl.model.Event;
 import nta.com.music.myfpl.model.EventTrending;
 
@@ -28,6 +35,11 @@ public class EventActivity extends AppCompatActivity {
     private RecyclerView rcvEvent , rcvEventTrending;
     private EventAdapter eventAdapter;
     private EventTrendingApdapter eventTrendingApdapter;
+
+    private ViewPager2 viewPager2;
+
+    // ảnh slider auto;
+    public Handler sildeHandler = new Handler();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,7 +64,65 @@ public class EventActivity extends AppCompatActivity {
         eventTrendingApdapter.setDataEvent(getEventTrending());
         rcvEventTrending.setAdapter(eventTrendingApdapter);
 
+
+        viewPager2 = findViewById(R.id.viewPager_Slide);
+
+        List<SlideItem> slideItems = new ArrayList<>();
+
+        slideItems.add(new SlideItem(R.drawable.bg_event_action));
+        slideItems.add(new SlideItem(R.drawable.bg_event_action));
+        slideItems.add(new SlideItem(R.drawable.bg_event_action));
+        slideItems.add(new SlideItem(R.drawable.bg_event_action));
+
+        viewPager2.setAdapter(new SlideImage_Adapter(slideItems, viewPager2));
+
+        viewPager2.setClipToPadding(false);
+        viewPager2.setClipChildren(false);
+        viewPager2.setOffscreenPageLimit(5);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+
+        compositePageTransformer.addTransformer(new MarginPageTransformer(30));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 -Math.abs((position));
+                page.setScaleY(0.85f + r*0.15f);
+            }
+        });
+
+        viewPager2.setPageTransformer(compositePageTransformer);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sildeHandler.removeCallbacks(sliderRunnable);
+                sildeHandler.postDelayed(sliderRunnable, 2000);
+
+            }
+        });
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sildeHandler.removeCallbacks(sliderRunnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sildeHandler.postDelayed(sliderRunnable, 3000);
+    }
+
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager2.setCurrentItem(viewPager2.getCurrentItem() +1);
+        }
+    };
 
 
 
