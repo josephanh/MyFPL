@@ -67,7 +67,7 @@ public class InformationUser extends AppCompatActivity {
                 super.onPageSelected(position);
                 switch (position){
                     case Learning: case Person:{
-                        setVisibility();
+//                        setVisibility();
                         break;
                     }
                 }
