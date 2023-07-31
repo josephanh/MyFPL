@@ -1,185 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_event"
     android:orientation="vertical"
     tools:context=".EventActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <ImageView
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layoutDirection="ltr">
+        android:layout_height="match_parent"
+        android:contentDescription="@string/calendar"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_event" />
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginHorizontal="15dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_back_left" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:background="@drawable/white_40dp"
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/layout_event"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layoutDirection="ltr"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back_left" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/white_40dp"
             android:orientation="horizontal">
-            <TextView
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:textColor="#273572"
-                android:fontFamily="@font/lexend_bold"
-                android:text="Sắp tới"
-                />
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/search" />
+
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#C2C2C2"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Xem thêm"
-                />
+                android:background="@null"
+                android:hint="Want to search ?"
+                android:padding="10dp"
+                android:textSize="15dp" />
         </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_event"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#273572"
-            android:fontFamily="@font/lexend_bold"
-            android:text="Đang diễn ra"
-            />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:background="@drawable/layout_event"
+            android:layout_marginHorizontal="15dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="?attr/actionBarSize">
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_event_action" />
-
-        <TextView
-            android:id="@+id/my_button"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:textColor="#273572"
-            android:text="Explore Now"
-            android:layout_marginLeft="30dp"
-            android:gravity="center"
-            android:fontFamily="@font/lexend_semibold"
-            android:background="@drawable/blue_5dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal|bottom|start"
-            />
-    </FrameLayout>
-
-        <TextView
-            android:id="@+id/my_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="#273572"
-            android:fontFamily="@font/lexend_bold"
-            android:text="Nổi bật"
-            />
-        <ScrollView
-            android:id="@+id/my_scroll_view"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/white_15dp"
+                android:orientation="vertical">
 
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/lexend_light"
-                    android:textColor="#313131"
-                    android:text="Lễ hội tắm nước"
-                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="10dp"
-                    >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/image_action_event"
-                    />
-                    <LinearLayout
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="#273572"
-                            android:fontFamily="@font/lexend_bold"
-                            android:text="Thời gian tổ chức"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="10dp"
-                            android:text="Đây là lễ hội quý báu nhất hehe!!"
-                            />
-                    </LinearLayout>
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lexend_bold"
+                        android:text="Sắp tới"
+                        android:textColor="#273572"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="Xem thêm"
+                        android:textColor="#C2C2C2"
+                        android:textSize="16dp" />
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Đang diễn ra"
+                    android:textColor="#273572"
+                    android:textSize="16dp" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager_Slide"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp" />
+
+                <TextView
+                    android:id="@+id/my_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Nổi bật"
+                    android:textColor="#273572"
+                    android:textSize="16dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_event_trending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        </ScrollView>
+
     </LinearLayout>
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/menu"
+        style="@style/BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginHorizontal="10dp"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        android:background="@drawable/bg_bottom_navigation"
+        android:elevation="10sp"
+        android:scrollbarFadeDuration="10"
+        android:translationZ="30sp"
+        app:cnb_addBottomInset="false"
+        app:cnb_addLeftInset="false"
+        app:cnb_addRightInset="false"
+        app:cnb_addTopInset="false"
+        app:cnb_animationDuration="200"
+        app:cnb_badgeColor="@color/second"
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/menu_bottom_navigation_event"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="20dp"
+        app:cnb_textAppearance="@style/BottomNavigationView"
+        app:cnb_unselectedColor="@color/purple"
+        app:layout_anchorGravity="bottom"
+        app:layout_anchor="@id/background"/>
 
 
-</LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

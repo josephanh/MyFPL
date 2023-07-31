@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/white_15dp"
+    >
+    <TextView
+        android:id="@+id/tv_title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/lexend_medium"
+        android:textColor="#313131"
+        android:text="Lễ hội tắm nước"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        >
+        <ImageView
+            android:id="@+id/image_view_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/image_action_event"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                >
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/ic_time"
+                    />
+                <TextView
+                    android:id="@+id/tv_time_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="#273572"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Thời gian tổ chức"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_description_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/lexend_light"
+                android:textSize="14sp"
+                android:lines="2"
+                android:ellipsize="end"
+                android:text="Đây là lễ hội quý báu nhất hehe!!"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+

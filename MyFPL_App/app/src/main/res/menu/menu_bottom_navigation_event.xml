@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_home"
+        android:id="@+id/bt_home"
+        android:title="@string/home"
+        android:checked="true"
+        app:cnb_iconColor="@color/white"
+        app:cnb_backgroundColor="@color/second"
+        app:cnb_textColor="@color/white"
+        />
+    <item android:icon="@drawable/ic_calendar"
+        android:id="@+id/bt_schedule"
+        android:title="@string/calendar"
+        android:color="@color/second"
+        app:cnb_iconColor="@color/white"
+        app:cnb_backgroundColor="@color/second"
+        app:cnb_textColor="@color/white"/>
+    <item android:icon="@drawable/ic_bell"
+        android:id="@+id/bt_notification"
+        android:title="@string/notification"
+        android:color="@color/second"
+        app:cnb_iconColor="@color/white"
+        app:cnb_backgroundColor="@color/second"
+        app:cnb_textColor="@color/white"/>
+    <item android:icon="@drawable/ic_complete"
+        android:id="@+id/bt_user"
+        android:title="@string/user"
+        android:color="@color/second"
+        app:cnb_iconColor="@color/white"
+        app:cnb_backgroundColor="@color/second"
+        app:cnb_textColor="@color/white" />
+
+</menu>
