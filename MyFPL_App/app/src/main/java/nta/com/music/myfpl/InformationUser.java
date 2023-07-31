@@ -2,11 +2,13 @@ package nta.com.music.myfpl;
 
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,10 +52,14 @@ public class InformationUser extends AppCompatActivity {
         layout_first = findViewById(R.id.layout_first);
         layout_third = findViewById(R.id.layout_third);
 
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        Window window = getWindow();
-        int newStatusBarColor = ContextCompat.getColor(InformationUser.this, R.color.black);
-        window.setStatusBarColor(newStatusBarColor);
+
+
+//        Window window = getWindow();
+//        int newStatusBarColor = ContextCompat.getColor(InformationUser.this, R.color.black);
+//        window.setStatusBarColor(newStatusBarColor);
 
 
         viewPager = findViewById(R.id.pager);

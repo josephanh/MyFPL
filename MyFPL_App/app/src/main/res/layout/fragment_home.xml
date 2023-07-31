@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bg_main"
         android:scaleType="fitXY"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-20dp"
         android:importantForAccessibility="no"
         android:transitionName="@string/shareImage"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,29 +1,21 @@
 package nta.com.music.myfpl;
 
-import androidx.annotation.NonNull;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-
-import com.google.android.material.navigation.NavigationView;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.adapter.EventAdapter;
 import nta.com.music.myfpl.adapter.EventTrendingApdapter;
@@ -32,16 +24,16 @@ import nta.com.music.myfpl.model.Event;
 import nta.com.music.myfpl.model.EventTrending;
 
 public class EventActivity extends AppCompatActivity {
-    ThreadPoolExecutor executor;
 
-    private RecyclerView rcvEvent , rcvEventTrending;
-    private EventAdapter eventAdapter;
-    private EventTrendingApdapter eventTrendingApdapter;
+    RecyclerView rcvEvent , rcvEventTrending;
+    EventAdapter eventAdapter;
+    ImageButton btn_back;
+    EventTrendingApdapter eventTrendingApdapter;
 
     private ViewPager2 viewPager2;
 
     // ảnh slider auto;
-    public Handler sildeHandler = new Handler();
+    Handler sildeHandler = new Handler();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +46,12 @@ public class EventActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         rcvEvent = findViewById(R.id.recyclerView_event);
+        btn_back = findViewById(R.id.btn_back);
+        rcvEventTrending = findViewById(R.id.recyclerView_event_trending);
+        viewPager2 = findViewById(R.id.viewPager_Slide);
+
+
+
         eventAdapter = new EventAdapter(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.HORIZONTAL, false);
@@ -61,7 +59,6 @@ public class EventActivity extends AppCompatActivity {
         eventAdapter.setData(getListUser());
         rcvEvent.setAdapter(eventAdapter);
 
-        rcvEventTrending = findViewById(R.id.recyclerView_event_trending);
         eventTrendingApdapter = new EventTrendingApdapter(this);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this,RecyclerView.VERTICAL, false);
@@ -69,9 +66,6 @@ public class EventActivity extends AppCompatActivity {
 
         eventTrendingApdapter.setDataEvent(getEventTrending());
         rcvEventTrending.setAdapter(eventTrendingApdapter);
-
-
-        viewPager2 = findViewById(R.id.viewPager_Slide);
 
         List<SlideItem> slideItems = new ArrayList<>();
 
@@ -90,12 +84,9 @@ public class EventActivity extends AppCompatActivity {
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
 
         compositePageTransformer.addTransformer(new MarginPageTransformer(30));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 -Math.abs((position));
-                page.setScaleY(0.85f + r*0.15f);
-            }
+        compositePageTransformer.addTransformer((page, position) -> {
+            float r = 1 -Math.abs((position));
+            page.setScaleY(0.85f + r*0.15f);
         });
 
         viewPager2.setPageTransformer(compositePageTransformer);
@@ -107,6 +98,10 @@ public class EventActivity extends AppCompatActivity {
                 sildeHandler.postDelayed(sliderRunnable, 3000);
 
             }
+        });
+
+        btn_back.setOnClickListener(view ->{
+            onBackPressed();
         });
 
     }
@@ -123,7 +118,7 @@ public class EventActivity extends AppCompatActivity {
         sildeHandler.postDelayed(sliderRunnable, 3000);
     }
 
-    private Runnable sliderRunnable = new Runnable() {
+    Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
             viewPager2.setCurrentItem(viewPager2.getCurrentItem() +1);

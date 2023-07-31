@@ -1,15 +1,7 @@
 package nta.com.music.myfpl;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.core.view.WindowCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,12 +9,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -35,10 +32,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.component.LockedViewPager2;
-import nta.com.music.myfpl.fragments.NotificationFragment;
-import nta.com.music.myfpl.fragments.ScheduleMonthFragment;
-import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
-import nta.com.music.myfpl.fragments.UserFragment;
 import nta.com.music.myfpl.model.Information;
 
 
@@ -87,11 +80,15 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner_choice_type, spinner_choice_subject, spinner_choice_time;
 
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
 
         bottomNavigation = findViewById(R.id.menu);
         navigation_choice_schedule = findViewById(R.id.navigation_choice_schedule);
@@ -107,19 +104,21 @@ public class MainActivity extends AppCompatActivity {
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
         fragmentManager = getSupportFragmentManager();
-        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
-        viewpager2Home.setAdapter(adapterHome);
-        viewpager2Home.setSwipeEnabled(false);
 
-
-
-
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
+                        viewpager2Home.setAdapter(adapterHome);
+                        viewpager2Home.setSwipeEnabled(false);
+                    }
+                });
+            }
+        }).start();
 
         bottomNavigation.setItemSelected(R.id.bt_home, true);
         setMenuNavigation();
@@ -174,17 +173,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void setWindowFlag(Activity activity, final int bits, boolean on) {
-
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
 
     public void hideNavigationChoiceSchedule() {
         drawerLayout.closeDrawer(GravityCompat.END);
