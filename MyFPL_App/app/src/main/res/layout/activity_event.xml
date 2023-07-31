@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/calendar"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@drawable/bg_event" />
 
     <LinearLayout
@@ -93,11 +93,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:layout_marginRight="10dp"
                         android:text="Xem thêm"
                         android:textColor="#C2C2C2"
-                        android:textSize="15dp" />
+                        android:textSize="16dp" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/lexend_light"
+        android:fontFamily="@font/lexend_medium"
         android:textColor="#313131"
         android:text="Lễ hội tắm nước"
         />
@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:layout_marginBottom="10dp"
                 >
                 <ImageView
@@ -51,7 +52,7 @@
                     android:id="@+id/tv_time_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="14dp"
                     android:textColor="#273572"
                     android:fontFamily="@font/lexend_bold"
                     android:text="Thời gian tổ chức"
@@ -63,6 +64,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/lexend_light"
+                android:textSize="14sp"
+                android:lines="2"
+                android:ellipsize="end"
                 android:text="Đây là lễ hội quý báu nhất hehe!!"
                 />
         </LinearLayout>
