@@ -46,6 +46,7 @@ CREATE TABLE
         course_id INT NOT NULL,
         class_id INT NOT NULL,
         teacher_id INT NOT NULL,
+        address VARCHAR(500),
         type BIT NOT NULL,
         FOREIGN KEY (course_id) REFERENCES course(id),
         FOREIGN KEY (class_id) REFERENCES class(id),
