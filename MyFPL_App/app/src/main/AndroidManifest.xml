@@ -20,8 +20,17 @@
         android:theme="@style/Theme.MyFPL"
         tools:targetApi="31">
         <activity
+            android:name=".FeedsDetailsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".EventActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +40,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="false"
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".InformationActivity"
             android:exported="true"
