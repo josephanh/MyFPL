@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_time_trade_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/purple"
+        android:fontFamily="@font/lexend_semibold"
+        android:text="Thời gian: 2023-04-09 09:06:49"/>
+    <com.dd.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sl_cornerRadius="5dp"
+        app:sl_dx="0dp"
+        app:sl_dy="2dp"
+        app:sl_shadowColor="@color/box_Shadow"
+
+        app:sl_shadowRadius="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:background="@drawable/white_5dp">
+            <TextView
+                android:id="@+id/tv_sotien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textSize="16sp"
+                android:textColor="@color/grey_primary"
+                android:text="Số tiền : 20000"/>
+            <TextView
+                android:id="@+id/tv_loai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textSize="16sp"
+                android:textColor="@color/grey_primary"
+                android:text="Số tiền : 20000"/>
+            <TextView
+                android:id="@+id/tv_mahoadon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textSize="16sp"
+                android:textColor="@color/grey_primary"
+                android:text="Số tiền : 20000"/>
+            <TextView
+                android:id="@+id/tv_hocky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textSize="16sp"
+                android:textColor="@color/grey_primary"
+                android:text="Số tiền : 20000"/>
+            <TextView
+                android:id="@+id/tv_chuthich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textSize="16sp"
+                android:textColor="@color/grey_primary"
+                android:text="Số tiền : 20000"/>
+
+
+        </LinearLayout>
+
+    </com.dd.ShadowLayout>
+
+
+</LinearLayout>
