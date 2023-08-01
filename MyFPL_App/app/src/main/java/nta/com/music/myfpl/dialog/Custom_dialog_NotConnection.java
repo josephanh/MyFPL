@@ -1,32 +1,21 @@
-package nta.com.music.myfpl;
+package nta.com.music.myfpl.dialog;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import nta.com.music.myfpl.adapter.ChooseCampusItemAdapter;
-import nta.com.music.myfpl.model.Campus;
-import render.animations.Bounce;
+import nta.com.music.myfpl.R;
 import render.animations.Render;
 
-public class Custom_dialog_noconnection {
+public class Custom_dialog_NotConnection {
     Context context;
     AlertDialog dialog;
 
 
-    public Custom_dialog_noconnection(Context context) {
+    public Custom_dialog_NotConnection(Context context) {
         this.context = context;
         SetUpDialog();
     }

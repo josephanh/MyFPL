@@ -38,9 +38,11 @@ dependencies {
 
 //  round image
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.27'
 //  animation
     implementation 'com.github.gayanvoice:android-animations:1.0.2'
     implementation 'com.github.muratozturk5:ClickShrinkEffectLibrary:1.2.0'
+
 //  https://github.com/muratozturk5/ClickShrinkEffectLibrary
 //  glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
@@ -51,6 +53,7 @@ dependencies {
     implementation 'com.github.j-yun:Vertical-TabLayout:1.0.2'
     //switch : https://github.com/iielse/switchbutton
     implementation 'com.github.iielse:switchbutton:1.0.4'
+
 
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth-ktx:22.1.0'

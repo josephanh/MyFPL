@@ -1,15 +1,8 @@
 package nta.com.music.myfpl.adapter;
 
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import nta.com.music.myfpl.fragments.HomeFragment;
@@ -17,19 +10,15 @@ import nta.com.music.myfpl.fragments.NotificationFragment;
 import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 
-public class AdapterHome extends FragmentPagerAdapter{
+public class AdapterHome extends FragmentStateAdapter{
 
-    public AdapterHome(@NonNull FragmentManager fm) {
-        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public AdapterHome(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
-    @Override
-    public int getCount() {
-        return 4;
-    }
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         Fragment fragment;
         switch (position) {
             case 0: {
@@ -51,5 +40,10 @@ public class AdapterHome extends FragmentPagerAdapter{
             default: fragment = HomeFragment.newInstance();
         }
         return fragment;
+    }
+
+    @Override
+    public int getItemCount() {
+        return 4;
     }
 }

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -31,7 +32,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
-import nta.com.music.myfpl.component.LockedViewPager2;
+import nta.com.music.myfpl.dialog.DialogLoading;
 import nta.com.music.myfpl.model.Information;
 
 
@@ -75,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigation_choice_schedule;
     DrawerLayout drawerLayout;
     ImageButton btn_cancel;
-    LockedViewPager2 viewpager2Home;
+    ViewPager2 viewpager2Home;
 
     Spinner spinner_choice_type, spinner_choice_subject, spinner_choice_time;
+    DialogLoading dialogLoading;
 
 
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
@@ -86,8 +88,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
 
 
         bottomNavigation = findViewById(R.id.menu);
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         spinner_choice_time = findViewById(R.id.spinner_choice_time);
         btn_apply = findViewById(R.id.btn_apply);
 
-//        new Custom_dialog_noconnection(MainActivity.this).Show();
+//        new Custom_dialog_NotConnection(MainActivity.this).Show();
 
 
         executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
@@ -115,26 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
+                        AdapterHome adapterHome = new AdapterHome(MainActivity.this);
                         viewpager2Home.setAdapter(adapterHome);
-                        viewpager2Home.setSwipeEnabled(false);
-                    }
-                });
-            }
-        }).start();
-
-
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        AdapterHome adapterHome = new AdapterHome(getSupportFragmentManager());
-                        viewpager2Home.setAdapter(adapterHome);
-                        viewpager2Home.setSwipeEnabled(false);
+                        viewpager2Home.setUserInputEnabled(false);
+                        viewpager2Home.setOffscreenPageLimit(3);
                     }
                 });
             }
@@ -142,6 +130,18 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation.setItemSelected(R.id.bt_home, true);
         setMenuNavigation();
+        dialogLoading = new DialogLoading(MainActivity.this);
+        dialogLoading.show();
+
+
+        viewpager2Home.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                dialogLoading.hide();
+
+            }
+        });
 
         bottomNavigation.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
