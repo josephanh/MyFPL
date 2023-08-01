@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginHorizontal="15dp"
+    >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_service_left"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/txt_id_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01"
+            style="@style/CustomTabText"
+            android:textColor="@color/primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="-5dp"
+            android:textFontWeight="800"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="7"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_service_right"
+        android:gravity="center|left"
+        android:paddingLeft="25dp"
+        android:paddingRight="15dp">
+        <TextView
+            android:id="@+id/txt_title_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký cấp bảng điểm"
+            style="@style/CustomTabText"
+            android:textColor="#0B1B3F"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="-5dp"
+            android:textFontWeight="500"/>
+    </LinearLayout>
+
+</LinearLayout>
