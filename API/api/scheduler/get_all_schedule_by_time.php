@@ -35,12 +35,15 @@ try {
             $result = $dbConn->query("SELECT
                 -- u.name AS student_name,
                 c.name AS course_name,
+                c.code AS course_code,
                 s.room,
                 s.day,
                 s.time,
                 t.name AS teacher_name,
                 cl.name AS class_name,
-                s.address AS address
+                cl.code AS class_code,
+                s.address AS address,
+                s.type
                 FROM
                     users u
                 JOIN
