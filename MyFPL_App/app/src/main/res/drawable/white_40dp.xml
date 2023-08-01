@@ -4,5 +4,17 @@
 
     <solid android:color="@color/white"/>
     <corners android:radius="40dp"/>
+<!--    <gradient-->
+<!--        android:startColor="#F4EAEA"-->
+<!--        android:endColor="#E6DBDB"-->
+<!--        android:centerColor="#ffffff"-->
+<!--        android:angle="270"/>-->
+
+<!--    <padding-->
+<!--        android:left="10dp"-->
+<!--        android:top="10dp"-->
+<!--        android:right="10dp"-->
+<!--        android:bottom="10dp"/>-->
+
 
 </shape>
