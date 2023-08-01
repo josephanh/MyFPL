@@ -26,14 +26,26 @@ try {
             "messenger" => "field is empty",
         ));
     } else {
-        $schedule = $dbConn->query("SELECT id, room, class_id, course_id FROM schedule where class_id='$class_id'");
+        $schedule = $dbConn->query("SELECT id, time, day, teacher_id, room, course_id
+        FROM schedule 
+        WHERE class_id='$class_id'
+        AND course_id = '$course_id'");
         // kiem tra khoa hoc ton tai chua
-        // if ($schedule->rowCount() > 0) {
-        //     echo json_encode(array(
-        //         "status" => false,
-        //         "messenger" => "course exists",
-        //     ));
-        // } else {
+        if ($schedule->rowCount() > 0) {
+            while($row = $schedule -> fetch(PDO::FETCH_ASSOC))
+            if($row['room'] == $room && $row['teacher_id'] == $teacher_id){
+      
+                if($row['time']  == $time && (new DateTime($row['day']) == new DateTime($day))) {
+                    echo json_encode(array(
+                        "status" => false,
+                        "messenger" => "course exists",
+                    ));
+                    exit();
+                }
+            }
+           
+        }
+
         $sql = "INSERT INTO schedule
                 (room, day, time, course_id, class_id, teacher_id, type)
                 VALUES ('$room', '$day', '$time', '$course_id', '$class_id', '$teacher_id', $type)";

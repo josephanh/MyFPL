@@ -31,8 +31,10 @@ CREATE TABLE
         id INT PRIMARY KEY AUTO_INCREMENT,
         title NVARCHAR(100) NOT NULL,
         content NVARCHAR(5000) NOT NULL,
+        department NVARCHAR(100) NOT NULL,
         created_at DATETIME NOT NULL,
-        author NVARCHAR(100)
+        author NVARCHAR(100),
+        type INT -- 0: học tập, 1: hoạt động, 2: việc làm
     );
 
 -- Lịch Học ,Lịch Thi
