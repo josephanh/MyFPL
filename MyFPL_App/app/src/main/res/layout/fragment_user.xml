@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/img_bg_orange_title"
             android:orientation="vertical"
-            android:transitionName="@string/shareImage"/>
+            android:transitionName="@string/shareImage" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:layout_width="121dp"
@@ -65,64 +66,89 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_bg_user" />
-
-            <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:text="@string/user_profile" />
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_arrowright" />
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bg_user" />
+
+                <nta.com.music.myfpl.component.TextRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/user_profile" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_arrowright" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
-
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_bg_line" />
         </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/img_bg_line" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
 
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+
+                android:orientation="horizontal">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_bg_logout" />
+
+                <nta.com.music.myfpl.component.TextRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="@string/logout" />
+
+
+            </LinearLayout>
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_bg_logout" />
-
-            <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:text="@string/logout" />
-
-
-
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_bg_line" />
         </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/img_bg_line" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -131,93 +157,130 @@
             android:text="@string/setting_application"
             android:textColor="@color/purple"
             android:textSize="18sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
 
-            <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/notification"
-                android:layout_weight="1"/>
-            <com.github.iielse.switchbutton.SwitchView
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                app:primaryColor="@color/second"
-                android:layout_gravity="end"
-                app:barColor="@color/white"  />
-
-
-
-        </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:src="@drawable/img_bg_line" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/location" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <nta.com.music.myfpl.component.TextRegular
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/notification" />
+
                 <com.github.iielse.switchbutton.SwitchView
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    app:primaryColor="@color/second"
                     android:layout_gravity="end"
-                    app:barColor="@color/white"  />
+                    app:barColor="@color/white"
+                    app:primaryColor="@color/second" />
+
+
             </LinearLayout>
 
-
-
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:src="@drawable/img_bg_line" />
         </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
 
-            android:src="@drawable/img_bg_line" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
 
-            <nta.com.music.myfpl.component.TextRegular
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/language" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
                 <nta.com.music.myfpl.component.TextRegular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/english" />
+                    android:text="@string/location" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.github.iielse.switchbutton.SwitchView
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="end"
+                        app:barColor="@color/white"
+                        app:primaryColor="@color/second" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
 
-
+                android:src="@drawable/img_bg_line" />
         </LinearLayout>
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/img_bg_line" />
-    </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/primary"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <nta.com.music.myfpl.component.TextRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <nta.com.music.myfpl.component.TextRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="@string/english" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_bg_line" />
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

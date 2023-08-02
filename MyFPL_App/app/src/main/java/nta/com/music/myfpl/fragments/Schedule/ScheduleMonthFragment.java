@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -317,6 +318,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
     public void onResume() {
         super.onResume();
         Calendar calendar = Calendar.getInstance();
+        Toast.makeText(requireContext(), "Hello", Toast.LENGTH_SHORT).show();
         String[] timeNow = calendar.getTime().toString().split(" ");
         int indexOf = listCalendar.indexOf(timeNow[0] + " " + timeNow[1] + " "+timeNow[2]+ " "+ timeNow[5]);
         if(indexOf > 0) selectedItem = indexOf;

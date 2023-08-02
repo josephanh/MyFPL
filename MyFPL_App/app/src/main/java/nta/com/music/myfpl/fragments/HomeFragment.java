@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class HomeFragment extends Fragment {
     ViewPager2 viewPager2;
     LinearLayout btn_event, btn_wallet, btn_service, btn_form;
     TabLayout tabs;
+    ImageView btn_search;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -58,16 +60,13 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ViewPagerInformationAdapter adapter = new ViewPagerInformationAdapter(requireActivity());
         viewPager2 = view.findViewById(R.id.viewpager2);
-        tabs = view.findViewById(R.id.tab_layout);
-        btn_event = view.findViewById(R.id.btn_event);
-        btn_wallet = view.findViewById(R.id.btn_wallet);
-        btn_service = view.findViewById(R.id.btn_service);
-        btn_form = view.findViewById(R.id.btn_form);
 
-        new ClickShrinkEffect(btn_event, 0.95f, 50L);
-        new ClickShrinkEffect(btn_wallet, 0.95f, 50L);
-        new ClickShrinkEffect(btn_service, 0.95f, 50L);
-        new ClickShrinkEffect(btn_form, 0.95f, 50L);
+
+        Utils(view);
+
+        btn_search.setOnClickListener(view1 ->{
+            ((MainActivity)requireContext()).goToExtension(4);
+        });
 
         btn_event.setOnClickListener(view1 -> {
             ((MainActivity)requireContext()).goToExtension(0);
@@ -96,6 +95,20 @@ public class HomeFragment extends Fragment {
         }).attach();
 
         return view;
+    }
+
+    public void Utils(View view){
+        tabs = view.findViewById(R.id.tab_layout);
+        btn_event = view.findViewById(R.id.btn_event);
+        btn_wallet = view.findViewById(R.id.btn_wallet);
+        btn_service = view.findViewById(R.id.btn_service);
+        btn_form = view.findViewById(R.id.btn_form);
+        btn_search =view.findViewById(R.id.btn_search);
+
+        new ClickShrinkEffect(btn_event, 0.95f, 50L);
+        new ClickShrinkEffect(btn_wallet, 0.95f, 50L);
+        new ClickShrinkEffect(btn_service, 0.95f, 50L);
+        new ClickShrinkEffect(btn_form, 0.95f, 50L);
     }
 
 

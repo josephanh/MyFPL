@@ -22,6 +22,7 @@ import nta.com.music.myfpl.adapter.EventTrendingApdapter;
 import nta.com.music.myfpl.adapter.SlideImage_Adapter;
 import nta.com.music.myfpl.model.Event;
 import nta.com.music.myfpl.model.EventTrending;
+import nta.com.music.myfpl.model.SlideItem;
 
 public class EventActivity extends AppCompatActivity {
 

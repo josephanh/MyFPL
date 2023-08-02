@@ -16,11 +16,15 @@ import java.util.List;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleTabAdapter;
+import nta.com.music.myfpl.dialog.DialogLoading;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment;
 import nta.com.music.myfpl.interfaces.OnChangeSchedule;
 
 public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
+
+    DialogLoading loading;
+    ScheduleTabAdapter adapter;
 
     ViewPager2 viewpager_schedule;
     List<Fragment> fragmentList = new ArrayList<>();
@@ -35,12 +39,19 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
         fragmentList.add(new ScheduleWeekFragment());
         fragmentList.add(new ScheduleMonthFragment());
 
-        ScheduleTabAdapter adapter = new ScheduleTabAdapter(requireActivity(), fragmentList);
+
+        adapter = new ScheduleTabAdapter(requireActivity(), fragmentList);
         viewpager_schedule.setAdapter(adapter);
-        viewpager_schedule.setUserInputEnabled(false);
+        viewpager_schedule.setOffscreenPageLimit(2);
 
 
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

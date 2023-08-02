@@ -1,5 +1,6 @@
 package nta.com.music.myfpl.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.List;
 
 import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.SlideItem;
+import nta.com.music.myfpl.model.SlideItem;
 
     public class SlideImage_Adapter extends RecyclerView.Adapter<SlideImage_Adapter.SildeViewHolder> {
 
@@ -48,7 +49,7 @@ import nta.com.music.myfpl.SlideItem;
             return slideItems.size();
         }
 
-        class  SildeViewHolder extends RecyclerView.ViewHolder{
+        static class  SildeViewHolder extends RecyclerView.ViewHolder{
         private RoundedImageView imageView;
 
          SildeViewHolder(@NonNull View itemView) {
@@ -64,7 +65,8 @@ import nta.com.music.myfpl.SlideItem;
 
     }
 
-    private  Runnable runnable = new Runnable() {
+    private Runnable runnable = new Runnable() {
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
             slideItems.addAll(slideItems);

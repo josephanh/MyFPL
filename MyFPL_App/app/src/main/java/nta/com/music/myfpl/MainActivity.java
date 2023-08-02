@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         fragmentList.add(new UserFragment());
 
 
-
         bottomNavigation = findViewById(R.id.menu);
         navigation_choice_schedule = findViewById(R.id.navigation_choice_schedule);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
                         adapterHome = new AdapterHome(MainActivity.this, fragmentList);
                         viewpager2Home.setAdapter(adapterHome);
                         viewpager2Home.setUserInputEnabled(false);
-                        viewpager2Home.setOffscreenPageLimit(3);
+                        viewpager2Home.setOffscreenPageLimit(2);
                     }
                 });
             }
@@ -163,7 +162,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 dialogLoading.hide();
-
             }
         });
 
@@ -182,13 +180,13 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                   new Handler(Looper.getMainLooper()).post(new Runnable() {
-                       @Override
-                       public void run() {
-                           hideNavigationChoiceSchedule();
-                           ((ScheduleTabFragment)fragmentList.get(1)).onChange(type);
-                       }
-                   });
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideNavigationChoiceSchedule();
+                            ((ScheduleTabFragment) fragmentList.get(1)).onChange(type);
+                        }
+                    });
                 }
             }).start();
         });
@@ -212,21 +210,24 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         startActivity(intent);
     }
 
-    public void goToExtension(int i){
+    public void goToExtension(int i) {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        switch (i){
-            case 0:{
+        switch (i) {
+            case 0: {
                 intent = new Intent(MainActivity.this, EventActivity.class);
                 break;
             }
-            case 1:{
+            case 1: {
                 intent = new Intent(MainActivity.this, WalletActivity.class);
+                break;
+            }
+            case 4: {
+                intent = new Intent(MainActivity.this, SearchActivity.class);
                 break;
             }
         }
         startActivity(intent);
     }
-
 
 
     public void hideNavigationChoiceSchedule() {
@@ -236,7 +237,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
     @SuppressLint("NotifyDataSetChanged")
     public void showNavigationChoiceSchedule() {
         drawerLayout.openDrawer(GravityCompat.END);
-
 
 
         adapterDropDownType = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(1));
@@ -279,7 +279,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         });
 
     }
-
 
 
     @Override
@@ -328,6 +327,6 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
 
     @Override
     public void onChange(int state) {
-        Toast.makeText(this, ""+state, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + state, Toast.LENGTH_SHORT).show();
     }
 }
