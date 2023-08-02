@@ -1,4 +1,4 @@
-package nta.com.music.myfpl.fragments;
+package nta.com.music.myfpl.fragments.Schedule;
 
 import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment.viewPager_schedule;
@@ -6,20 +6,17 @@ import static nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment.vie
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -27,7 +24,6 @@ import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 

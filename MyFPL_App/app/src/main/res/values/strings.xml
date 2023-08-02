@@ -40,6 +40,7 @@
     <string name="calendar_week">Calendar Week</string>
     <string name="calendar_month">Calendar Month</string>
     <string name="apply">Apply</string>
+    <string name="trade_history">Trade history</string>
 
 
 </resources>

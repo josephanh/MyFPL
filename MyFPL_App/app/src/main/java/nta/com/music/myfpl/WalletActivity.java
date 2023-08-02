@@ -1,35 +1,47 @@
 package nta.com.music.myfpl;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import nta.com.music.myfpl.adapter.InformationAdapter;
 import nta.com.music.myfpl.adapter.ServiceAdapter;
-import nta.com.music.myfpl.interfaces.OnClickInformation;
-import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.model.Service;
 
-public class ServiceActivity extends AppCompatActivity {
+public class WalletActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+    ImageButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service);
+        setContentView(R.layout.activity_wallet);
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+
         recyclerView = findViewById(R.id.rcv_trade_history);
+        btn_back = findViewById(R.id.btn_back);
+
         List<Service> list = new ArrayList<Service>();
         list.add(new Service(7,200000,"3","MK 20000","Spring 2023",""));
         list.add(new Service(7,200000,"3","MK 20000","Spring 2023",""));
         list.add(new Service(7,200000,"3","MK 20000","Spring 2023",""));
         list.add(new Service(7,200000,"3","MK 20000","Spring 2023",""));
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ServiceActivity.this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(WalletActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new ServiceAdapter(ServiceActivity.this,list));
+        recyclerView.setAdapter(new ServiceAdapter(WalletActivity.this,list));
+
+        btn_back.setOnClickListener(view -> {
+            onBackPressed();
+        });
     }
 }

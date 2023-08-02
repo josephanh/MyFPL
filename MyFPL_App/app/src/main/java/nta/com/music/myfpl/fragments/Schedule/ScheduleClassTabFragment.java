@@ -1,7 +1,7 @@
 package nta.com.music.myfpl.fragments.Schedule;
 
 
-import static nta.com.music.myfpl.fragments.ScheduleWeekFragment.tabsWeek;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment.tabsWeek;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

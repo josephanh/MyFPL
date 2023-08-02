@@ -30,10 +30,11 @@
     <string name="course">Khóa</string>
     <string name="major">Ngành học</string>
     <string name="day_admission">Ngày nhập học</string>
-    <string name="calendar_types">Calendar types</string>
-    <string name="subject">Subject</string>
-    <string name="time">Time</string>
-    <string name="calendar_week">Calendar Week</string>
-    <string name="calendar_month">Calendar Month</string>
-    <string name="apply">Apply</string>
+    <string name="calendar_types">Loại</string>
+    <string name="subject">Môn học</string>
+    <string name="time">Thời gian</string>
+    <string name="calendar_week">Lịch Tuần</string>
+    <string name="calendar_month">Lịch Tháng</string>
+    <string name="apply">Áp dụng</string>
+    <string name="trade_history">Lịch sử giao dịch</string>
 </resources>

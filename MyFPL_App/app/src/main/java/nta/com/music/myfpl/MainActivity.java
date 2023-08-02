@@ -2,8 +2,11 @@ package nta.com.music.myfpl;
 
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,11 +17,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -33,10 +38,16 @@ import java.util.concurrent.ThreadPoolExecutor;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
+import nta.com.music.myfpl.fragments.HomeFragment;
+import nta.com.music.myfpl.fragments.NotificationFragment;
+import nta.com.music.myfpl.fragments.ScheduleTabFragment;
+import nta.com.music.myfpl.fragments.UserFragment;
+import nta.com.music.myfpl.interfaces.OnChangeSchedule;
 import nta.com.music.myfpl.model.Information;
+import nta.com.music.myfpl.receiver.NetworkReceiver;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnChangeSchedule {
 
     private final String TAG_HOME = "TAG_HOME";
     private final String TAG_SCHEDULE = "TAG_SCHEDULE";
@@ -44,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG_USER = "TAG_USER";
     DropDownAdapter adapterDropDownType, adapterDropDownSubject, adapterDropDownTime;
     Button btn_apply;
+
+    private int type = 0;
     ThreadPoolExecutor executor;
+    BroadcastReceiver broadcastReceiver;
 
     private final Handler handler = new Handler(Looper.getMainLooper()) {
         @SuppressLint("NonConstantResourceId")
@@ -77,9 +91,12 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton btn_cancel;
     ViewPager2 viewpager2Home;
+    AdapterHome adapterHome;
 
     Spinner spinner_choice_type, spinner_choice_subject, spinner_choice_time;
     DialogLoading dialogLoading;
+
+    List<Fragment> fragmentList = new ArrayList<>();
 
 
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
@@ -88,9 +105,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        broadcastReceiver = new NetworkReceiver();
+
 
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new ScheduleTabFragment());
+        fragmentList.add(new NotificationFragment());
+        fragmentList.add(new UserFragment());
 
 
 
@@ -119,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        AdapterHome adapterHome = new AdapterHome(MainActivity.this);
+                        adapterHome = new AdapterHome(MainActivity.this, fragmentList);
                         viewpager2Home.setAdapter(adapterHome);
                         viewpager2Home.setUserInputEnabled(false);
                         viewpager2Home.setOffscreenPageLimit(3);
@@ -155,7 +179,18 @@ public class MainActivity extends AppCompatActivity {
             hideNavigationChoiceSchedule();
         });
         btn_apply.setOnClickListener(view -> {
-            hideNavigationChoiceSchedule();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                   new Handler(Looper.getMainLooper()).post(new Runnable() {
+                       @Override
+                       public void run() {
+                           hideNavigationChoiceSchedule();
+                           ((ScheduleTabFragment)fragmentList.get(1)).onChange(type);
+                       }
+                   });
+                }
+            }).start();
         });
     }
 
@@ -185,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case 1:{
-
+                intent = new Intent(MainActivity.this, WalletActivity.class);
                 break;
             }
         }
@@ -198,13 +233,18 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.closeDrawer(GravityCompat.END);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void showNavigationChoiceSchedule() {
         drawerLayout.openDrawer(GravityCompat.END);
+
+
+
         adapterDropDownType = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(1));
         spinner_choice_type.setAdapter(adapterDropDownType);
         spinner_choice_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                type = i;
             }
 
             @Override
@@ -237,13 +277,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
 
 
     @Override
     protected void onResume() {
         super.onResume();
         setMenuNavigation();
+        registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
     }
 
     private void setTimeSchedule() {
@@ -276,4 +326,8 @@ public class MainActivity extends AppCompatActivity {
         return list;
     }
 
+    @Override
+    public void onChange(int state) {
+        Toast.makeText(this, ""+state, Toast.LENGTH_SHORT).show();
+    }
 }

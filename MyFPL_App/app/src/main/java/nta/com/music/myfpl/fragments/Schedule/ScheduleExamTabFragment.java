@@ -1,6 +1,6 @@
 package nta.com.music.myfpl.fragments.Schedule;
 
-import static nta.com.music.myfpl.fragments.ScheduleWeekFragment.tabsWeek;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment.tabsWeek;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerScheduleWeek;
-import nta.com.music.myfpl.fragments.ScheduleWeekFragment;
 
 public class ScheduleExamTabFragment extends Fragment {
     public static ViewPager2 viewPager_schedule_exam;

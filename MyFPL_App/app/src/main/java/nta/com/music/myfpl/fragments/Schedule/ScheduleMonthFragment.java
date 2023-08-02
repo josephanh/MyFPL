@@ -1,18 +1,17 @@
-package nta.com.music.myfpl.fragments;
+package nta.com.music.myfpl.fragments.Schedule;
 
 
 import static nta.com.music.myfpl.adapter.CalendarHorizontalAdapter.selectedItem;
 import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_MONTH;
 
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +31,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.CalendarHorizontalAdapter;
 import nta.com.music.myfpl.adapter.ViewPagerSchedule;
-import nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabMonthFragment;
-import nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabMonthFragment;
 import nta.com.music.myfpl.interfaces.OnClickCalendar;
 import nta.com.music.myfpl.interfaces.OnRecyclerScrollListener;
 
@@ -80,6 +78,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
     private ScheduleClassTabMonthFragment classTab;
     private ScheduleExamTabMonthFragment examTab;
     Handler handler = new Handler(Looper.getMainLooper());
+    ImageView btn_filter;
 
     @Nullable
     @Override
@@ -92,6 +91,12 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         setCalendar();
         setCalendarHorizontal();
 
+        btn_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity) requireContext()).showNavigationChoiceSchedule();
+            }
+        });
 
 
         classTab = new ScheduleClassTabMonthFragment();
@@ -105,6 +110,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         tabSchedule = view.findViewById(R.id.tab_schedule);
         calendarHorizontal = view.findViewById(R.id.calendar_horizontal);
         tv_month = view.findViewById(R.id.tv_month);
+        btn_filter = view.findViewById(R.id.btn_filter);
 
 
         new Thread(new Runnable() {

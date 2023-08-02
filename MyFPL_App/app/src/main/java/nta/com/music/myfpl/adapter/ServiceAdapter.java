@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.ServiceActivity;
-import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.model.Service;
-import nta.com.music.myfpl.viewholder.InformationViewHolder;
 import nta.com.music.myfpl.viewholder.TradeHistoryViewHolder;
 
 public class ServiceAdapter extends RecyclerView.Adapter<TradeHistoryViewHolder> {

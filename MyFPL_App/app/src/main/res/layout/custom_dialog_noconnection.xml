@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
      android:padding="15dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/layout_dialog">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,6 +39,7 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
     <Button
+        android:id="@+id/btn_check_internet"
         android:layout_width="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
