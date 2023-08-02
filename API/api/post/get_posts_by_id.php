@@ -7,14 +7,23 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../../database/connection.php';
-// http://127.0.0.1:3000/api/post/get_all_posts.php
+// http://127.0.0.1:3000/api/post/get_posts_by_id.php?id=1
 try {
 
-    $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $limit = 30;
-    $offset = ($page - 1)*$limit;
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-    $posts = $dbConn->query("SELECT * FROM posts LIMIT $limit OFFSET $offset");
+    if($id == null || !is_numeric($id)) {
+        header("Location: ../../index.php");
+        exit();
+    }
+
+    $posts = $dbConn->query("SELECT * FROM posts WHERE id=$id");
+
+    if($posts -> rowCount() <= 0) {
+        header("Location: ../../404.html");
+        exit();
+    }
+
     $result = $posts->fetchAll(PDO::FETCH_ASSOC);
 
     date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -25,8 +34,6 @@ try {
         "status" => true,
         "messenger" => "Get course sucessfuly",
         "posts" => $result,
-        "total" => $posts -> rowCount(),
-        "page" => $page,
         "called_at" => $date,
     ));
 
