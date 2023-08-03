@@ -36,11 +36,12 @@ import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.CalendarHorizontalAdapter;
 import nta.com.music.myfpl.adapter.ViewPagerSchedule;
+import nta.com.music.myfpl.interfaces.OnChangeSchedule;
 import nta.com.music.myfpl.interfaces.OnClickCalendar;
 import nta.com.music.myfpl.interfaces.OnRecyclerScrollListener;
 
 
-public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollListener {
+public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollListener, OnChangeSchedule {
 
     private int userSetTimes;
     public static final int THIS_WEEK = 0;
@@ -88,9 +89,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
 
         Utils(view);
 
-        userSetTimes = THIS_MONTH;
-        setCalendar();
-        setCalendarHorizontal();
+
 
         btn_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,5 +327,45 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         } else if(indexOf > 4) {
             layoutManager.scrollToPositionWithOffset(indexOf-2, 0);
         }
+    }
+
+    @Override
+    public void onChange(int state, String subject, int time) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                switch (time){
+                    case THIS_WEEK:{
+                        userSetTimes = THIS_WEEK;
+                        break;
+                    }
+                    case NEXT_WEEK:{
+                        userSetTimes = NEXT_WEEK;
+                        break;
+                    }
+                    case LAST_WEEK:{
+                        userSetTimes = LAST_WEEK;
+                        break;
+                    }
+                    case THIS_MONTH:{
+                        userSetTimes = THIS_MONTH;
+                        break;
+                    }
+                    case LAST_MONTH:{
+                        userSetTimes = LAST_MONTH;
+                        break;
+                    }
+                    case NEXT_MONTH:{
+                        userSetTimes = NEXT_MONTH;
+                        break;
+                    }
+                    default:{
+                        userSetTimes = THIS_WEEK;
+                    }
+                }
+                setCalendar();
+                setCalendarHorizontal();
+            }
+        });
     }
 }

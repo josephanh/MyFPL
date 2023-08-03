@@ -1,14 +1,15 @@
 package nta.com.music.myfpl;
 
-import android.animation.LayoutTransition;
+import static nta.com.music.myfpl.LoginActivity.student;
+
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,17 +17,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.dd.ShadowLayout;
 import com.makeramen.roundedimageview.RoundedImageView;
-
-import render.animations.Fade;
-import render.animations.Render;
 
 public class InformationUser extends AppCompatActivity {
 
@@ -45,6 +43,11 @@ public class InformationUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infor_user);
 
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+
         img_gone_1 = findViewById(R.id.img_gone_1);
         img_gone_2 = findViewById(R.id.img_gone_2);
         img_avatar = findViewById(R.id.img_avatar);
@@ -52,53 +55,16 @@ public class InformationUser extends AppCompatActivity {
         layout_first = findViewById(R.id.layout_first);
         layout_third = findViewById(R.id.layout_third);
 
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
+        Glide.with(InformationUser.this).load(student.getAvatar()).into(img_avatar);
+        full_name.setText(student.getName());
 
-
-//        Window window = getWindow();
-//        int newStatusBarColor = ContextCompat.getColor(InformationUser.this, R.color.black);
-//        window.setStatusBarColor(newStatusBarColor);
-
+        ImageButton btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(v -> onBackPressed());
 
         viewPager = findViewById(R.id.pager);
         InforUserAdapter inforUserAdapter = new InforUserAdapter(InformationUser.this);
         viewPager.setAdapter(inforUserAdapter);
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                switch (position){
-                    case Learning: case Person:{
-//                        setVisibility();
-                        break;
-                    }
-                }
-
-
-            }
-        });
-    }
-
-    private void setVisibility(){
-        int v = (viewPager.getCurrentItem() == 0) ? View.VISIBLE : View.GONE;
-
-        img_gone_1.setVisibility(v);
-        img_gone_2.setVisibility(v);
-        layout_third.setVisibility(v);
-        Render render = new Render(InformationUser.this);
-        if(v == View.VISIBLE) {
-            render.setAnimation(Fade.InDown(img_avatar).setDuration(100L));
-            img_avatar.setVisibility(v);
-        } else {
-            render.setAnimation(Fade.OutDown(img_avatar).setDuration(100L));
-            img_avatar.setVisibility(v);
-        }
-        render.start();
-        layout_first.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
     }
 
@@ -129,8 +95,8 @@ public class InformationUser extends AppCompatActivity {
             View view = inflater.inflate(R.layout.inforuser_detail, container, false);
             Learning_Path = view.findViewById(R.id.Learning_Path);
             Personal_Path = view.findViewById(R.id.Personal_Path);
-//            ScrollView scrollview = view.findViewById(R.id.scrollview);
-//            scrollview.setVerticalScrollBarEnabled(false);
+
+
             switch (state){
                 case 0:{
                     Learning_Path.setVisibility(View.GONE);

@@ -4,15 +4,14 @@ import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +59,7 @@ public class ScheduleFragment extends Fragment {
 
         RecyclerView recyclerSchedule = view.findViewById(R.id.listSchedule);
         List<Schedule> list = new ArrayList<Schedule>();
-        list.add(new Schedule(1,"Khởi sự doanh nghiệp","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",1));
-        list.add(new Schedule(2,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
-        list.add(new Schedule(3,"Lập trình React Native","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2));
+
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);

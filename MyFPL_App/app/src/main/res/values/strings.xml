@@ -41,6 +41,12 @@
     <string name="calendar_month">Calendar Month</string>
     <string name="apply">Apply</string>
     <string name="trade_history">Trade history</string>
+    <string name="this_week">This week</string>
+    <string name="last_week">Last week</string>
+    <string name="next_week">Next week</string>
+    <string name="this_month">This month</string>
+    <string name="last_month">Last month</string>
+    <string name="next_month">Next month</string>
 
 
 </resources>

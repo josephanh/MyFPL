@@ -1,37 +1,32 @@
 package nta.com.music.myfpl;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import android.widget.ListView;
 import android.widget.TextView;
-
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,15 +36,22 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
+import nta.com.music.myfpl.DTO.LoginRequestDTO;
+import nta.com.music.myfpl.DTO.StudentResponseDTO;
 import nta.com.music.myfpl.adapter.ChooseCampusItemAdapter;
+import nta.com.music.myfpl.helper.IRetrofit;
+import nta.com.music.myfpl.helper.RetrofitHelper;
 import nta.com.music.myfpl.model.Campus;
+import nta.com.music.myfpl.model.Student;
 import render.animations.Bounce;
 import render.animations.Render;
 import render.animations.Zoom;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -60,6 +62,11 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView txt_chosenCampus;
 
+    IRetrofit retrofit;
+    String email;
+
+    public static Student student;
+
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -68,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Utils();
-
+        retrofit = RetrofitHelper.createService(IRetrofit.class);
 
     }
 
@@ -143,11 +150,15 @@ public class LoginActivity extends AppCompatActivity {
                         String email = account.getEmail();
                         String name = account.getDisplayName();
                         String image = String.valueOf(account.getPhotoUrl());
+
+                        LoginRequestDTO requestDTO = new LoginRequestDTO(email, name, image);
+                        retrofit.login(requestDTO).enqueue(login);
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-                        finish();
+
                     } catch (Exception e) {
-                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Erron: " + e.getMessage());
+                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Error: " + e.getMessage());
                     }
                 }
             });
@@ -219,4 +230,28 @@ public class LoginActivity extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+    Callback<StudentResponseDTO> login = new Callback<StudentResponseDTO>() {
+        @Override
+        public void onResponse(@NonNull Call<StudentResponseDTO> call, Response<StudentResponseDTO> response) {
+            if (response.isSuccessful()) {
+                StudentResponseDTO loginResponse = response.body();
+                if (loginResponse != null && loginResponse.isStatus()) {
+                    student = loginResponse.getStudent();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Toast.makeText(LoginActivity.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<StudentResponseDTO> call, Throwable t) {
+            Log.d(">>> login", "onFailure: " + t.getMessage());
+        }
+    };
 }

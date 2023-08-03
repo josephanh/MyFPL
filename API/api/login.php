@@ -10,6 +10,8 @@ include_once "../database/connection.php";
 try {
     $data = json_decode(file_get_contents("php://input"));
     $email = $data->email;
+    $name = $data->name;
+    $avatar = $data->avatar;
 
     if (empty($email)) {
         echo json_encode(array(
@@ -50,11 +52,11 @@ try {
                 return;
             }
 
-            $avatar = "";
-            $name = "Tuấn Anh";
+            // $avatar = "";
+            // $name = "Tuấn Anh";
             // $email = "anhntps24619@gmail.com";
             // $student_code = "ps24609";
-            $gender = 1;
+            $gender = true;
             $birthday = "2023-7-20";
             $address = "Quận 12, Tp. Hồ Chí Minh";
             $course = "15.3";

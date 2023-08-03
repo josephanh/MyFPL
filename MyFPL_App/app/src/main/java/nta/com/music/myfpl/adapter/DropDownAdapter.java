@@ -17,9 +17,11 @@ import java.util.List;
 import nta.com.music.myfpl.R;
 
 public class DropDownAdapter extends ArrayAdapter {
+
+    List<String> objects;
     public DropDownAdapter(@NonNull Context context, int resource, List<String> objects) {
         super(context, resource, objects);
-        Log.d(">>>>TAG", "DropDownAdapter: "+objects.size());
+        this.objects = objects;
     }
 
     @SuppressLint("ViewHolder")
@@ -30,7 +32,7 @@ public class DropDownAdapter extends ArrayAdapter {
         TextView itemSelect = convertView.findViewById(R.id.item_drop);
 
         if(this.getItem(position) != null){
-            itemSelect.setText(this.getItem(position).toString());
+            itemSelect.setText(objects.get(position));
         }
 
         return convertView;
@@ -42,9 +44,15 @@ public class DropDownAdapter extends ArrayAdapter {
         TextView item = convertView.findViewById(R.id.item_drop);
 
         if(this.getItem(position) != null){
-            item.setText(this.getItem(position).toString());
+            item.setText(objects.get(position));
         }
 
         return convertView;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+        Log.d(">>>>TAG", "notifyDataSetChanged: "+objects.size());
     }
 }

@@ -1,6 +1,14 @@
 package nta.com.music.myfpl;
 
 
+import static nta.com.music.myfpl.LoginActivity.student;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.LAST_MONTH;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.LAST_WEEK;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.NEXT_MONTH;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.NEXT_WEEK;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.THIS_MONTH;
+import static nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment.THIS_WEEK;
+
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -11,13 +19,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +43,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import nta.com.music.myfpl.DTO.StudyingResponseDTO;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
@@ -42,23 +51,27 @@ import nta.com.music.myfpl.fragments.HomeFragment;
 import nta.com.music.myfpl.fragments.NotificationFragment;
 import nta.com.music.myfpl.fragments.ScheduleTabFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
-import nta.com.music.myfpl.interfaces.OnChangeSchedule;
+import nta.com.music.myfpl.helper.IRetrofit;
+import nta.com.music.myfpl.helper.RetrofitHelper;
 import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.receiver.NetworkReceiver;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity implements OnChangeSchedule {
-
-    private final String TAG_HOME = "TAG_HOME";
-    private final String TAG_SCHEDULE = "TAG_SCHEDULE";
-    private final String TAG_NOTIFICATION = "TAG_NOTIFICATION";
-    private final String TAG_USER = "TAG_USER";
+public class MainActivity extends AppCompatActivity {
     DropDownAdapter adapterDropDownType, adapterDropDownSubject, adapterDropDownTime;
     Button btn_apply;
 
-    private int type = 0;
+    public int type = 0;
+    public String name_subject = "";
+    public int time = 0;
+    List<String> listDropDown;
     ThreadPoolExecutor executor;
     BroadcastReceiver broadcastReceiver;
+
+    IRetrofit iRetrofit;
 
     private final Handler handler = new Handler(Looper.getMainLooper()) {
         @SuppressLint("NonConstantResourceId")
@@ -99,6 +112,11 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
     List<Fragment> fragmentList = new ArrayList<>();
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         setContentView(R.layout.activity_main);
 
         broadcastReceiver = new NetworkReceiver();
+        iRetrofit = RetrofitHelper.createService(IRetrofit.class);
 
 
         getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -184,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
                         @Override
                         public void run() {
                             hideNavigationChoiceSchedule();
-                            ((ScheduleTabFragment) fragmentList.get(1)).onChange(type);
+                            ((ScheduleTabFragment) fragmentList.get(1)).onChange(type, name_subject, time);
                         }
                     });
                 }
@@ -239,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         drawerLayout.openDrawer(GravityCompat.END);
 
 
-        adapterDropDownType = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(1));
+        adapterDropDownType = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, listDropDown = getListTypes(1));
         spinner_choice_type.setAdapter(adapterDropDownType);
         spinner_choice_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -253,11 +272,12 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
             }
         });
 
-        adapterDropDownSubject = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(2));
+        adapterDropDownSubject = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, listDropDown = getListTypes(2));
         spinner_choice_subject.setAdapter(adapterDropDownSubject);
         spinner_choice_subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                name_subject = listDropDown.get(i);
             }
 
             @Override
@@ -265,11 +285,37 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
 
             }
         });
-        adapterDropDownTime = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(3));
+        adapterDropDownTime = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, listDropDown = getListTypes(3));
         spinner_choice_time.setAdapter(adapterDropDownTime);
         spinner_choice_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0: {
+                        time = THIS_WEEK;
+                        break;
+                    }
+                    case 1: {
+                        time = LAST_WEEK;
+                        break;
+                    }
+                    case 2: {
+                        time = NEXT_WEEK;
+                        break;
+                    }
+                    case 3: {
+                        time = THIS_MONTH;
+                        break;
+                    }
+                    case 4: {
+                        time = LAST_MONTH;
+                        break;
+                    }
+                    case 5: {
+                        time = NEXT_MONTH;
+                        break;
+                    }
+                }
             }
 
             @Override
@@ -300,33 +346,54 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
     }
 
     private List<String> getListTypes(int type) {
-        List<String> list = new ArrayList<>();
+        listDropDown = new ArrayList<>();
         switch (type) {
             case 1: {
-                list.add(getString(R.string.calendar_month));
-                list.add(getString(R.string.calendar_week));
+                listDropDown.add(getString(R.string.calendar_month));
+                listDropDown.add(getString(R.string.calendar_week));
                 break;
             }
             case 2: {
-                list.add("Lập trình React Native");
-                list.add("Lập trình Mobile");
+                iRetrofit.getStudying(student.getId()).enqueue(getStudying);
                 break;
             }
             case 3: {
-                list.add("Tuần này");
-                list.add("Tuần trước");
-                list.add("Tuần sau");
-                list.add("Tháng này");
-                list.add("Tháng trước");
-                list.add("Tháng sau");
+                listDropDown.add(getString(R.string.this_week));
+                listDropDown.add(getString(R.string.last_week));
+                listDropDown.add(getString(R.string.next_week));
+                listDropDown.add(getString(R.string.this_month));
+                listDropDown.add(getString(R.string.last_month));
+                listDropDown.add(getString(R.string.next_month));
                 break;
             }
         }
-        return list;
+        return listDropDown;
     }
 
-    @Override
-    public void onChange(int state) {
-        Toast.makeText(this, "" + state, Toast.LENGTH_SHORT).show();
-    }
+    final Callback<StudyingResponseDTO> getStudying = new Callback<StudyingResponseDTO>() {
+        @Override
+        public void onResponse(@NonNull Call<StudyingResponseDTO> call, Response<StudyingResponseDTO> response) {
+            if (response.isSuccessful()) {
+                StudyingResponseDTO responseDTO = response.body();
+                assert responseDTO != null;
+
+                if (responseDTO.isStatus()) {
+                    listDropDown.clear();
+                    for (int i = 0; i < responseDTO.getTotal(); i++) {
+                        listDropDown.add(responseDTO.getSchedule().get(i).getCourse_name());
+                        adapterDropDownSubject.notifyDataSetChanged();
+                    }
+                    Log.d(">>>>TAG", "onResponse: " + listDropDown.size());
+                    adapterDropDownSubject.addAll(listDropDown);
+                    adapterDropDownSubject.notifyDataSetChanged();
+
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<StudyingResponseDTO> call, Throwable t) {
+            Log.d(">>> login", "onFailure: " + t.getMessage());
+        }
+    };
 }

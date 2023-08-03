@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
 
             if (!checkDatePos) {
                 for (int i = 0; i < listScheduleMonth.size(); i++) {
-                    String dateSchedule = listScheduleMonth.get(i).getDate();
+                    String dateSchedule = listScheduleMonth.get(i).getDay();
 
                     datePosition.putIfAbsent(dateSchedule, i);
                 }
@@ -80,16 +79,7 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            listScheduleMonth.add(new Schedule(1,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-20"));
-            listScheduleMonth.add(new Schedule(2,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-20"));
-            listScheduleMonth.add(new Schedule(3,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-21"));
-            listScheduleMonth.add(new Schedule(4,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-21"));
-            listScheduleMonth.add(new Schedule(5,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-22"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-22"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-23"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-23"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-25"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-25"));
+
         }
     }
 
