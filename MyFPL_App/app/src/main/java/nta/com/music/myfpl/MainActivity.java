@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
@@ -204,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
         });
     }
 
-    public void goToDetailInformation(Information information) {
+    public void goToDetailInformation(ListInformationResponseDTO.InformationResponseDTO information) {
         Intent intent = new Intent(MainActivity.this, InformationActivity.class);
         intent.putExtra("information", information);
         startActivity(intent);
