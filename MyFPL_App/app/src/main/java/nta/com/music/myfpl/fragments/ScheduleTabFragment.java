@@ -43,6 +43,7 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
         adapter = new ScheduleTabAdapter(requireActivity(), fragmentList);
         viewpager_schedule.setAdapter(adapter);
         viewpager_schedule.setOffscreenPageLimit(2);
+        viewpager_schedule.setUserInputEnabled(false);
 
 
         return view;
