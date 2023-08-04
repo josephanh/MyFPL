@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.Notification.SchoolNotificationFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,5 +11,27 @@
         android:id="@+id/rc_schoolNotification"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <LinearLayout
+        android:id="@+id/ln_notfound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/img_notfound"
+            android:layout_width="190dp"
+            android:src="@drawable/img_post"
+            android:layout_height="105dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/lexend_medium"
+            android:textColor="@color/purple"
+            android:text="No information here"/>
+    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

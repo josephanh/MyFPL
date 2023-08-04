@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.model.NotificationSchool;
 import render.animations.Attention;
@@ -22,9 +23,10 @@ import render.animations.Render;
 
 public class NotificationSchoolAdapter extends RecyclerView.Adapter<NotificationSchoolAdapter.ViewHolder> {
     Context c;
-    List<NotificationSchool> list;
+//    List<NotificationSchool> list;
+    List<ListInformationResponseDTO.InformationResponseDTO> list;
 
-    public NotificationSchoolAdapter(Context c,List<NotificationSchool> list){
+    public NotificationSchoolAdapter(Context c,List<ListInformationResponseDTO.InformationResponseDTO> list){
         this.c = c;
         this.list = list;
     }
@@ -49,28 +51,30 @@ public class NotificationSchoolAdapter extends RecyclerView.Adapter<Notification
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        NotificationSchool item =list.get(position);
+        ListInformationResponseDTO.InformationResponseDTO item =list.get(position);
         holder.tvNotification.setText("Phòng đào tạo");
         holder.tvNotificationTitle.setText(item.getTitle());
+        holder.tvNotificationDate.setText(item.getCreated_at());
+
 
         //check if date is today
-        String today = (String) android.text.format.DateFormat.format(
-                "dd/MM/yyyy", new java.util.Date());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date date1;
-        Date date2;
-        try {
-            date1 = sdf.parse(item.getDate());
-            date2 = sdf.parse(today);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        if(date1.before(date2)){
-            holder.tvNotificationDate.setText(item.getDate());
-        }
-        else{
-            holder.tvNotificationDate.setText("Now");
-        }
+//        String today = (String) android.text.format.DateFormat.format(
+//                "dd/MM/yyyy", new java.util.Date());
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date1;
+//        Date date2;
+//        try {
+//            date1 = sdf.parse(item.getCreated_at());
+//            date2 = sdf.parse(today);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//        if(date1.before(date2)){
+//            holder.tvNotificationDate.setText(item.getDate());
+//        }
+//        else{
+//            holder.tvNotificationDate.setText("Now");
+//        }
 
         holder.imgNotification.setImageDrawable(c.getResources().getDrawable(R.drawable.ic_schoolnotification));
         holder.itemView.setOnClickListener(new View.OnClickListener() {

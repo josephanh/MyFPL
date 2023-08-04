@@ -11,4 +11,6 @@ public interface IRetrofit {
     @GET("/api/post/get_all_posts.php?page=1")
     Call<ListInformationResponseDTO> posts();
 
+
+
 }
