@@ -11,11 +11,18 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.adapter.ViewPagerScheduleWeek;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ScheduleExamTabFragment extends Fragment {
+import nta.com.music.myfpl.R;
+import nta.com.music.myfpl.adapter.ViewPagerScheduleWeekAdapter;
+import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
+import nta.com.music.myfpl.model.Schedule;
+
+public class ScheduleExamTabFragment extends Fragment implements OnChangeScheduleWeek {
     public static ViewPager2 viewPager_schedule_exam;
+
+    List<Fragment> fragmentList = new ArrayList<>();
     public ScheduleExamTabFragment() {
         // Required empty public constructor
     }
@@ -40,8 +47,9 @@ public class ScheduleExamTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule_tab, container, false);
+        setFragmentList();
         viewPager_schedule_exam = view.findViewById(R.id.viewpager_schedule);
-        ViewPagerScheduleWeek pagerSchedule = new ViewPagerScheduleWeek(requireActivity());
+        ViewPagerScheduleWeekAdapter pagerSchedule = new ViewPagerScheduleWeekAdapter(requireActivity(), fragmentList);
         viewPager_schedule_exam.setAdapter(pagerSchedule);
 //        viewPager_schedule_exam.setPageTransformer(new VerticalFlipTransformation());
 
@@ -69,5 +77,27 @@ public class ScheduleExamTabFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void onChangeSchedule(List<Schedule> list) {
+        ((ScheduleFragment)fragmentList.get(0)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(1)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(2)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(3)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(4)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(5)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(6)).onChangeSchedule(list);
+
+    }
+
+    public void setFragmentList(){
+        fragmentList.add(ScheduleFragment.newInstance(0, 1));
+        fragmentList.add(ScheduleFragment.newInstance(1, 1));
+        fragmentList.add(ScheduleFragment.newInstance(2, 1));
+        fragmentList.add(ScheduleFragment.newInstance(3, 1));
+        fragmentList.add(ScheduleFragment.newInstance(4, 1));
+        fragmentList.add(ScheduleFragment.newInstance(5, 1));
+        fragmentList.add(ScheduleFragment.newInstance(6, 1));
     }
 }

@@ -1,6 +1,6 @@
 package nta.com.music.myfpl.fragments.Schedule;
 
-import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
+import static nta.com.music.myfpl.LoginActivity.student;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleClassTabFragment.viewPager_schedule;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleExamTabFragment.viewPager_schedule_exam;
 
@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +23,28 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import nta.com.music.myfpl.DTO.ScheduleResponseDTO;
 import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerSchedule;
+import nta.com.music.myfpl.helper.IRetrofit;
+import nta.com.music.myfpl.helper.RetrofitHelper;
+import nta.com.music.myfpl.model.Schedule;
 import q.rorbin.verticaltablayout.TabAdapter;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ScheduleWeekFragment extends Fragment {
 
@@ -44,6 +57,12 @@ public class ScheduleWeekFragment extends Fragment {
     ImageView btn_filter, btn_refest;
 
     ThreadPoolExecutor executor;
+    List<String> listCalendar = new ArrayList<>();
+
+    List<Schedule> scheduleList = new ArrayList<>();
+    List<Fragment> fragmentList = new ArrayList<>();
+
+    IRetrofit retrofit;
 
 
     //    private int currentIndex = 0;
@@ -73,7 +92,13 @@ public class ScheduleWeekFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_schedule_week, container, false);
 
         Utils(view);
-
+        setListCalendarDefault();
+//        Log.d(">>>>TAG", "setListCalendarDefault: "+convertDateFormat(listCalendar.get(0)));
+//        Log.d(">>>>TAG", "setListCalendarDefault: "+convertDateFormat(listCalendar.get(listCalendar.size()-1)));
+        retrofit = RetrofitHelper.createService(IRetrofit.class);
+        if(student != null && student.getId() >= 0){
+            retrofit.getScheduleByTime(student.getId(), convertDateFormat(listCalendar.get(0)), convertDateFormat(listCalendar.get(listCalendar.size()-1))).enqueue(getScheduleWeek);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -120,7 +145,9 @@ public class ScheduleWeekFragment extends Fragment {
 
         new ClickShrinkEffect(btn_refest, 0.7f, 100L);
 
-        ViewPagerSchedule adapter = new ViewPagerSchedule(requireActivity(), CALENDAR_WEEK);
+        fragmentList.add(new ScheduleClassTabFragment());
+        fragmentList.add(new ScheduleExamTabFragment());
+        ViewPagerSchedule adapter = new ViewPagerSchedule(requireActivity(), fragmentList);
         viewPager.setAdapter(adapter);
     }
 
@@ -245,14 +272,93 @@ public class ScheduleWeekFragment extends Fragment {
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 switch (position) {
                     case 0:
-                        tab.setText("Class schedule");
+                        tab.setText(R.string.class_schedule);
                         break;
                     case 1:
-                        tab.setText("Exam schedule");
+                        tab.setText(R.string.exam_schedule);
                         break;
                 }
             }
         }).attach();
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setListCalendarDefault();
+    }
+
+    private void setListCalendarDefault(){
+        Date currentDate = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_MONTH, 0);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int diff = calendar.getFirstDayOfWeek() - (dayOfWeek-1);
+        if (diff > 0) {
+            diff -= 7;
+        }
+
+        calendar.add(Calendar.DAY_OF_MONTH, diff);
+        listCalendar.clear();
+        for (int i = 0; i < 7; i++) {
+            Date date = calendar.getTime();
+            String[] arr = date.toString().split(" ");
+            listCalendar.add(arr[0] + " " + arr[1] + " " + arr[2] + " "+ arr[5]);
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static String convertDateFormat(String inputDate) {
+        String outputFormat = "yyyy-MM-dd";
+        try {
+            SimpleDateFormat inputFormatter = new SimpleDateFormat("EEE MMM dd yyyy", Locale.ENGLISH);
+            SimpleDateFormat outputFormatter = new SimpleDateFormat(outputFormat);
+
+            // Chuyển chuỗi thành đối tượng Date
+            Date date = inputFormatter.parse(inputDate);
+
+            // Chuyển đổi tháng từ dạng chữ (Jul) sang số (7)
+            SimpleDateFormat monthFormatter = new SimpleDateFormat("MM");
+            assert date != null;
+            String monthNumber = monthFormatter.format(date);
+
+            String outputDate = outputFormatter.format(date);
+
+            return outputDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    Callback<ScheduleResponseDTO> getScheduleWeek = new Callback<ScheduleResponseDTO>() {
+        @Override
+        public void onResponse(@NonNull Call<ScheduleResponseDTO> call, Response<ScheduleResponseDTO> response) {
+            if (response.isSuccessful()) {
+                ScheduleResponseDTO loginResponse = response.body();
+                assert loginResponse != null;
+                if (loginResponse.isStatus()) {
+                    scheduleList = loginResponse.getSchedule();
+                    ((ScheduleClassTabFragment) fragmentList.get(0)).onChangeSchedule(scheduleList);
+                    ((ScheduleExamTabFragment) fragmentList.get(1)).onChangeSchedule(scheduleList);
+                }
+            }
+            
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<ScheduleResponseDTO> call, Throwable t) {
+            Log.d(">>> CALL API", "onFailure: " + t.getMessage());
+            Log.d(">>> CALL API", "onFailure: " + student.getId());
+            Log.d(">>> CALL API", "onFailure: " + convertDateFormat(listCalendar.get(0)));
+            Log.d(">>> CALL API", "onFailure: " + convertDateFormat(listCalendar.get(listCalendar.size()-1)));
+        }
+    };
+
+
+
 }

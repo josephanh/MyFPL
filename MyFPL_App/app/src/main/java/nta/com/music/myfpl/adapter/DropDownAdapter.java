@@ -53,6 +53,6 @@ public class DropDownAdapter extends ArrayAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
-        Log.d(">>>>TAG", "notifyDataSetChanged: "+objects.size());
+//        Log.d(">>>>TAG", "notifyDataSetChanged: "+objects.size());
     }
 }

@@ -38,6 +38,8 @@ import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import nta.com.music.myfpl.DTO.LoginRequestDTO;
 import nta.com.music.myfpl.DTO.StudentResponseDTO;
@@ -151,14 +153,20 @@ public class LoginActivity extends AppCompatActivity {
                         String name = account.getDisplayName();
                         String image = String.valueOf(account.getPhotoUrl());
 
-                        LoginRequestDTO requestDTO = new LoginRequestDTO(email, name, image);
-                        retrofit.login(requestDTO).enqueue(login);
+                        if(isEmailFPT(email)){
+                            LoginRequestDTO requestDTO = new LoginRequestDTO(email, name, image);
+                            retrofit.login(requestDTO).enqueue(login);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Phải đăng nhập bằng email FPT", Toast.LENGTH_SHORT).show();
+                        }
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+
+
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
 
                     } catch (Exception e) {
-                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Error: " + e.getMessage());
+//                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Error: " + e.getMessage());
                     }
                 }
             });
@@ -254,4 +262,14 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(">>> login", "onFailure: " + t.getMessage());
         }
     };
+    public static boolean isEmailFPT(String email) {
+        String patternString = "\\b[\\w.%-]+@fpt\\.edu\\.vn\\b";
+
+        Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = pattern.matcher(email);
+
+        // Kiểm tra xem email có khớp với biểu thức chính quy hay không
+        return matcher.find();
+    }
 }

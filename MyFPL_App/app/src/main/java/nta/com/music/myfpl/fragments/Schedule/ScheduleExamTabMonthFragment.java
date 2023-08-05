@@ -24,11 +24,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleAdapter;
+import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
 import nta.com.music.myfpl.interfaces.OnRecyclerScrollListener;
 import nta.com.music.myfpl.model.Schedule;
 
-public class ScheduleExamTabMonthFragment extends Fragment implements OnRecyclerScrollListener {
+public class ScheduleExamTabMonthFragment extends Fragment implements OnRecyclerScrollListener, OnChangeScheduleWeek {
 
     RecyclerView recycleView_Schedule;
     protected static LinearLayoutManager linearLayoutMonthSchedule;
@@ -145,5 +146,10 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
 //                scrollToPosition(4);
             }
         });
+    }
+
+    @Override
+    public void onChangeSchedule(List<Schedule> list) {
+
     }
 }

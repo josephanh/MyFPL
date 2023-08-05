@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        adapterDropDownTime = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, listDropDown = getListTypes(3));
+        adapterDropDownTime = new DropDownAdapter(MainActivity.this, R.layout.item_spinner_selected, getListTypes(3));
         spinner_choice_time.setAdapter(adapterDropDownTime);
         spinner_choice_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<String> getListTypes(int type) {
-        listDropDown = new ArrayList<>();
+        ArrayList<String> listDropDown = new ArrayList<>();
         switch (type) {
             case 1: {
                 listDropDown.add(getString(R.string.calendar_month));
@@ -354,7 +354,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case 2: {
-                iRetrofit.getStudying(student.getId()).enqueue(getStudying);
+                if(student != null){
+                    iRetrofit.getStudying(student.getId()).enqueue(getStudying);
+                }
                 break;
             }
             case 3: {
@@ -383,8 +385,8 @@ public class MainActivity extends AppCompatActivity {
                         listDropDown.add(responseDTO.getSchedule().get(i).getCourse_name());
                         adapterDropDownSubject.notifyDataSetChanged();
                     }
-                    Log.d(">>>>TAG", "onResponse: " + listDropDown.size());
-                    adapterDropDownSubject.addAll(listDropDown);
+//                    Log.d(">>>>TAG", "onResponse: " + listDropDown.size());
+//                    adapterDropDownSubject.addAll(listDropDown);
                     adapterDropDownSubject.notifyDataSetChanged();
 
                 }
@@ -393,7 +395,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(@NonNull Call<StudyingResponseDTO> call, Throwable t) {
-            Log.d(">>> login", "onFailure: " + t.getMessage());
+            Log.d(">>> Main", "onFailure: " + t.getMessage());
         }
     };
 }

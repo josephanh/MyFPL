@@ -13,6 +13,7 @@ try {
     $name = $data->name;
     $avatar = $data->avatar;
 
+
     if (empty($email)) {
         echo json_encode(array(
             "status" => false,
@@ -22,6 +23,7 @@ try {
 
         $pattern = '/@fpt\.edu\.vn$/';
         $matches = array();
+        
 
         if (!preg_match($pattern, $email, $matches)) {
             echo json_encode(array(

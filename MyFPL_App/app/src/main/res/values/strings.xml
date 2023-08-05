@@ -47,6 +47,9 @@
     <string name="this_month">This month</string>
     <string name="last_month">Last month</string>
     <string name="next_month">Next month</string>
+    <string name="no_schedule">No Schedule</string>
+    <string name="class_schedule">Class schedule</string>
+    <string name="exam_schedule">Exam schedule</string>
 
 
 </resources>

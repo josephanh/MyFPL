@@ -1,35 +1,25 @@
 package nta.com.music.myfpl.fragments;
 
-import static nta.com.music.myfpl.LoginActivity.student;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nta.com.music.myfpl.DTO.ScheduleResponseDTO;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleTabAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleMonthFragment;
 import nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment;
-import nta.com.music.myfpl.helper.IRetrofit;
-import nta.com.music.myfpl.helper.RetrofitHelper;
 import nta.com.music.myfpl.interfaces.OnChangeSchedule;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
 
@@ -39,7 +29,6 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
     ViewPager2 viewpager_schedule;
     List<Fragment> fragmentList = new ArrayList<>();
 
-    IRetrofit retrofit;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -57,10 +46,7 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
         viewpager_schedule.setOffscreenPageLimit(2);
         viewpager_schedule.setUserInputEnabled(false);
 
-        retrofit = RetrofitHelper.createService(IRetrofit.class);
-        if(student != null){
-            retrofit.getScheduleByTime(student.getId(), "2023-08-01", "2023-08-08").enqueue(getScheduleByTime);
-        }
+
 
 
         return view;
@@ -90,17 +76,4 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
         }).start();
     }
 
-    Callback<ScheduleResponseDTO> getScheduleByTime = new Callback<ScheduleResponseDTO>() {
-        @Override
-        public void onResponse(@NonNull Call<ScheduleResponseDTO> call, Response<ScheduleResponseDTO> response) {
-            if (response.isSuccessful()) {
-
-            }
-        }
-
-        @Override
-        public void onFailure(@NonNull Call<ScheduleResponseDTO> call, Throwable t) {
-            Log.d(">>> login", "onFailure: " + t.getMessage());
-        }
-    };
 }

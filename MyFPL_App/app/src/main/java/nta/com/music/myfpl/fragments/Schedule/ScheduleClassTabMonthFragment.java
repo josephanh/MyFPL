@@ -23,11 +23,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleAdapter;
+import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
 import nta.com.music.myfpl.interfaces.OnRecyclerScrollListener;
 import nta.com.music.myfpl.model.Schedule;
 
-public class ScheduleClassTabMonthFragment extends Fragment implements OnRecyclerScrollListener {
+public class ScheduleClassTabMonthFragment extends Fragment implements OnRecyclerScrollListener, OnChangeScheduleWeek {
 
     RecyclerView recycleView_Schedule;
     HashMap<String, Integer> datePosition = new HashMap<>();
@@ -35,6 +36,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
     protected static List<Schedule> listScheduleMonth = new ArrayList<Schedule>();
 
     boolean checkDatePos = false;
+    ScheduleAdapter adapter;
 
     ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
     public ScheduleClassTabMonthFragment() {
@@ -64,6 +66,17 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
         }
     };
 
+    final Handler handlerSchedule = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            listScheduleMonth = (List<Schedule>) msg.obj;
+            if(adapter != null){
+                adapter.updateData(listScheduleMonth);
+            }
+        }
+    };
+
 
     public static ScheduleClassTabMonthFragment newInstance() {
         ScheduleClassTabMonthFragment fragment = new ScheduleClassTabMonthFragment();
@@ -87,7 +100,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
         View view = inflater.inflate(R.layout.fragment_schedule_tab_month, container, false);
         Utils(view);
         linearLayoutMonthSchedule = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        ScheduleAdapter adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
+        adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
             @Override
             public void onClick(Schedule schedule) {
 
@@ -152,5 +165,17 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    @Override
+    public void onChangeSchedule(List<Schedule> list) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.obj = list;
+                handlerSchedule.sendMessage(message);
+            }
+        });
     }
 }

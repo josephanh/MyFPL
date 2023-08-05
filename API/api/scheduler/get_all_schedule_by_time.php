@@ -59,6 +59,7 @@ try {
                 WHERE
                     u.id = '$student_id' 
                 AND s.day BETWEEN '$date_start' AND '$date_end'
+                OR s.day = '$date_start' OR s.day = '$date_end'
                 ORDER BY s.day ASC");
             // Set the new timezone
            
