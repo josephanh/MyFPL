@@ -81,7 +81,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationViewHold
     }
 
     private void setIconRoom(String name, ImageView image) {
-        if(name.equals("Công tác sinh viên") || name.contains("công tác")) {
+        if(name.equals("Công tác sinh viên") || name.contains("công tác")||name.contains("CTSV")) {
             image.setImageResource(R.drawable.ic_ctsv);
         }
         if(name.equals("Phòng đào tạo") || name.contains("đào tạo")) {

@@ -47,6 +47,7 @@
                android:src="@drawable/search" />
 
            <EditText
+               android:id="@+id/edt_search"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:background="@null"
@@ -57,8 +58,9 @@
                android:textSize="15dp"
                android:autofillHints="" />
        </LinearLayout>
+
        <LinearLayout
-           android:id="@+id/linearLayout2"
+           android:id="@+id/linearLayout"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:background="@drawable/white_15dp"
@@ -66,7 +68,6 @@
            android:gravity="center"
            android:layout_marginTop="-20dp"
            android:orientation="vertical">
-
            <ImageView
                android:layout_width="200dp"
                android:layout_height="150dp"
@@ -74,6 +75,16 @@
                android:contentDescription="@string/wallet"
                android:scaleType="centerCrop"/>
 
+
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcv_searchPost"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
        </LinearLayout>
    </LinearLayout>
 

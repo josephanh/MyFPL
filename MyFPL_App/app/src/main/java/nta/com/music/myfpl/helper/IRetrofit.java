@@ -15,6 +15,7 @@ public interface IRetrofit {
     @GET("/api/post/get_posts_by_id.php")
     Call<DetailInformationResponseDTO> detailposts(@Query("id") int id) ;
 
-
+    @GET("/api/post/get_posts_by_keyword.php")
+    Call<ListInformationResponseDTO> searchPosts (@Query("keyword") String keyword) ;
 
 }
