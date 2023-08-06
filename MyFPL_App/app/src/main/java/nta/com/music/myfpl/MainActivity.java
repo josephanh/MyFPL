@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnChangeSchedule 
 
     public void goToDetailInformation(ListInformationResponseDTO.InformationResponseDTO information) {
         Intent intent = new Intent(MainActivity.this, InformationActivity.class);
-        intent.putExtra("information", information);
+        intent.putExtra("postId", information.getId());
         startActivity(intent);
     }
 

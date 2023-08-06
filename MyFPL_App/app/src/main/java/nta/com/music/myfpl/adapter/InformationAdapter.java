@@ -2,6 +2,8 @@ package nta.com.music.myfpl.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Locale;
 
+import nta.com.music.myfpl.DTO.DetailInformationRequestDTO;
+import nta.com.music.myfpl.InformationActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.interfaces.OnClickInformation;
 import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
@@ -46,7 +51,8 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationViewHold
             holder.tv_name.setText(list.get(position).getDepartment());
             holder.tv_time.setText(list.get(position).getCreated_at());
             holder.tv_author.setText(list.get(position).getAuthor());
-            holder.tv_notification.setText(list.get(position).getTitle());
+            holder.tv_notification.setText(capitalizeSentences(list.get(position).getTitle()));
+            setIconRoom(list.get(position).getDepartment(),holder.img_name);
 
 //        holder.tv_name.setText(list.get(position).getName());
 //        setIconRoom(list.get(position).getName(),holder.img_name);
@@ -58,6 +64,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationViewHold
             @Override
             public void onClick(View view) {
                 information.onClick(list.get(position));
+
             }
         });
 
@@ -84,5 +91,25 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationViewHold
             image.setImageResource(R.drawable.ic_qhdn);
         }
 
+    }
+    private String capitalizeSentences(String inputText) {
+        inputText = inputText.toLowerCase();
+        StringBuilder result = new StringBuilder();
+        boolean capitalizeNext = true;
+
+        for (char c : inputText.toCharArray()) {
+            if (c == '.' ||  c == '!' || c == '?') {
+                capitalizeNext = true;
+            } else if (Character.isLetter(c)) {
+                if (capitalizeNext) {
+                    c = Character.toUpperCase(c);
+                    capitalizeNext = false;
+                }
+            }
+
+            result.append(c);
+        }
+
+        return result.toString();
     }
 }

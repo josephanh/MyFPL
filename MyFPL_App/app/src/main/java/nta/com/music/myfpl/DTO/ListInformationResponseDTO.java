@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ListInformationResponseDTO implements Serializable{
+
     private boolean status;
     private List<ListInformationResponseDTO.InformationResponseDTO> posts;
 
@@ -32,12 +33,14 @@ public class ListInformationResponseDTO implements Serializable{
     }
 
     public static class InformationResponseDTO implements Serializable {
-        private String id,title,content,department,created_at,author,type;
+        private int id;
+        private String title, content, department, created_at, author, type;
 
         public InformationResponseDTO() {
+
         }
 
-        public InformationResponseDTO(String id, String title, String content, String department, String created_at, String author, String type) {
+        public InformationResponseDTO(int id, String title, String content, String department, String created_at, String author, String type) {
             this.id = id;
             this.title = title;
             this.content = content;
@@ -47,11 +50,11 @@ public class ListInformationResponseDTO implements Serializable{
             this.type = type;
         }
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 
