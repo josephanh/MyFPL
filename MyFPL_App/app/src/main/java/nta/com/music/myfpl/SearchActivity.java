@@ -41,7 +41,7 @@ public class SearchActivity extends AppCompatActivity {
 
     InformationAdapter informationAdapter;
     MainActivity mainActivity;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout,linearLayout2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         edt_search = findViewById(R.id.edt_search);
         btn_back = findViewById(R.id.btn_back);
         linearLayout = findViewById(R.id.linearLayout);
+        linearLayout2 = findViewById(R.id.linearLayout2);
         recyclerView = findViewById(R.id.rcv_searchPost);
         list = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -90,11 +91,13 @@ public class SearchActivity extends AppCompatActivity {
                     // Gửi yêu cầu tìm kiếm đến API bên ngoài thông qua Retrofit
                     iRetrofit.searchPosts(keyword).enqueue(searchPostCallback);
                     linearLayout.setVisibility(View.GONE);
+                    linearLayout2.setVisibility(View.VISIBLE);
                 } else {
                     // Nếu từ khóa rỗng, xóa danh sách bài viết trong RecyclerView
                     list.clear();
                     informationAdapter.notifyDataSetChanged();
                     linearLayout.setVisibility(View.VISIBLE);
+                    linearLayout2.setVisibility(View.GONE);
 
                 }
             }

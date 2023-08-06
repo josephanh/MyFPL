@@ -64,7 +64,7 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:background="@drawable/white_15dp"
-           android:visibility="visible"
+           android:visibility="gone"
            android:gravity="center"
            android:layout_marginTop="-20dp"
            android:orientation="vertical">
@@ -78,13 +78,24 @@
 
        </LinearLayout>
        <LinearLayout
+           android:id="@+id/linearLayout2"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           android:layout_height="match_parent"
+           android:background="@drawable/white_15dp"
+           android:visibility="visible"
+           android:layout_marginTop="-20dp"
            android:orientation="vertical">
-           <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/rcv_searchPost"
+           <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"/>
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               android:layout_margin="25dp">
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rcv_searchPost"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+           </LinearLayout>
+
        </LinearLayout>
    </LinearLayout>
 
