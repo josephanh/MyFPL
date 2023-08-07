@@ -23,7 +23,7 @@ public class NetworkReceiver extends BroadcastReceiver {
         dialogVocab = new Custom_dialog_NotConnection(context);
         if (CheckInternet.isNetworkAvailable(context)) {
             dialogVocab.Hide();
-            Toast.makeText(context, "Internet Connected", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Internet Connected", Toast.LENGTH_SHORT).show();
         } else {
 
             dialogVocab.Show();

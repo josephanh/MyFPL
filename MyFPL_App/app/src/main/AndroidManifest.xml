@@ -35,17 +35,17 @@
         <activity android:name=".InformationActivity" android:exported="false" />
         <activity android:name=".ServiceActivity" android:exported="true">
         </activity>
-        <activity android:name=".EventActivity" android:exported="false">
-        </activity>
-        <activity android:name=".SplashScreenActivity" android:exported="false" android:hardwareAccelerated="true" />
-        <activity android:name=".InformationActivity" android:exported="true">
-        </activity>
-        <activity android:name=".LoginActivity" android:exported="true" android:hardwareAccelerated="true">
+
+        <activity android:name=".SplashScreenActivity" android:exported="true" android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity" android:exported="true" android:hardwareAccelerated="true">
+
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -57,10 +57,6 @@
         <activity android:name=".MainActivity" android:exported="true">
 
         </activity>
-
-        <activity android:name=".SplashScreenActivity" android:exported="false" android:hardwareAccelerated="true" />
-
-
         <activity android:name=".InformationUser" android:exported="true" android:hardwareAccelerated="true">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->

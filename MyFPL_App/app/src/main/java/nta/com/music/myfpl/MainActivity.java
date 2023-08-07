@@ -25,7 +25,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -44,8 +43,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import nta.com.music.myfpl.DTO.StudyingResponseDTO;
 import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
+import nta.com.music.myfpl.DTO.StudyingResponseDTO;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
@@ -55,7 +54,6 @@ import nta.com.music.myfpl.fragments.ScheduleTabFragment;
 import nta.com.music.myfpl.fragments.UserFragment;
 import nta.com.music.myfpl.helper.IRetrofit;
 import nta.com.music.myfpl.helper.RetrofitHelper;
-import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.receiver.NetworkReceiver;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -240,6 +238,10 @@ public class MainActivity extends AppCompatActivity {
             }
             case 1: {
                 intent = new Intent(MainActivity.this, WalletActivity.class);
+                break;
+            }
+            case 2: {
+                intent = new Intent(MainActivity.this, ServiceActivity.class);
                 break;
             }
             case 4: {

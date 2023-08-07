@@ -75,6 +75,9 @@ public class HomeFragment extends Fragment {
             ((MainActivity)requireContext()).goToExtension(1);
         });
 
+        btn_service.setOnClickListener(view1 -> {
+            ((MainActivity)requireContext()).goToExtension(2);
+        });
         viewPager2.setAdapter(adapter);
 
         new TabLayoutMediator(tabs, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {

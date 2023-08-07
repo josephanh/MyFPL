@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
     Callback<StudentResponseDTO> login = new Callback<StudentResponseDTO>() {
         @Override

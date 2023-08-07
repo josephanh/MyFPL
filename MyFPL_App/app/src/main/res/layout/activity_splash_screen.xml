@@ -9,8 +9,10 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_bee_gold"/>
+        android:id="@+id/logoFPT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_splash"
+        android:scaleType="centerCrop"/>
 
 </LinearLayout>
