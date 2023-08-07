@@ -121,6 +121,7 @@
             android:backgroundTint="@color/primary"
             android:clickable="true"
             android:focusable="true"
+            android:id="@+id/btn_logout"
             android:orientation="vertical">
 
             <LinearLayout

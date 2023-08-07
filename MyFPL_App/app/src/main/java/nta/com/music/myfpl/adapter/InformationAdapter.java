@@ -2,8 +2,6 @@ package nta.com.music.myfpl.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Locale;
 
-import nta.com.music.myfpl.DTO.DetailInformationRequestDTO;
-import nta.com.music.myfpl.InformationActivity;
+import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.interfaces.OnClickInformation;
-import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
 import nta.com.music.myfpl.viewholder.InformationViewHolder;
 
 public class InformationAdapter extends RecyclerView.Adapter<InformationViewHolder> {
@@ -87,7 +82,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationViewHold
         if(name.equals("Phòng đào tạo") || name.contains("đào tạo")) {
             image.setImageResource(R.drawable.ic_pdt);
         }
-        if(name.equals("Phòng quan hệ doanh nghiệp") || name.contains("quan hệ")){
+        if(name.equals("Phòng quan hệ doanh nghiệp") || name.contains("quan hệ") || name.contains("QHDN")){
             image.setImageResource(R.drawable.ic_qhdn);
         }
 

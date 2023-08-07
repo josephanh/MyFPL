@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import nta.com.music.myfpl.InformationUser;
+import nta.com.music.myfpl.LoginActivity;
 import nta.com.music.myfpl.R;
 
 public class UserFragment extends Fragment {
@@ -44,6 +45,7 @@ public class UserFragment extends Fragment {
         TextView user_fullname = view.findViewById(R.id.user_fullname);
         RoundedImageView img_avatar = view.findViewById(R.id.img_avatar);
         LinearLayout user_profile = view.findViewById(R.id.user_profile);
+        LinearLayout btn_logout = view.findViewById(R.id.btn_logout);
 
         if(student != null) {
             user_fullname.setText(student.getName());
@@ -53,6 +55,10 @@ public class UserFragment extends Fragment {
         }
         user_profile.setOnClickListener(view1 -> {
             Intent intent = new Intent(requireContext(), InformationUser.class);
+            requireContext().startActivity(intent);
+        });
+        btn_logout.setOnClickListener(view1 -> {
+            Intent intent = new Intent(requireContext(), LoginActivity.class);
             requireContext().startActivity(intent);
         });
         

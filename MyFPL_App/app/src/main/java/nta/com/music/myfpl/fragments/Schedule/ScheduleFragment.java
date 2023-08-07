@@ -30,6 +30,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleAdapter;
+import nta.com.music.myfpl.dialog.DialogSchedule;
 import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
 import nta.com.music.myfpl.model.Schedule;
 
@@ -117,7 +118,8 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);
         adapter = new ScheduleAdapter(requireContext(), listScheduleTemps, CALENDAR_WEEK, schedule -> {
-
+            DialogSchedule dialogSchedule = new DialogSchedule(requireContext(), schedule);
+            dialogSchedule.Show();
 
         });
         recyclerSchedule.setAdapter(adapter);

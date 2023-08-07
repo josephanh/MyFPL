@@ -385,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (responseDTO.isStatus()) {
                     listDropDown.clear();
+                    listDropDown.add("View All");
                     for (int i = 0; i < responseDTO.getTotal(); i++) {
                         listDropDown.add(responseDTO.getSchedule().get(i).getCourse_name());
                         adapterDropDownSubject.notifyDataSetChanged();
