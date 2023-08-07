@@ -5,22 +5,28 @@
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:background="@drawable/white_15dp">
-
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="vertical"
-       android:layout_margin="20dp">
+       android:paddingHorizontal="20dp"
+       android:paddingBottom="20dp">
        <TextView
            android:id="@+id/day_name"
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:fontFamily="@font/lexend_bold"
-           android:textColor="@color/purple"
+           android:textColor="@color/white"
            android:textSize="18sp"
            android:text="07/08/2023"
            android:gravity="center"
-           android:layout_marginBottom="20dp"/>
+           android:layout_gravity="center"
+           android:paddingVertical="5dp"
+           android:paddingHorizontal="20dp"
+           android:background="@drawable/custom_indicator"
+           android:backgroundTint="@color/second"
+           android:layout_marginBottom="20dp"
+           android:layout_marginTop="10dp"/>
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

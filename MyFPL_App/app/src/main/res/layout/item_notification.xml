@@ -38,7 +38,9 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_weight="0"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/ic_notification"
+                    android:contentDescription="@string/account"
+                    app:tint="@color/primary" />
 
                 <TextView
                     android:id="@+id/tvNotification"
@@ -77,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
                     android:textColor="@color/grey_primary"
                     android:text="Date" />
                 <TextView
@@ -87,7 +90,12 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="right"
                     android:textColor="@color/grey_primary"
-                    android:text="View >" />
+                    android:text="View" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/ic_arrowright"/>
             </LinearLayout>
         </LinearLayout>
 

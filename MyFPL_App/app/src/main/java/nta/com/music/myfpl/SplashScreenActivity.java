@@ -54,7 +54,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         }, 3000);
     }
-
     @Override
     protected void onPause() {
         super.onPause();

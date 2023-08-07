@@ -52,7 +52,7 @@ public class NotificationSchoolAdapter extends RecyclerView.Adapter<Notification
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ListInformationResponseDTO.InformationResponseDTO item =list.get(position);
-        holder.tvNotification.setText("Phòng đào tạo");
+        holder.tvNotification.setText(item.getDepartment());
         holder.tvNotificationTitle.setText(item.getTitle());
         holder.tvNotificationDate.setText(item.getCreated_at());
 

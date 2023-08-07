@@ -1,6 +1,9 @@
 package nta.com.music.myfpl;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -23,6 +26,11 @@ public class ServiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
+
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+
         btn_backService = findViewById(R.id.btn_backService);
         rc_service = findViewById(R.id.rc_service);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -41,6 +49,12 @@ public class ServiceActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Service item = list.get(position);
                 ToastText("Nhan " + item.getTitle());
+            }
+        });
+        btn_backService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }
