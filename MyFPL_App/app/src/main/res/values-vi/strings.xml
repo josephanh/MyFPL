@@ -37,4 +37,13 @@
     <string name="calendar_month">Lịch Tháng</string>
     <string name="apply">Áp dụng</string>
     <string name="trade_history">Lịch sử giao dịch</string>
+    <string name="this_week">This week</string>
+    <string name="last_week">Last week</string>
+    <string name="next_week">Next week</string>
+    <string name="this_month">This month</string>
+    <string name="last_month">Last month</string>
+    <string name="next_month">Next month</string>
+    <string name="no_schedule">Không có lịch học</string>
+    <string name="class_schedule">Lịch học</string>
+    <string name="exam_schedule">Lịch thi</string>
 </resources>

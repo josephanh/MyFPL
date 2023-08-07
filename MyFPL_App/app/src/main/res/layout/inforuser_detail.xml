@@ -203,8 +203,7 @@
                         android:background="@drawable/custom_tv_inforuser"
                         android:padding="10dp"
                         android:text="05/10/2020"
-                        android:textColor="@color/black"
-                        android:layout_marginBottom="50dp"/>
+                        android:textColor="@color/black"/>
                 </LinearLayout>
             </com.dd.ShadowLayout>
         </LinearLayout>

@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
 
-    private static final String url = "http://10.0.2.2:3000";
+    private static final String url = "https://thienhuong280404.id.vn";
     private static Retrofit build(){
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()

@@ -29,6 +29,7 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
     ViewPager2 viewpager_schedule;
     List<Fragment> fragmentList = new ArrayList<>();
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +46,6 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
         viewpager_schedule.setOffscreenPageLimit(2);
         viewpager_schedule.setUserInputEnabled(false);
 
-
         return view;
     }
 
@@ -56,7 +56,7 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
     }
 
     @Override
-    public void onChange(int state) {
+    public void onChange(int state, String name_subject, int time) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -64,9 +64,13 @@ public class ScheduleTabFragment extends Fragment implements OnChangeSchedule {
                     @Override
                     public void run() {
                         viewpager_schedule.setCurrentItem(state, true);
+                        if(state == 1){
+                            ((ScheduleMonthFragment) fragmentList.get(1)).onChange(state,name_subject, time);
+                        }
                     }
                 });
             }
         }).start();
     }
+
 }

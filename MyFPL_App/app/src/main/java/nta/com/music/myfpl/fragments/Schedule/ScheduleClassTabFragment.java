@@ -5,20 +5,25 @@ import static nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment.tabsWe
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import nta.com.music.myfpl.R;
-import nta.com.music.myfpl.adapter.ViewPagerScheduleWeek;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
-public class ScheduleClassTabFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+import nta.com.music.myfpl.R;
+import nta.com.music.myfpl.adapter.ViewPagerScheduleWeekAdapter;
+import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
+import nta.com.music.myfpl.model.Schedule;
+
+public class ScheduleClassTabFragment extends Fragment implements OnChangeScheduleWeek {
     public static ViewPager2 viewPager_schedule;
     int currentItem = 0;
+    List<Fragment> fragmentList = new ArrayList<>();
     public ScheduleClassTabFragment() {
         // Required empty public constructor
     }
@@ -44,10 +49,11 @@ public class ScheduleClassTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule_tab, container, false);
+        setFragmentList();
         viewPager_schedule = view.findViewById(R.id.viewpager_schedule);
-        ViewPagerScheduleWeek pagerSchedule = new ViewPagerScheduleWeek(requireActivity());
+        ViewPagerScheduleWeekAdapter pagerSchedule = new ViewPagerScheduleWeekAdapter(requireActivity(), fragmentList);
         viewPager_schedule.setAdapter(pagerSchedule);
-//        viewPager_schedule.setPageTransformer(new VerticalFlipTransformation());
+        viewPager_schedule.setOffscreenPageLimit(7);
 
 
 
@@ -69,5 +75,26 @@ public class ScheduleClassTabFragment extends Fragment {
         super.onResume();
         tabsWeek.setTabSelected(currentItem);
 
+    }
+
+    @Override
+    public void onChangeSchedule(List<Schedule> list) {
+        ((ScheduleFragment)fragmentList.get(0)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(1)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(2)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(3)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(4)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(5)).onChangeSchedule(list);
+        ((ScheduleFragment)fragmentList.get(6)).onChangeSchedule(list);
+    }
+
+    public void setFragmentList(){
+        fragmentList.add(ScheduleFragment.newInstance(0, 0));
+        fragmentList.add(ScheduleFragment.newInstance(1, 0));
+        fragmentList.add(ScheduleFragment.newInstance(2, 0));
+        fragmentList.add(ScheduleFragment.newInstance(3, 0));
+        fragmentList.add(ScheduleFragment.newInstance(4, 0));
+        fragmentList.add(ScheduleFragment.newInstance(5, 0));
+        fragmentList.add(ScheduleFragment.newInstance(6, 0));
     }
 }

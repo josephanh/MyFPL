@@ -3,19 +3,17 @@ package nta.com.music.myfpl.fragments.Schedule;
 import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_MONTH;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,11 +23,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ScheduleAdapter;
+import nta.com.music.myfpl.interfaces.OnChangeScheduleWeek;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
 import nta.com.music.myfpl.interfaces.OnRecyclerScrollListener;
 import nta.com.music.myfpl.model.Schedule;
 
-public class ScheduleClassTabMonthFragment extends Fragment implements OnRecyclerScrollListener {
+public class ScheduleClassTabMonthFragment extends Fragment implements OnRecyclerScrollListener, OnChangeScheduleWeek {
 
     RecyclerView recycleView_Schedule;
     HashMap<String, Integer> datePosition = new HashMap<>();
@@ -37,6 +36,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
     protected static List<Schedule> listScheduleMonth = new ArrayList<Schedule>();
 
     boolean checkDatePos = false;
+    ScheduleAdapter adapter;
 
     ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
     public ScheduleClassTabMonthFragment() {
@@ -53,7 +53,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
 
             if (!checkDatePos) {
                 for (int i = 0; i < listScheduleMonth.size(); i++) {
-                    String dateSchedule = listScheduleMonth.get(i).getDate();
+                    String dateSchedule = listScheduleMonth.get(i).getDay();
 
                     datePosition.putIfAbsent(dateSchedule, i);
                 }
@@ -62,6 +62,17 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
             String pos = String.valueOf(datePosition.get(dateTemp));
             if (isNumber(pos)) {
                 linearLayoutMonthSchedule.scrollToPositionWithOffset(Integer.parseInt(pos), 0);
+            }
+        }
+    };
+
+    final Handler handlerSchedule = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            listScheduleMonth = (List<Schedule>) msg.obj;
+            if(adapter != null){
+                adapter.updateData(listScheduleMonth);
             }
         }
     };
@@ -79,16 +90,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            listScheduleMonth.add(new Schedule(1,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-20"));
-            listScheduleMonth.add(new Schedule(2,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-20"));
-            listScheduleMonth.add(new Schedule(3,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-21"));
-            listScheduleMonth.add(new Schedule(4,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-21"));
-            listScheduleMonth.add(new Schedule(5,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-22"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-22"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-23"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-23"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",2, "2023-7-25"));
-            listScheduleMonth.add(new Schedule(6,"Android Networking","T308","Chấn Nguyễn","Phần mềm Quang Trung","MOB403","MD17306",3, "2023-7-25"));
+
         }
     }
 
@@ -98,7 +100,7 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
         View view = inflater.inflate(R.layout.fragment_schedule_tab_month, container, false);
         Utils(view);
         linearLayoutMonthSchedule = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        ScheduleAdapter adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
+        adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
             @Override
             public void onClick(Schedule schedule) {
 
@@ -163,5 +165,17 @@ public class ScheduleClassTabMonthFragment extends Fragment implements OnRecycle
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    @Override
+    public void onChangeSchedule(List<Schedule> list) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.obj = list;
+                handlerSchedule.sendMessage(message);
+            }
+        });
     }
 }

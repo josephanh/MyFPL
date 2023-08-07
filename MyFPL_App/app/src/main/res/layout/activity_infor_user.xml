@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InforUserFragment">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/img_bg_inforuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-5dp"
         android:scaleType="centerCrop"
+        android:layout_marginTop="-20dp"
         android:src="@drawable/img_bg_inforuserbg" />
 
     <LinearLayout

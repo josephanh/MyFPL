@@ -19,28 +19,9 @@ try {
         ));
     } else {
         $subjects = $dbConn->query("SELECT * FROM studing where student_id='$student_id'");
-        // kiem tra khoa hoc ton tai chua
-        // echo json_encode(array(
-        //     "subjects" => $subjects->fetchAll(PDO::FETCH_ASSOC)
-        // ));
-        // exit();
+   
         $result = array();
-        if ($subjects->rowCount() > 0) {
-            // while ($row = $subjects->fetch(PDO::FETCH_ASSOC)) {
-            //     $class_id = $row['class_id'];
-            //     $course_id = $row['course_id'];
-            //     $schedule = $dbConn->query("SELECT * FROM studing stu
-            //     inner join schedule sch
-            //     on stu.`class_id` = sch.`class_id`
-            //     inner join course co
-            //     on sch.`course_id` = co.id
-            //     where $course_id = sch.id
-            //     ");
-            //     array_push($result, $schedule ->fetch(PDO::FETCH_ASSOC));
-            //     // echo json_encode(array(
-            //     //     "row" => $row
-            //     // ));
-            // }
+ 
             $result = $dbConn->query("SELECT
                     -- u.name AS student_name,
                     c.name AS course_name,
@@ -74,12 +55,7 @@ try {
                 "total" => $result->rowCount(),
                 "created_at" => $date,
             ));
-        } else {
-            echo json_encode(array(
-                "status" => true,
-                "messenger" => "Subject not exists",
-            ));
-        }
+        
     }
 } catch (Exception $e) {
     echo json_encode(array(

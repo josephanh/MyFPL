@@ -24,6 +24,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,12 +38,22 @@ import com.muratozturk.click_shrink_effect.ClickShrinkEffect;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import nta.com.music.myfpl.DTO.LoginRequestDTO;
+import nta.com.music.myfpl.DTO.StudentResponseDTO;
 import nta.com.music.myfpl.adapter.ChooseCampusItemAdapter;
+import nta.com.music.myfpl.helper.IRetrofit;
+import nta.com.music.myfpl.helper.RetrofitHelper;
 import nta.com.music.myfpl.model.Campus;
+import nta.com.music.myfpl.model.Student;
 import render.animations.Bounce;
 import render.animations.Render;
 import render.animations.Zoom;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -53,6 +64,11 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView txt_chosenCampus;
 
+    IRetrofit retrofit;
+    String email;
+
+    public static Student student;
+
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -61,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Utils();
-
+        retrofit = RetrofitHelper.createService(IRetrofit.class);
 
     }
 
@@ -136,11 +152,21 @@ public class LoginActivity extends AppCompatActivity {
                         String email = account.getEmail();
                         String name = account.getDisplayName();
                         String image = String.valueOf(account.getPhotoUrl());
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+
+                        if(isEmailFPT(email)){
+                            LoginRequestDTO requestDTO = new LoginRequestDTO(email, name, image);
+                            retrofit.login(requestDTO).enqueue(login);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Phải đăng nhập bằng email FPT", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+
                     } catch (Exception e) {
-                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Erron: " + e.getMessage());
+//                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Error: " + e.getMessage());
                     }
                 }
             });
@@ -211,5 +237,39 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    Callback<StudentResponseDTO> login = new Callback<StudentResponseDTO>() {
+        @Override
+        public void onResponse(@NonNull Call<StudentResponseDTO> call, Response<StudentResponseDTO> response) {
+            if (response.isSuccessful()) {
+                StudentResponseDTO loginResponse = response.body();
+                if (loginResponse != null && loginResponse.isStatus()) {
+                    student = loginResponse.getStudent();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Toast.makeText(LoginActivity.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<StudentResponseDTO> call, Throwable t) {
+            Log.d(">>> login", "onFailure: " + t.getMessage());
+        }
+    };
+    public static boolean isEmailFPT(String email) {
+        String patternString = "\\b[\\w.%-]+@fpt\\.edu\\.vn\\b";
+
+        Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = pattern.matcher(email);
+
+        // Kiểm tra xem email có khớp với biểu thức chính quy hay không
+        return matcher.find();
     }
 }

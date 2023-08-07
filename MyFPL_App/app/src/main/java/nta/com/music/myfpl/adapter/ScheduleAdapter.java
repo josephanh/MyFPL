@@ -4,7 +4,8 @@ import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,31 +13,42 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.interfaces.OnClickSchedule;
-import nta.com.music.myfpl.model.Information;
 import nta.com.music.myfpl.model.Schedule;
-import nta.com.music.myfpl.viewholder.InformationViewHolder;
 import nta.com.music.myfpl.viewholder.ScheduleViewHolder;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     Context context;
     List<Schedule> list;
+
+    public ScheduleAdapter() {
+
+    }
+
+    public void updateData(List<Schedule> newData) {
+        try {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    list = newData;
+                    notifyDataSetChanged(); // Thông báo cho RecyclerView biết về sự thay đổi dữ liệu
+                }
+            });
+        } catch (Exception e) {
+            Log.d(">>>>TAG", "updateData: Lỗi lấy lịch học: "+e.getMessage());
+        }
+    }
+
+
 
     OnClickSchedule onClickSchedule;
     int status;
@@ -46,29 +58,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
     private Date date;
     HashMap<String, Integer> datePosition = new HashMap<>();
-
-    public ScheduleAdapter(Context context, List<Schedule> list) {
-        this.context = context;
-        this.list = list;
-
-    }
-
     public ScheduleAdapter(Context context, List<Schedule> list, int status,  OnClickSchedule onClickSchedule) {
         this.context = context;
         this.list = list;
         this.onClickSchedule = onClickSchedule;
         this.status = status;
 
-        for (int i = 0; i < list.size(); i++) {
-            String dateSchedule = list.get(i).getDate();
-
-            if (datePosition.get(dateSchedule) == null) {
-
-                datePosition.put(dateSchedule, i);
-            }
-        }
-
     }
+
 
     @NonNull
     @Override
@@ -80,23 +77,37 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
+
         holder.tv_room.setText("Room "+list.get(position).getRoom());
-        holder.tv_teacher.setText(list.get(position).getTeacher());
-        holder.tv_subject.setText(list.get(position).getSubject());
-        holder.tv_school.setText("0"+list.get(position).getShift_school());
-        String date = list.get(position).getDate();
+        holder.tv_teacher.setText(list.get(position).getTeacher_name());
+        holder.tv_subject.setText(list.get(position).getCourse_name());
+        holder.tv_school.setText("0"+list.get(position).getTime());
+
+        if(datePosition.get(date) == null){
+            for (int i = 0; i < list.size(); i++) {
+                String dateSchedule = list.get(i).getDay();
+                if (datePosition.get(dateSchedule) == null) {
+
+                    datePosition.put(dateSchedule, i);
+//                    Log.d("TAG ADAPTER", "onBindViewHolder: "+dateSchedule);
+                }
+            }
+        }
+
+        String date = list.get(position).getDay();
         if(position == 0){
             holder.firstLine.setBackgroundResource(R.drawable.white_5dp);
         }
         if(datePosition.get(date) != null && datePosition.get(date) == position) {
             holder.layout_date.setVisibility(View.VISIBLE);
             holder.dateTime.setText(date);
+
         } else {
             holder.layout_date.setVisibility(View.GONE);
         }
 
 
-        switch (list.get(position).getShift_school()){
+        switch (list.get(position).getTime()){
             case 1: {
                 holder.tv_time_start.setText("7:30");
                 holder.tv_time_end.setText("9:30");
@@ -135,7 +146,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         } else {
             holder.img_lines.setVisibility(View.VISIBLE);
         }
+
+        holder.item_schedule.setOnClickListener(view -> {
+            onClickSchedule.onClick(list.get(position));
+        });
     }
+
 
     @Override
     public int getItemCount() {
