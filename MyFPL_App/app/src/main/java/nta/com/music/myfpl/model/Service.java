@@ -3,7 +3,9 @@ package nta.com.music.myfpl.model;
 public class Service {
     private long time;
     private float sotien;
-    private String loai , mahoadon,hocky,chuthich;
+    private String loai, mahoadon, hocky, chuthich;
+    private int id;
+    private String title;
 
     public Service() {
     }
@@ -63,5 +65,25 @@ public class Service {
 
     public void setChuthich(String chuthich) {
         this.chuthich = chuthich;
+
+    public Service(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
