@@ -27,7 +27,6 @@ public class InformationViewHolder extends RecyclerView.ViewHolder  {
         tv_time = itemView.findViewById(R.id.tv_time);
         img_name = itemView.findViewById(R.id.img_name);
         layout_item_information = itemView.findViewById(R.id.layout_item_information);
-
         new ClickShrinkEffect(layout_item_information, 0.98f, 50L);
     }
 }

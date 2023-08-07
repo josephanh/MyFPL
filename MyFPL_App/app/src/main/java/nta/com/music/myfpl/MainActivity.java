@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import nta.com.music.myfpl.DTO.StudyingResponseDTO;
+import nta.com.music.myfpl.DTO.ListInformationResponseDTO;
 import nta.com.music.myfpl.adapter.AdapterHome;
 import nta.com.music.myfpl.adapter.DropDownAdapter;
 import nta.com.music.myfpl.dialog.DialogLoading;
@@ -223,9 +225,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void goToDetailInformation(Information information) {
+    public void goToDetailInformation(ListInformationResponseDTO.InformationResponseDTO information) {
         Intent intent = new Intent(MainActivity.this, InformationActivity.class);
-        intent.putExtra("information", information);
+        intent.putExtra("postId", information.getId());
         startActivity(intent);
     }
 

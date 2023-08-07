@@ -1,5 +1,6 @@
 package nta.com.music.myfpl.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class NotificationAttendanceAdapter extends RecyclerView.Adapter<Notifica
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationAttendanceAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NotificationAttendanceAdapter.ViewHolder holder,  int position) {
         NotificationSchool item =list.get(position);
         holder.tvNotification.setText("PDP210 - Khởi sự doanh nghiệp");
         holder.tvNotificationTitle.setText(item.getTitle());

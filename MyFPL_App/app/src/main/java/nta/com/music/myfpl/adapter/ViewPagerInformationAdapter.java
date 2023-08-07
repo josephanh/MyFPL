@@ -17,13 +17,13 @@ public class ViewPagerInformationAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0: {
-                return new InformationFragment();
+                return InformationFragment.newInstance(0);
             }
             case 1: {
-                return new InformationFragment();
+                return InformationFragment.newInstance(1);
             }
             case 2: {
-                return new InformationFragment();
+                return InformationFragment.newInstance(2);
             }
         }
         return new InformationFragment();

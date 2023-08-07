@@ -167,7 +167,7 @@
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="200dp"
                             android:layout_height="120dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:src="@drawable/img_bg_wallet_4"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
