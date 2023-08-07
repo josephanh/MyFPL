@@ -34,7 +34,7 @@ try {
                 }
             }
 
-            $sql = "INSERT INTO studing (student_id, course_id, class_id) VALUES ('$student_id', '$course_id', '$class_id')";
+            $sql = "INSERT INTO studing (student_id, course_id, class_id, type) VALUES ('$student_id', '$course_id', '$class_id', 1)";
             $dbConn->exec($sql);
 
             echo json_encode(array(

@@ -4,10 +4,13 @@ import static nta.com.music.myfpl.adapter.ViewPagerSchedule.CALENDAR_WEEK;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,8 +35,17 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     }
 
     public void updateData(List<Schedule> newData) {
-        list = newData;
-        notifyDataSetChanged(); // Thông báo cho RecyclerView biết về sự thay đổi dữ liệu
+        try {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    list = newData;
+                    notifyDataSetChanged(); // Thông báo cho RecyclerView biết về sự thay đổi dữ liệu
+                }
+            });
+        } catch (Exception e) {
+            Log.d(">>>>TAG", "updateData: Lỗi lấy lịch học: "+e.getMessage());
+        }
     }
 
 
@@ -77,7 +89,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
                 if (datePosition.get(dateSchedule) == null) {
 
                     datePosition.put(dateSchedule, i);
-                    Log.d("TAG ADAPTER", "onBindViewHolder: "+dateSchedule);
+//                    Log.d("TAG ADAPTER", "onBindViewHolder: "+dateSchedule);
                 }
             }
         }

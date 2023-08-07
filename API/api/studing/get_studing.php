@@ -19,9 +19,8 @@ try {
             "messenger" => "student id is empty",
         ));
     } else {
-        $subjects = $dbConn->query("SELECT * FROM studing where student_id='$student_id'");
+        $subjects = $dbConn->query("SELECT * FROM studing where student_id='$student_id' and type=1");
         $result = array();
-        if ($subjects->rowCount() > 0) {
     
             date_default_timezone_set('Asia/Ho_Chi_Minh');
             $date = date('Y-m-d H:i:s');
@@ -32,7 +31,8 @@ try {
                 c.name AS course_name,
                 c.code AS course_code,
                 cl.name AS class_name,
-                cl.code AS class_code
+                cl.code AS class_code,
+                stu.type AS type
                 FROM
                     users u
                 JOIN
@@ -52,12 +52,7 @@ try {
                 "total" => $result->rowCount(),
                 "created_at" => $date,
             ));
-        } else {
-            echo json_encode(array(
-                "status" => true,
-                "messenger" => "Subject not exists",
-            ));
-        }
+        
     }
 } catch (Exception $e) {
     echo json_encode(array(

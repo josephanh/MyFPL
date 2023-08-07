@@ -37,6 +37,7 @@ import nta.com.music.myfpl.DTO.ScheduleResponseDTO;
 import nta.com.music.myfpl.MainActivity;
 import nta.com.music.myfpl.R;
 import nta.com.music.myfpl.adapter.ViewPagerSchedule;
+import nta.com.music.myfpl.component.TextRegular;
 import nta.com.music.myfpl.helper.IRetrofit;
 import nta.com.music.myfpl.helper.RetrofitHelper;
 import nta.com.music.myfpl.model.Schedule;
@@ -53,7 +54,8 @@ public class ScheduleWeekFragment extends Fragment {
     public static VerticalTabLayout tabsWeek;
     public static int currentItem = 0;
     TabLayout tabSchedule;
-    TextView day;
+    TextView day, today_text;
+    TextRegular notification_schedule;
     ImageView btn_filter, btn_refest;
 
     ThreadPoolExecutor executor;
@@ -96,9 +98,7 @@ public class ScheduleWeekFragment extends Fragment {
 //        Log.d(">>>>TAG", "setListCalendarDefault: "+convertDateFormat(listCalendar.get(0)));
 //        Log.d(">>>>TAG", "setListCalendarDefault: "+convertDateFormat(listCalendar.get(listCalendar.size()-1)));
         retrofit = RetrofitHelper.createService(IRetrofit.class);
-        if(student != null && student.getId() >= 0){
-            retrofit.getScheduleByTime(student.getId(), convertDateFormat(listCalendar.get(0)), convertDateFormat(listCalendar.get(listCalendar.size()-1))).enqueue(getScheduleWeek);
-        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -136,12 +136,23 @@ public class ScheduleWeekFragment extends Fragment {
         return view;
     }
 
+
+    @SuppressLint("SetTextI18n")
     private void Utils(View view) {
         viewPager = view.findViewById(R.id.viewpager);
         tabsWeek = view.findViewById(R.id.tab_layout);
         tabSchedule = view.findViewById(R.id.tab_schedule);
         btn_filter = view.findViewById(R.id.btn_filter);
         btn_refest = view.findViewById(R.id.btn_refest);
+        today_text = view.findViewById(R.id.today_text);
+        notification_schedule = view.findViewById(R.id.notification_schedule);
+
+
+        Calendar calendar = Calendar.getInstance();
+        String[] dateToday = calendar.getTime().toString().split(" ");
+
+        today_text.setText(dateToday[0]+ ", "+ dateToday[2] + " " + dateToday[1] + " "+dateToday[5]);
+
 
         new ClickShrinkEffect(btn_refest, 0.7f, 100L);
 
@@ -234,7 +245,6 @@ public class ScheduleWeekFragment extends Fragment {
                 return itemView;
             }
         });
-
     }
 
     private void setItemTabsWeekSelected() {
@@ -287,6 +297,9 @@ public class ScheduleWeekFragment extends Fragment {
     public void onResume() {
         super.onResume();
         setListCalendarDefault();
+        if(student != null && student.getId() >= 0){
+            retrofit.getScheduleByTime(student.getId(), convertDateFormat(listCalendar.get(0)), convertDateFormat(listCalendar.get(listCalendar.size()-1))).enqueue(getScheduleWeek);
+        }
     }
 
     private void setListCalendarDefault(){

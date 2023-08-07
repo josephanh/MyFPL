@@ -30,7 +30,7 @@ public class ViewPagerScheduleWeekAdapter extends FragmentStateAdapter {
             case 5: return fragmentList.get(5);
             case 6: return fragmentList.get(6);
         }
-        return ScheduleFragment.newInstance(0, 0);
+        return ScheduleFragment.newInstance(0, 1);
     }
 
     @Override

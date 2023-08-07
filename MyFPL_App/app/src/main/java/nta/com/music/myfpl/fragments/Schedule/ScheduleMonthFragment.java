@@ -3,7 +3,6 @@ package nta.com.music.myfpl.fragments.Schedule;
 
 import static nta.com.music.myfpl.LoginActivity.student;
 import static nta.com.music.myfpl.adapter.CalendarHorizontalAdapter.selectedItem;
-import static nta.com.music.myfpl.fragments.Schedule.ScheduleFragment.parseBitStringValue;
 import static nta.com.music.myfpl.fragments.Schedule.ScheduleWeekFragment.convertDateFormat;
 
 import android.annotation.SuppressLint;
@@ -87,7 +86,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
     RecyclerView calendarHorizontal;
     private ScheduleClassTabMonthFragment classTab;
     private ScheduleExamTabMonthFragment examTab;
-    Handler handler = new Handler(Looper.getMainLooper());
+
 
     List<Schedule> scheduleList = new ArrayList<>();
     List<Fragment> fragmentList = new ArrayList<>();
@@ -115,9 +114,7 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         });
 
         retrofit = RetrofitHelper.createService(IRetrofit.class);
-        if(student != null && student.getId() >= 0){
-            retrofit.getScheduleByTime(student.getId(), convertDateFormat(listCalendar.get(0)), convertDateFormat(listCalendar.get(listCalendar.size()-1))).enqueue(getScheduleWeek);
-        }
+
 
         return view;
     }
@@ -133,7 +130,6 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         ViewPagerSchedule adapterSchedule = new ViewPagerSchedule(requireActivity(), fragmentList);
         viewPager.setAdapter(adapterSchedule);
         setTabSchedule();
-
         adapter = new CalendarHorizontalAdapter(requireContext(), listCalendar, new OnClickCalendar() {
             @Override
             public void onClick(String date) {
@@ -242,7 +238,6 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                 }
             }
         }
-
     }
 
 //  hàm cài đặt lịch cho tuần
@@ -373,6 +368,10 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                 setCalendar();
                 setCalendarHorizontal();
                 setDefaultCalendar();
+                if(student != null && student.getId() >= 0){
+                    Log.d(">>>>TAG", "onCreateView: "+convertDateFormat(listCalendar.get(0)) + "date_end: "+convertDateFormat(listCalendar.get(listCalendar.size()-1)));
+                    retrofit.getScheduleByTime(student.getId(), convertDateFormat(listCalendar.get(0)), convertDateFormat(listCalendar.get(listCalendar.size()-1))).enqueue(getScheduleWeek);
+                }
             }
         });
     }
@@ -402,14 +401,14 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
                     List<Schedule> classList = new ArrayList<>();
                     List<Schedule> examList = new ArrayList<>();
                     for(int i = 0; i < scheduleList.size(); i++){
-                        if(parseBitStringValue(scheduleList.get(i).getType())){
+                        if(Integer.parseInt(scheduleList.get(i).getType()) == 0){
                             classList.add(scheduleList.get(i));
                         }else{
                             examList.add(scheduleList.get(i));
                         }
                     }
-                    ((ScheduleClassTabMonthFragment) fragmentList.get(0)).onChangeSchedule(scheduleList);
-                    ((ScheduleExamTabMonthFragment) fragmentList.get(1)).onChangeSchedule(scheduleList);
+                    ((ScheduleClassTabMonthFragment) fragmentList.get(0)).onChangeSchedule(classList);
+                    ((ScheduleExamTabMonthFragment) fragmentList.get(1)).onChangeSchedule(examList);
                 }
             }
 

@@ -23,7 +23,7 @@ try {
         empty($course_id) || empty($class_id) || empty($teacher_id) || empty($type)) {
         echo json_encode(array(
             "status" => false,
-            "messenger" => "field is empty",
+            "messenger" => "field is empty "+ "Room: "+$room+" Day: "+$day+" Time: "+$time+" Course: "+$course_id+" Class: "+$class_id+" Teacher: "+$teacher_id+" Type: "+$type,
         ));
     } else {
         $schedule = $dbConn->query("SELECT id, time, day, teacher_id, room, course_id

@@ -9,11 +9,11 @@ use MyFPL;
 CREATE TABLE
     IF NOT EXISTS users (
         id INT PRIMARY KEY AUTO_INCREMENT,
-        avatar VARCHAR(1000) NOT NULL,
+        avatar NVARCHAR(1000) NOT NULL,
         name NVARCHAR(100) NOT NULL,
-        email VARCHAR(150) NOT NULL UNIQUE,
+        email NVARCHAR(150) NOT NULL UNIQUE,
         -- UNIQUE : Duy Nhất 
-        student_code VARCHAR(100) NOT NULL UNIQUE,
+        student_code NVARCHAR(100) NOT NULL UNIQUE,
         gender BIT,
         -- BIT : Kiểu dữ liệu True False
         birthday DATE,
@@ -48,7 +48,7 @@ CREATE TABLE
         course_id INT NOT NULL,
         class_id INT NOT NULL,
         teacher_id INT NOT NULL,
-        address VARCHAR(500),
+        address NVARCHAR(500),
         type BIT NOT NULL,
         FOREIGN KEY (course_id) REFERENCES course(id),
         FOREIGN KEY (class_id) REFERENCES class(id),
@@ -61,7 +61,7 @@ CREATE TABLE
         name NVARCHAR(100) NOT NULL,
         birthday DATE,
         code_id NVARCHAR(15) UNIQUE NOT NULL,
-        teacher_code VARCHAR(15) UNIQUE NOT NULL
+        teacher_code NVARCHAR(15) UNIQUE NOT NULL
     );
 
 CREATE TABLE
@@ -84,6 +84,7 @@ CREATE TABLE
         student_id INT NOT NULL,
         course_id INT NOT NULL,
         class_id INT NOT NULL,
+        type BIT DEFAULT 1,
         FOREIGN KEY (student_id) REFERENCES users(id),
         FOREIGN KEY (course_id) REFERENCES course(id),
         FOREIGN KEY (class_id) REFERENCES class(id)

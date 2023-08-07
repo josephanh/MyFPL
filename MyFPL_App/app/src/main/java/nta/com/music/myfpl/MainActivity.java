@@ -349,8 +349,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> listDropDown = new ArrayList<>();
         switch (type) {
             case 1: {
-                listDropDown.add(getString(R.string.calendar_month));
                 listDropDown.add(getString(R.string.calendar_week));
+                listDropDown.add(getString(R.string.calendar_month));
                 break;
             }
             case 2: {

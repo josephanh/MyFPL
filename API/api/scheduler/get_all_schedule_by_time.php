@@ -26,13 +26,12 @@ try {
     } else {
         $subjects = $dbConn->query("SELECT * FROM studing where student_id='$student_id'");
         $result = array();
-        if ($subjects->rowCount() > 0) {
-    
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-            $date = date('Y-m-d H:i:s');
-            $day = date('Y-m-d');
 
-            $result = $dbConn->query("SELECT
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = date('Y-m-d H:i:s');
+        $day = date('Y-m-d');
+
+        $result = $dbConn->query("SELECT
                 -- u.name AS student_name,
                 c.name AS course_name,
                 c.code AS course_code,
@@ -57,29 +56,24 @@ try {
                 JOIN
                     teacher t ON s.teacher_id = t.id
                 WHERE
-                    u.id = '$student_id' 
+                    u.id = '$student_id'
                 AND s.day BETWEEN '$date_start' AND '$date_end'
                 OR s.day = '$date_start' OR s.day = '$date_end'
                 ORDER BY s.day ASC");
-            // Set the new timezone
-           
-            echo json_encode(array(
-                "status" => true,
-                "messenger" => "Get Schedule Sucessfuly",
-                "time_schedule" => array(
-                    "date_start" => $date_start,
-                    "date_end" => $date_end,
-                ),
-                "schedule" => $result->fetchAll(PDO::FETCH_ASSOC),
-                "total" => $result->rowCount(),
-                "created_at" => $date,
-            ));
-        } else {
-            echo json_encode(array(
-                "status" => true,
-                "messenger" => "Subject not exists",
-            ));
-        }
+        // Set the new timezone
+
+        echo json_encode(array(
+            "status" => true,
+            "messenger" => "Get Schedule Sucessfuly",
+            "time_schedule" => array(
+                "date_start" => $date_start,
+                "date_end" => $date_end,
+            ),
+            "schedule" => $result->fetchAll(PDO::FETCH_ASSOC),
+            "total" => $result->rowCount(),
+            "created_at" => $date,
+        ));
+
     }
 } catch (Exception $e) {
     echo json_encode(array(

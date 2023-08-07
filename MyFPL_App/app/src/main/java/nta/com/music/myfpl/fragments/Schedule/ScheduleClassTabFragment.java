@@ -53,6 +53,7 @@ public class ScheduleClassTabFragment extends Fragment implements OnChangeSchedu
         viewPager_schedule = view.findViewById(R.id.viewpager_schedule);
         ViewPagerScheduleWeekAdapter pagerSchedule = new ViewPagerScheduleWeekAdapter(requireActivity(), fragmentList);
         viewPager_schedule.setAdapter(pagerSchedule);
+        viewPager_schedule.setOffscreenPageLimit(7);
 
 
 

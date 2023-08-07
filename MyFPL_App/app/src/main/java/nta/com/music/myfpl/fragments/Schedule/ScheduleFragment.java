@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -57,15 +57,19 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             listSchedule = (List<Schedule>) msg.obj;
-
-            if (adapter != null) {
-                changeList(dayNumber);
-                adapter.updateData(listScheduleTemps);
-                if (listScheduleTemps.size() != 0) {
-                    no_task.setVisibility(View.GONE);
-                    recyclerSchedule.setVisibility(View.VISIBLE);
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    if (adapter != null) {
+                        changeList(dayNumber);
+                        adapter.updateData(listScheduleTemps);
+                        if (listScheduleTemps.size() != 0) {
+                            no_task.setVisibility(View.GONE);
+                            recyclerSchedule.setVisibility(View.VISIBLE);
+                        }
+                    }
                 }
-            }
+            });
         }
     };
 
@@ -90,6 +94,7 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
         if (getArguments() != null) {
             dayNumber = getArguments().getInt("dayNumber");
             state = getArguments().getInt("state");
+//            Log.d(">>> CLASS API", "onFailure: " + dayNumber);
         }
     }
 
@@ -112,7 +117,7 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerSchedule.setLayoutManager(linearLayoutManager);
         adapter = new ScheduleAdapter(requireContext(), listScheduleTemps, CALENDAR_WEEK, schedule -> {
-            Toast.makeText(requireContext(), "Xin chào: " + parseBitStringValue(schedule.getType()), Toast.LENGTH_SHORT).show();
+
 
         });
         recyclerSchedule.setAdapter(adapter);
@@ -153,47 +158,61 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
 
     private void changeList(int dayNumber) {
 
-        if (listCalendar.size() == 0) {
-            Date currentDate = new Date();
+      try{
+          if (listCalendar.size() == 0) {
+              Date currentDate = new Date();
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(currentDate);
-            calendar.add(Calendar.DAY_OF_MONTH, 0);
-            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            int diff = calendar.getFirstDayOfWeek() - (dayOfWeek - 1);
-            if (diff > 0) {
-                diff -= 7;
-            }
+              Calendar calendar = Calendar.getInstance();
+              calendar.setTime(currentDate);
+              calendar.add(Calendar.DAY_OF_MONTH, 0);
+              int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+              int diff = calendar.getFirstDayOfWeek() - (dayOfWeek-1);
+              if (diff > 0) {
+                  diff -= 7;
+              }
 
-            calendar.add(Calendar.DAY_OF_MONTH, diff);
-            listCalendar.clear();
-            for (int i = 0; i < 7; i++) {
-                Date date = calendar.getTime();
-                String[] arr = date.toString().split(" ");
-                listCalendar.add(arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[5]);
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-        }
-        listScheduleTemps.clear();
-        for (int i = 0; i < listSchedule.size(); i++) {
-            if (state == 0) {
-                if (listSchedule.get(i).getDay().equals(convertDateFormat(listCalendar.get(dayNumber)))) {
-                    if (listCalendar.get(dayNumber).contains(convertDate(dayNumber)) && parseBitStringValue(listSchedule.get(i).getType())) {
-                        listScheduleTemps.add(listSchedule.get(i));
-                    }
-                }
-            } else if (state == 1) {
-                if (listSchedule.get(i).getDay().equals(convertDateFormat(listCalendar.get(dayNumber)))) {
-                    if (listCalendar.get(dayNumber).contains(convertDate(dayNumber)) && !parseBitStringValue(listSchedule.get(i).getType())) {
-                        listScheduleTemps.add(listSchedule.get(i));
-                    }
-                }
-            }
-        }
-        if (listScheduleTemps.size() == 0) {
-            no_task.setVisibility(View.VISIBLE);
-            recyclerSchedule.setVisibility(View.GONE);
-        }
+              calendar.add(Calendar.DAY_OF_MONTH, diff);
+              listCalendar.clear();
+              for (int i = 0; i < 7; i++) {
+                  Date date = calendar.getTime();
+                  String[] arr = date.toString().split(" ");
+                  listCalendar.add(arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[5]);
+                  calendar.add(Calendar.DAY_OF_MONTH, 1);
+              }
+          }
+          listScheduleTemps.clear();
+          for (int i = 0; i < listSchedule.size(); i++) {
+              if(dayNumber == 1){
+//                Log.d(">>> CLASS API", "onFailure: " + listSchedule.get(i).getDay());
+              }
+
+              if (state == 0) {
+                  if (listSchedule.get(i).getDay().equals(convertDateFormat(listCalendar.get(dayNumber)))) {
+                      if (listCalendar.get(dayNumber).contains(convertDate(dayNumber)) && Integer.parseInt(listSchedule.get(i).getType()) == 0) {
+                          listScheduleTemps.add(listSchedule.get(i));
+                          listSchedule.remove(i);
+                      }
+                  }
+
+              } else{
+                  if (listSchedule.get(i).getDay().equals(convertDateFormat(listCalendar.get(dayNumber)))) {
+                      if (listCalendar.get(dayNumber).contains(convertDate(dayNumber)) && Integer.parseInt(listSchedule.get(i).getType()) == 1) {
+                          listScheduleTemps.add(listSchedule.get(i));
+                          listSchedule.remove(i);
+                      }
+                  }
+              }
+          }
+//        Log.d(">>> CLASS API", dayNumber + " Ngày: "+ state);
+          new Handler(Looper.getMainLooper()).post(() -> {
+              if (listScheduleTemps.size() == 0) {
+                  no_task.setVisibility(View.VISIBLE);
+                  recyclerSchedule.setVisibility(View.GONE);
+              }
+          });
+      } catch (Exception e){
+          Log.d(">>>>TAG", "bay áp: "+e);
+      }
     }
 
 
@@ -244,8 +263,5 @@ public class ScheduleFragment extends Fragment implements OnChangeScheduleWeek {
 
     }
 
-    public static boolean parseBitStringValue(String bitStringValue) {
-        return "\u0001".equals(bitStringValue);
-    }
 
 }

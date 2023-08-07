@@ -51,6 +51,7 @@ public class ScheduleExamTabFragment extends Fragment implements OnChangeSchedul
         viewPager_schedule_exam = view.findViewById(R.id.viewpager_schedule);
         ViewPagerScheduleWeekAdapter pagerSchedule = new ViewPagerScheduleWeekAdapter(requireActivity(), fragmentList);
         viewPager_schedule_exam.setAdapter(pagerSchedule);
+
 //        viewPager_schedule_exam.setPageTransformer(new VerticalFlipTransformation());
 
         viewPager_schedule_exam.setCurrentItem(ScheduleWeekFragment.currentItem, false);
@@ -65,6 +66,8 @@ public class ScheduleExamTabFragment extends Fragment implements OnChangeSchedul
 
             }
         });
+
+        viewPager_schedule_exam.setOffscreenPageLimit(7);
 
         return view;
     }

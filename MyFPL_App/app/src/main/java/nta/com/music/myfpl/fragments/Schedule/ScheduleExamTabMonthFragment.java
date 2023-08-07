@@ -39,7 +39,8 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
 
     HashMap<String, Integer> datePosition = new HashMap<>();
     boolean checkDatePos = false;
-    public ScheduleExamTabMonthFragment() {
+    ScheduleAdapter adapter;
+        public ScheduleExamTabMonthFragment() {
         // Required empty public constructor
     }
 
@@ -67,6 +68,17 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
         }
     };
 
+    final Handler handlerSchedule = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            listScheduleMonth = (List<Schedule>) msg.obj;
+            if(adapter != null){
+                adapter.updateData(listScheduleMonth);
+            }
+        }
+    };
+
 
     public static ScheduleExamTabMonthFragment newInstance() {
         ScheduleExamTabMonthFragment fragment = new ScheduleExamTabMonthFragment();
@@ -90,7 +102,7 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
         View view = inflater.inflate(R.layout.fragment_schedule_tab_month, container, false);
         Utils(view);
         linearLayoutMonthSchedule = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        ScheduleAdapter adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
+        adapter = new ScheduleAdapter(requireContext(), listScheduleMonth, CALENDAR_MONTH, new OnClickSchedule() {
             @Override
             public void onClick(Schedule schedule) {
 
@@ -150,6 +162,13 @@ public class ScheduleExamTabMonthFragment extends Fragment implements OnRecycler
 
     @Override
     public void onChangeSchedule(List<Schedule> list) {
-
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.obj = list;
+                handlerSchedule.sendMessage(message);
+            }
+        });
     }
 }
