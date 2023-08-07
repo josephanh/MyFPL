@@ -76,7 +76,7 @@ public class NotificationSchoolAdapter extends RecyclerView.Adapter<Notification
 //            holder.tvNotificationDate.setText("Now");
 //        }
 
-        holder.imgNotification.setImageDrawable(c.getResources().getDrawable(R.drawable.ic_schoolnotification));
+        //holder.imgNotification.setImageDrawable(c.getResources().getDrawable(R.drawable.ic_schoolnotification));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
