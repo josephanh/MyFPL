@@ -58,6 +58,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int RC_SIGN_IN = 10000;
     LinearLayout login_linear;
     ImageView logoFPT; LinearLayout choice_campus, login_google;
     GoogleSignInClient gsc;
@@ -95,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
         login_google = findViewById(R.id.loginGoogle);
         txt_chosenCampus = findViewById(R.id.txt_chosenCampus);
 
-        // yêu cầu người dùng cung cấp gmail và request gmail luôn
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
                 GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent googleIntent = gsc.getSignInIntent();
                 googleLauncher.launch(googleIntent);
-
             }
         });
 
@@ -160,13 +159,8 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Phải đăng nhập bằng email FPT", Toast.LENGTH_SHORT).show();
                         }
 
-
-
-//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                        startActivity(intent);
-
                     } catch (Exception e) {
-//                        Log.d(">>>>>>>>>>>>TAG", "onActivityResult Error: " + e.getMessage());
+                        Log.d(">>>>TAG", "onActivityResult: "+e.getMessage());
                     }
                 }
             });

@@ -25,6 +25,13 @@
         {
           "client_id": "1061374747065-2dh2qlhbq7lnosquqd5atcgcsnma7oka.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "982888310593-hdem9vfv2qs5cvnjde97fevl8haocr1t.apps.googleusercontent.com",
+          "project_id": "myfpl-f6a84",
+          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+          "token_uri": "https://oauth2.googleapis.com/token",
+          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs"
         }
       ],
       "api_key": [
