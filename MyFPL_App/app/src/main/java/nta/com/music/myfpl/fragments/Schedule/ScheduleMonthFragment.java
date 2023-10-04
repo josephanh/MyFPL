@@ -126,6 +126,8 @@ public class ScheduleMonthFragment extends Fragment implements OnRecyclerScrollL
         tv_month = view.findViewById(R.id.tv_month);
         btn_filter = view.findViewById(R.id.btn_filter);
 
+        tv_month.setText("Tháng "+new Date().getMonth()+1);
+
 
         ViewPagerSchedule adapterSchedule = new ViewPagerSchedule(requireActivity(), fragmentList);
         viewPager.setAdapter(adapterSchedule);

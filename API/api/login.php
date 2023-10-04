@@ -32,7 +32,6 @@ try {
             ));
             return;
         }
-
         $user = $dbConn->query("SELECT id, email FROM users where email='$email'");
         // kiem tra email co ton tai hay khong
 

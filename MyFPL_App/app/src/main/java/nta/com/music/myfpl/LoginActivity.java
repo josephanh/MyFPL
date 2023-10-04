@@ -235,6 +235,7 @@ public class LoginActivity extends AppCompatActivity {
     Callback<StudentResponseDTO> login = new Callback<StudentResponseDTO>() {
         @Override
         public void onResponse(@NonNull Call<StudentResponseDTO> call, Response<StudentResponseDTO> response) {
+            Log.d(">>>>TAG", "onResponse: bắt đầu login");
             if (response.isSuccessful()) {
                 StudentResponseDTO loginResponse = response.body();
                 if (loginResponse != null && loginResponse.isStatus()) {

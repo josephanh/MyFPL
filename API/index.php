@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div>Xin chào bà con</div>
 </body>
 </html>
